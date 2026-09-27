@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-krea2-slider-node"
+version = "0.1.0"
+description = "Memory-bounded Krea2 Concept Slider LoRA training for ComfyUI"
+requires-python = ">=3.10"
+dependencies = ["torch", "safetensors", "einops", "PyYAML>=6.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-p no:cacheprovider"
+
+[tool.ruff]
+line-length = 120
+exclude = ["参考", ".omx"]

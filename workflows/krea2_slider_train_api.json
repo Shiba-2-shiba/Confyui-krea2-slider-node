@@ -1,0 +1,52 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "krea2CatTower_v20Raw_int8.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_4b_bf16.safetensors",
+      "type": "krea2",
+      "device": "default"
+    }
+  },
+  "4": {
+    "class_type": "Krea2SliderTrainLoRA",
+    "inputs": {
+      "steps": 100,
+      "rank": 8,
+      "alpha": 8.0,
+      "target": "attention",
+      "learning_rate": 0.0001,
+      "width": 512,
+      "height": 512,
+      "trajectory_steps": 8,
+      "eta": 1.0,
+      "teacher_guidance_scale": 1.0,
+      "teacher_norm_reference": "none",
+      "seed": 42,
+      "vary_seed": true,
+      "gradient_checkpointing": true,
+      "output_name": "krea2_aging",
+      "model": [
+        "1",
+        0
+      ],
+      "clip": [
+        "2",
+        0
+      ],
+      "prompt_yaml": "aging_slider_fullbody.yaml",
+      "model_variant": "raw",
+      "quantization": "convrot_int8",
+      "blocks_to_swap": 16,
+      "memory_budget_gib": 14.0,
+      "compute_dtype": "bf16",
+      "training_direction": "single"
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "id": "c2f1e596-21c3-4b89-972a-0de6fb6a15b9",
+  "revision": 2,
+  "last_node_id": 4,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UNETLoader",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        400,
+        120
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "krea2CatTower_v20Raw_int8.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "CLIPLoader",
+      "pos": [
+        0,
+        220
+      ],
+      "size": [
+        400,
+        145
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen3vl_4b_bf16.safetensors",
+        "krea2",
+        "default"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "Krea2SliderTrainLoRA",
+      "pos": [
+        520,
+        0
+      ],
+      "size": [
+        420,
+        930
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "lora_path",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "report_path",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Krea2SliderTrainLoRA"
+      },
+      "widgets_values": [
+        "aging_slider_fullbody.yaml",
+        "raw",
+        "convrot_int8",
+        16,
+        14.0,
+        "bf16",
+        100,
+        8,
+        8.0,
+        "attention",
+        0.0001,
+        512,
+        512,
+        8,
+        1.0,
+        1.0,
+        "none",
+        42,
+        "fixed",
+        true,
+        true,
+        "krea2_aging",
+        "single"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      4,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      2,
+      0,
+      4,
+      1,
+      "CLIP"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9,
+      "offset": [
+        80,
+        80
+      ]
+    }
+  },
+  "version": 0.4
+}
