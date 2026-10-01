@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import math
+from numbers import Real
 
 
 @dataclass(frozen=True)
@@ -42,6 +43,7 @@ class TrainConfig:
     gradient_checkpointing: bool = True
     max_grad_norm: float = 1.0
     training_direction: str = "single"
+    anchor_strength: float = 1.0
 
     def validate(self):
         if self.steps < 1 or not 1 <= self.rank <= 128 or self.trajectory_steps < 2:
@@ -56,6 +58,9 @@ class TrainConfig:
             raise ValueError("Seed must be in 0..2**63-1")
         if self.teacher_norm_reference not in ("none", "positive", "neutral"):
             raise ValueError("Unknown teacher norm reference")
+        if (isinstance(self.anchor_strength, bool) or not isinstance(self.anchor_strength, Real)
+                or not math.isfinite(self.anchor_strength) or self.anchor_strength < 0):
+            raise ValueError("anchor_strength must be finite and nonnegative")
         for name in ("alpha", "learning_rate", "eta", "max_grad_norm", "teacher_guidance_scale"):
             value = getattr(self, name)
             if not math.isfinite(value) or value <= 0:

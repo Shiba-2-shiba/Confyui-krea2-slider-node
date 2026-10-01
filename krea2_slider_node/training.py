@@ -1,4 +1,4 @@
-"""Single-direction Slider training, with optional bidirectional comparison."""
+"""Slider training with optional bidirectional and frozen-base anchor losses."""
 from contextlib import nullcontext
 from dataclasses import asdict
 import math
@@ -43,9 +43,13 @@ def train_steps(model, records, request, *, device, compute_dtype, progress=None
     model.interrupt_check = cancel
     schedule = raw_schedule(request.width, request.height, request.trajectory_steps)
     directions = (1,) if request.training_direction == "single" else (1, -1)
+    anchor_records = sum("anchor" in record.conditions for record in records)
     report = {"settings": asdict(request), "targets": targets, "trainable_parameters": sum(p.numel() for p in parameters),
               "prediction_type": "raw_flow_velocity", "teacher": "same_quantized_RAW_lora_disabled",
               "student_directions": list(directions), "loss_reduction": "mean_per_direction",
+              "anchor_records": anchor_records,
+              "effective_anchor_records": anchor_records if request.anchor_strength > 0 else 0,
+              "anchor_loss_reduction": "mean_per_direction_added_to_slider_loss",
               "prompts": [record.prompts for record in records], "steps": []}
     started = time.perf_counter()
     try:
@@ -55,9 +59,12 @@ def train_steps(model, records, request, *, device, compute_dtype, progress=None
                 if cancel:
                     cancel()
                 record = records[step % len(records)]
+                anchor_active = request.anchor_strength > 0 and "anchor" in record.conditions
                 conditions = {role: record.conditions[role] for role in ("target", "positive", "negative")}
                 if request.teacher_norm_reference == "neutral":
                     conditions["neutral"] = record.conditions.get("neutral", record.conditions["target"])
+                if anchor_active:
+                    conditions["anchor"] = record.conditions["anchor"]
                 # The prompt encoder shares a TextCondition for identical text.
                 # Preserve this sharing during transfer and teacher prediction.
                 condition_keys = {role: id(cond.features) for role, cond in conditions.items()}
@@ -97,11 +104,17 @@ def train_steps(model, records, request, *, device, compute_dtype, progress=None
                         reference = teacher_prediction("neutral")
                     teachers = slider_teachers(base, positive, negative, request.eta * request.teacher_guidance_scale,
                                                reference, directions=directions)
+                    slider_teacher_evaluations = len(teacher_predictions)
+                    # Reuse the same detached latent/timestep and frozen base;
+                    # no extra trajectory or random draws for preservation.
+                    anchor_teacher = teacher_prediction("anchor") if anchor_active else None
                     teacher_evaluations = len(teacher_predictions)
                     del reference
                 del base, positive, negative, velocity, teacher_predictions
                 optimizer.zero_grad(set_to_none=True)
-                total_loss = 0.0
+                slider_loss = 0.0
+                anchor_loss = 0.0
+                weighted_anchor_loss = 0.0
                 for sign, teacher in zip(directions, teachers):
                     if cancel:
                         cancel()
@@ -112,8 +125,24 @@ def train_steps(model, records, request, *, device, compute_dtype, progress=None
                         if not loss.requires_grad or not torch.isfinite(loss):
                             raise RuntimeError("Non-finite loss or missing adapter gradient path")
                         scaler.scale(loss).backward()
-                        total_loss += float(loss.detach())
+                        slider_loss += float(loss.detach())
                     del loss, prediction
+                    if anchor_active:
+                        if cancel:
+                            cancel()
+                        # Finish each graph's backward before the next forward:
+                        # low VRAM, and checkpoint recomputation keeps this sign.
+                        with lora_multiplier(model, sign), torch.enable_grad(), amp():
+                            prediction = predict_velocity(model, x, t, features["anchor"])
+                            preservation = F.mse_loss(prediction.float(), anchor_teacher.float()) / len(directions)
+                            loss = request.anchor_strength * preservation
+                            if not loss.requires_grad or not torch.isfinite(loss):
+                                raise RuntimeError("Non-finite anchor loss or missing adapter gradient path")
+                            scaler.scale(loss).backward()
+                            anchor_loss += float(preservation.detach())
+                            weighted_anchor_loss += float(loss.detach())
+                        del loss, preservation, prediction
+                total_loss = slider_loss + weighted_anchor_loss
                 scaler.unscale_(optimizer)
                 grad_norm = torch.nn.utils.clip_grad_norm_(parameters, request.max_grad_norm, error_if_nonfinite=True)
                 scaler.step(optimizer)
@@ -122,12 +151,20 @@ def train_steps(model, records, request, *, device, compute_dtype, progress=None
                     torch.cuda.synchronize(device)
                 memory = budget.sample(f"step_{step + 1}") if budget else memory_snapshot(device)
                 entry = {"step": step + 1, "loss": total_loss, "grad_norm": float(grad_norm),
-                         "teacher_evaluations": teacher_evaluations, "student_backward_passes": len(directions),
+                         "slider_loss": slider_loss, "anchor_loss": anchor_loss,
+                         "weighted_anchor_loss": weighted_anchor_loss, "total_loss": total_loss,
+                         "anchor_active": anchor_active,
+                         "slider_teacher_evaluations": slider_teacher_evaluations,
+                         "anchor_teacher_evaluations": teacher_evaluations - slider_teacher_evaluations,
+                         "teacher_evaluations": teacher_evaluations,
+                         "slider_backward_passes": len(directions),
+                         "anchor_backward_passes": len(directions) if anchor_active else 0,
+                         "student_backward_passes": len(directions) * (2 if anchor_active else 1),
                          "seconds": time.perf_counter() - tick, "seed": seed, "timestep_index": index, **memory}
                 report["steps"].append(entry)
                 if progress:
                     progress(step + 1, request.steps, entry)
-                del teachers, features, feature_cache, x
+                del teachers, anchor_teacher, features, feature_cache, x
             if not any(entry["grad_norm"] > 0 for entry in report["steps"]):
                 raise RuntimeError("No nonzero LoRA gradients; check that the two concepts differ")
             report["total_seconds"] = time.perf_counter() - started

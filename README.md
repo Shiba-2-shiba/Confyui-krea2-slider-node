@@ -11,6 +11,7 @@ Krea2 RAWを使い、概念を正負の強度で調整するLoRAをComfyUI内で
 - 指定した主ブロックの凍結重みをCPUに保持し、forward/backward時に逐次転送します。
 - 勾配checkpoint、FP32 LoRA＋AdamW、単方向学習を既定にしています。両方向学習は比較用の選択肢です。
 - Krea2用CLIPの条件をCPUにキャッシュし、学習中はencoder/VAEをGPUに常駐させません。
+- 任意の`anchor`条件に対してベースモデルの予測を保つ追加損失を使い、対象外の性別への波及を抑える学習ができます。既存のSlider損失は変更しません。
 - 標準のComfyUI LoRA Loaderで使用できるsafetensorsと、設定・損失・メモリのJSONレポートを保存します。
 - キャンセル対応。学習用モデルは独立して所有し、接続済みの推論MODELを書き換えません。
 
@@ -62,9 +63,13 @@ flowchart LR
 
 加齢・胸サイズ・deagingの[用途別プロンプト](prompts/README.md)を同梱し、`prompt_yaml`から選択できます。追加の`.yaml`／`.yml`もこのリポジトリの`prompts`フォルダーに置きます。通常のYAMLブロック形式・アンカーとJSON互換形式を読み込めます。ファイル内容の変更はキャッシュ識別に反映されます。
 
+女性用aging/deagingのファイル名はそのままに、男性用の`aging_slider_fullbody_male.yaml`と`deaging_slider_fullbody_male.yaml`を追加しています。各レコードの任意の`anchor`文字列は、LoRAで変えたくない反対の性別の成人プロンプトです。詳細設定の`anchor_strength`（既定`1.0`、有限の非負値）で追加損失の重みを指定します。`anchor`省略または`anchor_strength=0`なら従来の学習経路です。胸サイズは`breast_size_slider_v2.yaml`に男性anchorを追加し、v2の小さい胸を表す`negative`は維持しています。旧`breast_size_slider.yaml`は変更していません。[保持損失の仕様と評価方法](docs/anchor-preservation.md)
+
 出力は`ComfyUI/output/krea2_slider_loras/`です。ComfyUIで出力ディレクトリを変更している場合はその配下になります。フォルダーはLoRA検索対象に登録されます。各実行で固有名を使い、既存LoRAを上書きしません。
 
 学習後は[生成確認テンプレート](workflows/krea2_slider_preview.json)のLoRA Loaderで保存したファイルを選択し、同じseedのまま強度を`-1 / 0 / +1`に変えて比較します。このテンプレートのLoRA選択欄は意図的に空です。初期モデルは手元で確認済みのRAWで、Turboに切り替える場合はTurboの推奨step数・CFGへ変更してください。RAW/Turboそれぞれで効果を確認してください。
+
+性別ごとの保持効果は実GPUで男性・女性の両方を同じseedの`-1 / 0 / +1`画像にして評価してください。anchorは波及がゼロになる保証ではなく、他の構図・衣装・人物への一般化も未検証です。RAWとTurboの結果は分けて記録します。
 
 ## 16GB向けの開始設定
 
@@ -82,6 +87,7 @@ flowchart LR
 | gradient_checkpointing | ON |
 | trajectory_steps | `8` |
 | teacher_norm_reference | `none` |
+| anchor_strength | `1.0`。anchorのないYAMLでは追加学習なし。`0`で無効化 |
 
 `blocks_to_swap`を増やすほどVRAMを節約できますが、転送時間は増えます。余裕が確認できたら減らせます。全Linear、高rank、1024pxは必要メモリが増えるため別途測定してください。
 

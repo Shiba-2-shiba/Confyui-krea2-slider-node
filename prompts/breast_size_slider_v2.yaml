@@ -1,7 +1,8 @@
 # v2: stronger bust-size contrast for fully clothed adult women.
 # target/neutral: medium bust; positive: large bust; negative: small bust.
 # negative is a teacher comparison prompt, not a generation exclusion list.
-# Within each record only the two bust-description sentences differ.
+# Within the slider roles only the two bust-description sentences differ.
+# The optional male anchor preserves the base-model prediction in the matching scene.
 # Start with the original training settings to isolate the prompt revision.
 
 # 1: slender build, front view, head to hips.
@@ -37,6 +38,16 @@
     She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
     A centered front view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
     A plain pale studio background and soft, even lighting. She is fully clothed.
+  anchor: >-
+    A clean 2D anime illustration with soft cel shading shows an adult man. He has a natural adult
+    male chest. The opaque shirt follows his ordinary chest contour. He has a slender build, narrow
+    shoulders, a defined waist, narrow hips, and slim arms. His shoulder-length dark brown hair
+    rests behind his shoulders. He wears a plain, opaque, light gray fitted knit shirt with a high
+    round neckline and short sleeves, and dark straight-leg trousers. He stands upright with relaxed
+    shoulders, a neutral expression, and his arms at his sides, leaving his torso unobstructed. A
+    centered front view shows him from the top of his head to below his hips, with his face, chest,
+    waist, and shirt outline clearly visible. A plain pale studio background and soft, even
+    lighting. He is fully clothed.
 
 # 2: slender build, three-quarter view, head to hips; close to the supplied preview.
 - target: >-
@@ -71,6 +82,16 @@
     She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
     A three-quarter view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
     A plain pale studio background and soft, even lighting. She is fully clothed.
+  anchor: >-
+    A clean 2D anime illustration with soft cel shading shows an adult man. He has a natural adult
+    male chest. The opaque shirt follows his ordinary chest contour. He has a slender build, narrow
+    shoulders, a defined waist, narrow hips, and slim arms. His shoulder-length dark brown hair
+    rests behind his shoulders. He wears a plain, opaque, light gray fitted knit shirt with a high
+    round neckline and short sleeves, and dark straight-leg trousers. He stands upright with relaxed
+    shoulders, a neutral expression, and his arms at his sides, leaving his torso unobstructed. A
+    three-quarter view shows him from the top of his head to below his hips, with his face, chest,
+    waist, and shirt outline clearly visible. A plain pale studio background and soft, even
+    lighting. He is fully clothed.
 
 # 3: average build, front view, head to hips.
 - target: >-
@@ -105,6 +126,16 @@
     She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
     A centered front view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
     A plain pale studio background and soft, even lighting. She is fully clothed.
+  anchor: >-
+    A clean 2D anime illustration with soft cel shading shows an adult man. He has a natural adult
+    male chest. The opaque shirt follows his ordinary chest contour. He has an average build,
+    medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms. His
+    short dark brown hair is tucked behind his ears. He wears a plain, opaque, ivory fitted knit
+    shirt with a high round neckline and long sleeves, and dark straight-leg trousers. He stands
+    upright with relaxed shoulders, a neutral expression, and his arms at his sides, leaving his
+    torso unobstructed. A centered front view shows him from the top of his head to below his hips,
+    with his face, chest, waist, and shirt outline clearly visible. A plain pale studio background
+    and soft, even lighting. He is fully clothed.
 
 # 4: average build, side view, head to hips; direct projection cue.
 - target: >-
@@ -139,6 +170,16 @@
     She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
     A side view shows her from the top of her head to below her hips, with her face in profile and the outline of her chest and waist clearly visible.
     A plain pale studio background and soft, even lighting. She is fully clothed.
+  anchor: >-
+    A clean 2D anime illustration with soft cel shading shows an adult man. He has a natural adult
+    male chest. The opaque shirt follows his ordinary chest contour. He has an average build,
+    medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms. His
+    dark brown hair is tied behind his head. He wears a plain, opaque, pale blue fitted knit shirt
+    with a high round neckline and short sleeves, and dark straight-leg trousers. He stands upright
+    with relaxed shoulders, a neutral expression, and his arms at his sides, leaving his torso
+    unobstructed. A side view shows him from the top of his head to below his hips, with his face in
+    profile and the outline of his chest and waist clearly visible. A plain pale studio background
+    and soft, even lighting. He is fully clothed.
 
 # 5: slender build, front view, full body.
 - target: >-
@@ -173,6 +214,16 @@
     She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
     A centered front view shows her full body from the top of her head to both feet, with the chest and waist outline clearly visible.
     A plain pale studio wall and floor with soft, even lighting. She is fully clothed.
+  anchor: >-
+    A clean 2D anime illustration with soft cel shading shows an adult man. He has a natural adult
+    male chest. The opaque shirt follows his ordinary chest contour. He has a slender build, narrow
+    shoulders, a defined waist, narrow hips, slim arms, and slim legs with adult proportions. His
+    long dark brown hair rests behind his shoulders. He wears a plain, opaque, light gray fitted
+    ribbed knit shirt with a high round neckline and short sleeves, dark straight-leg trousers, and
+    plain flat shoes. He stands upright with relaxed shoulders, a neutral expression, and his arms
+    at his sides, leaving his torso unobstructed. A centered front view shows his full body from the
+    top of his head to both feet, with the chest and waist outline clearly visible. A plain pale
+    studio wall and floor with soft, even lighting. He is fully clothed.
 
 # 6: average build, three-quarter view, full body.
 - target: >-
@@ -207,3 +258,14 @@
     She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
     A three-quarter view shows her full body from the top of her head to both feet, with the chest and waist outline clearly visible.
     A plain pale studio wall and floor with soft, even lighting. She is fully clothed.
+  anchor: >-
+    A clean 2D anime illustration with soft cel shading shows an adult man. He has a natural adult
+    male chest. The opaque shirt follows his ordinary chest contour. He has an average build,
+    medium-width shoulders, a defined waist, medium-width hips, moderately slender arms, and
+    average-width legs with adult proportions. His short dark brown hair is tucked behind his ears.
+    He wears a plain, opaque, ivory fitted knit shirt with a high round neckline and long sleeves,
+    dark straight-leg trousers, and plain flat shoes. He stands upright with relaxed shoulders, a
+    neutral expression, and his arms at his sides, leaving his torso unobstructed. A three-quarter
+    view shows his full body from the top of his head to both feet, with the chest and waist outline
+    clearly visible. A plain pale studio wall and floor with soft, even lighting. He is fully
+    clothed.

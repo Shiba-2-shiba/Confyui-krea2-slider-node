@@ -73,7 +73,10 @@ class Krea2SliderTrainLoRA(io.ComfyNode):
                     io.String.Input("output_name", default="krea2_slider"),
                     io.Combo.Input("training_direction", options=["single", "bidirectional"], default="single",
                                    optional=True, advanced=True,
-                                   tooltip="single learns only the positive YAML direction at LoRA +1. bidirectional also trains an inverse target at -1.")],
+                                   tooltip="single learns only the positive YAML direction at LoRA +1. bidirectional also trains an inverse target at -1."),
+                    io.Float.Input("anchor_strength", default=1.0, min=0.0, max=100.0, step=0.1,
+                                   optional=True, advanced=True,
+                                   tooltip="Add frozen-base preservation loss for optional YAML anchor prompts. 0 disables anchor encoding and training; preservation is not a guarantee of zero visual change.")],
             outputs=[io.String.Output("lora_path"), io.String.Output("report_path")])
 
     @classmethod
@@ -84,7 +87,7 @@ class Krea2SliderTrainLoRA(io.ComfyNode):
     def execute(cls, model, clip, prompt_yaml, model_variant, quantization, blocks_to_swap, memory_budget_gib,
                 compute_dtype, steps, rank, alpha, target, learning_rate, width, height,
                 trajectory_steps, eta, seed, vary_seed, gradient_checkpointing, output_name,
-                teacher_guidance_scale=1.0, teacher_norm_reference="none", training_direction="single"):
+                teacher_guidance_scale=1.0, teacher_norm_reference="none", training_direction="single", anchor_strength=1.0):
         validate_native_model(model)
         validate_output_name(output_name)
         specifications = load_prompt_file(PROMPTS_DIR, prompt_yaml)
@@ -95,14 +98,15 @@ class Krea2SliderTrainLoRA(io.ComfyNode):
             width=width, height=height, trajectory_steps=trajectory_steps, eta=eta, seed=seed,
             vary_seed=vary_seed, gradient_checkpointing=gradient_checkpointing,
             teacher_guidance_scale=teacher_guidance_scale, teacher_norm_reference=teacher_norm_reference,
-            training_direction=training_direction)
+            training_direction=training_direction, anchor_strength=anchor_strength)
         request.validate()
         device = _device()
         _release_inference_models()
         try:
             with torch.inference_mode(False), MemoryBudget(device, memory_budget_gib) as encoder_budget:
                 records = encode_prompt_records(clip, specifications, cancel=mm.throw_exception_if_processing_interrupted,
-                    progress=_progress_callback(comfy.utils.ProgressBar(len(specifications))))
+                    progress=_progress_callback(comfy.utils.ProgressBar(len(specifications))),
+                    include_anchors=request.anchor_strength > 0)
                 encoder_budget.sample("encoded_prompts")
         finally:
             _release_inference_models()

@@ -1,46 +1,62 @@
 # Krea2 Slider prompts
 
-Krea2公式の [`docs/prompting.md`](../参考/krea-2/docs/prompting.md) に従い、人物・画風・衣装・構図・背景・光を記述する英語の自然文にしています。アニメ画風と、概念以外の体型・衣服の変化を抑えるMageFlow改訂版の記述を引き継ぎました。
+Krea2用の英語の自然文で、人物・画風・衣装・構図・背景・光を記述しています。既存の女性用aging/deagingと胸サイズv1/v2の`target`・`positive`・`negative`・`neutral`本文はそのままです。女性用のファイル名も変えていません。
 
-| ファイル | 正のLoRA強度の方向 | 参照元 |
+| ファイル | 正のLoRA強度の方向 | anchorで保持する対象 |
 |---|---|---|
-| [aging_slider_fullbody.yaml](aging_slider_fullbody.yaml) | 成人女性の顔・首・手の皮膚を加齢させる | MageFlow aging v2 |
-| [breast_size_slider.yaml](breast_size_slider.yaml) | 着衣の成人女性の胸部ボリュームを中程度から大きめへ | MageFlow breast v5 |
-| [deaging_slider_fullbody.yaml](deaging_slider_fullbody.yaml) | 着衣の成人女性から幼児へ、年齢・顔・頭身・手足の比率を変える | MageFlow deaging v2 |
+| [aging_slider_fullbody.yaml](aging_slider_fullbody.yaml) | 成人女性の顔・首・手の皮膚を加齢させる | 同じ構図・衣装の成人男性 |
+| [aging_slider_fullbody_male.yaml](aging_slider_fullbody_male.yaml) | 成人男性の顔・首・手の皮膚を加齢させる | 同じ構図・衣装の成人女性 |
+| [deaging_slider_fullbody.yaml](deaging_slider_fullbody.yaml) | 着衣の成人女性から幼児の女児へ、年齢・顔・頭身・手足の比率を変える | 同じ構図・衣装の成人男性 |
+| [deaging_slider_fullbody_male.yaml](deaging_slider_fullbody_male.yaml) | 着衣の成人男性から幼児の男児へ、年齢・顔・頭身・手足の比率を変える | 同じ構図・衣装の成人女性 |
+| [breast_size_slider_v2.yaml](breast_size_slider_v2.yaml) | 着衣の成人女性の胸を大きくする。小さい胸との明示的な対比 | 同じ構図・衣装で自然な男性の胸部を持つ成人男性 |
+| [breast_size_slider.yaml](breast_size_slider.yaml) | 旧版。着衣の成人女性の胸部ボリュームを中程度から大きめへ | なし。ファイルは変更せず互換性を維持 |
 
-各ファイルは参照元の**学習用0〜5の6件**です。aging/deagingは全身4件＋腰上2件、breastは全身4件＋膝下まで2件です。参照元の評価用6/7は収録していません。現在のKrea2ノードは渡された全件を学習に使用し、学習・評価indicesの指定を持たないためです。
+各ファイルは**学習用6件**です。aging/deagingは全身4件＋腰上2件、breast v1は全身4件＋膝下まで2件、breast v2は頭から腰下まで4件＋全身2件です。参照元の評価用レコードは収録していません。ノードは選択したファイルの全件を学習に使います。
 
-## 読み込み方
+男性用aging/deagingでは性別を表す語と代名詞だけを変えています。概念の差分に別の変化を混ぜないよう、髪・衣装・構図・光を保持し、元のスカートやブラウスもそのままです。deagingは成人から着衣の幼児へ変える意図を保持しています。若い成人への変更ではありません。
 
-`Krea2 Slider Train LoRA`の **prompt_yaml** 一覧からファイル名を選択します。ネイティブのMODEL／CLIPも同じ学習ノードへ接続します。テキストの貼り付けは不要です。
+## 読み込み方とフィールド
 
-ファイルは通常のYAMLブロック形式で保存しています。`>-`による折り返しとYAMLアンカーも読み込めます。今回の形式変更でプロンプト本文は変えていません。JSON互換のYAMLも引き続き読み込めます。追加ファイルはこのフォルダー内の`.yaml`／`.yml`が一覧の対象です。
+`Krea2 Slider Train LoRA`の **prompt_yaml** 一覧からファイル名を選択し、ネイティブのMODEL／CLIPを同じ学習ノードへ接続します。追加ファイルはこのフォルダー内の`.yaml`／`.yml`が一覧の対象です。
 
-フィールドは現行ノードに合わせた`target`、`positive`、`negative`、`neutral`だけです。MageFlowの`unconditional`をKrea2の`negative`へ対応づけています。すべて`target = negative = neutral`で、`positive`だけに学習したい差分があります。`negative`は比較対象の概念であり、生成時の除外語句リストではありません。
+通常のYAMLブロック形式、`>-`による折り返し、YAMLの`&name`/`*name`参照、JSON互換YAMLを読み込めます。保持用の`anchor`フィールドとYAMLの参照構文は別の機能です。
 
-Krea2の [`encoder.py`](../参考/krea-2/encoder.py) はsystem/userテンプレートを内部で付加します。ファイル内にはチャット用の特殊トークン、system指示、品質スコアタグを入れていません。
+- `target`：Sliderの基準となるプロンプト
+- `positive`：正のLoRA強度で向かう概念
+- `negative`：比較対象の概念。生成時の除外語句リストではありません
+- `neutral`：任意。教師正規化を`neutral`にしたときに使い、省略時は`target`
+- `anchor`：任意の空でない文字列。LoRAによる変化を抑えたい対象。ベースモデルの予測を保持する追加損失に使います
+
+aging/deagingとbreast v1では`target = negative = neutral`です。**breast v2は`target = neutral`が中程度、`positive`が大きい胸、`negative`が小さい胸**で、三者の差分を維持しています。男性anchorを追加するために`negative`を基準へ戻す処理はありません。
+
+Krea2のtext encoderはsystem/userテンプレートを内部で付加します。ファイル内にはチャット用の特殊トークン、system指示、品質スコアタグを入れていません。
 
 ## ノード側の設定
 
-MageFlowの`guidance_scale`、`action`、解像度、`batch_size`はKrea2のプロンプトレコードには入れません。
+全セットで **training_direction=single** を開始値にします。positiveへ向かう方向をLoRA強度`+1`で学習します。`negative`は教師の比較対象で、逆方向の学生学習を意味しません。agingの比較基準は成人の肌で、幼児プロンプトは使いません。
 
-3セットとも **training_direction=single** を既定にします。参照元の`action=enhance`に合わせて、positiveへ向かう方向を強度`+1`で1回だけ学習します。`negative`は比較基準であり、逆方向の学生学習を意味しません。agingの比較基準は成人の肌で、幼児プロンプトは使いません。
+| セット | eta | teacher_guidance_scale | teacher_norm_reference | anchor_strength |
+|---|---:|---:|---|---:|
+| aging（女性・男性） | 1 | 1 | none | 1 |
+| breast size v2 | 1 | 2 | none | 1 |
+| deaging（女性・男性） | 1 | 1 | none | 1 |
+| breast size v1 | 1 | 2 | none | 効果なし（anchorなし） |
 
-| セット | eta | teacher_guidance_scale | teacher_norm_reference |
-|---|---:|---:|---|
-| aging | 1 | 1 | none |
-| breast size | 1 | 2 | none |
-| deaging | 1 | 1 | none |
+詳細設定の`anchor_strength`は有限の非負値で、既定は`1.0`です。`0`ならanchorのエンコード・教師予測・学生forward/backwardを行わず、従来のSlider損失だけで学習します。`anchor`を省略した独自YAMLにも追加の処理はありません。正の値で有効にすると、元のSlider損失に`anchor_strength × anchor_loss`を足します。Slider損失の重みを半分にする処理ではありません。[保持損失の仕様・レポート](../docs/anchor-preservation.md)
 
-この係数は参照元の概念差分の強さを対応づけた開始値であり、Krea2での最適値や同じ画質を保証するものではありません。胸サイズの効果が強すぎる場合は`teacher_guidance_scale=1`も比較対象になります。
+これらは開始値であり、最適値や画質を保証しません。胸サイズの効果が強すぎる場合は`teacher_guidance_scale=1`も比較対象になります。anchorを強めると対象外への波及だけでなく、本来のSlider効果も弱まる可能性があるため、画像で両方を比較してください。
 
-16GB向けの動作確認はノードの既定値である512×512、rank/alpha 8/8、INT8、checkpoint ON、CPU退避16ブロックから開始できます。参照元の1024×1024／896×1152をファイルから自動適用する処理はありません。
+16GB向けの動作確認は512×512、rank/alpha 8/8、INT8、checkpoint ON、CPU退避16ブロックから開始できます。参照元の解像度や`guidance_scale`、`action`、`batch_size`をYAMLから自動適用する処理はありません。anchor有効時は処理時間とメモリをあらためて測定してください。
 
-## 確認範囲と出典
+## 確認範囲と評価
 
-YAMLとしての読み込み、現行Krea2 parserへの適合、baselineの一致、目的以外のペア差分を確認済みです。ローカルComfyUIの`Krea2Tokenizer`で、テンプレート込みの最大トークン数はagingが335、breastが349、deagingが360でした。すべて512以内です。検証結果は`test-results/krea2-prompt-validation.json`に記録しています。
+テストで全6ファイルの6レコード、既存4フィールドの完全一致、性別ごとの対応、breast v2の小さい胸の比較対象、breast v1の未変更を検証します。過去のローカルComfyUIのトークン数測定は女性用aging/deagingとbreast v1が対象で、新しい男性用・anchor・breast v2全体のトークン数検証の代わりにはなりません。実encoderでも長さを確認してください。
 
-今回の変更では学習・画像生成は行っておらず、体型・衣装の保持やSlider品質は未評価です。
+**anchorは対象外への影響がゼロになる保証ではありません。** 実GPUで学習し、男性・女性それぞれを同じseedの`-1 / 0 / +1`画像で比較する必要があります。強度`0`と`1`の学習比較、学習にない衣装・構図も含め、RAWとTurboを別々に評価します。旧版の動作確認やCPUテストだけで性別分離・衣装保持・Slider画質が確認できたとは扱いません。[画像評価の手順](../docs/anchor-preservation.md#required-image-evaluation)
+
+## 出典
+
+女性用aging/deagingとbreast v1は次のMageFlowプロンプトの学習用0〜5を引き継いでいます。
 
 参照元ディレクトリ：`C:/ComfyUI/custom_nodes/Comfyui-mageflow-slider-node/prompts/`
 
@@ -48,4 +64,4 @@ YAMLとしての読み込み、現行Krea2 parserへの適合、baselineの一�
 - `prompts-mageflow-breast_size_slider_v5.yaml`
 - `prompts-mageflow-deaging_slider_fullbody_v2.yaml`
 
-Krea2の記述方針：`参考/krea-2/docs/prompting.md`。入力テンプレートと最大長の根拠：`参考/krea-2/encoder.py`。公式の長いプロンプト例はTurboでの生成例であり、今回のRAW Slider学習の画質実証とは区別しています。
+breast v2の意図と対比は[分析記録](../docs/breast-size-slider-v2-analysis.txt)を参照してください。Krea2の記述方針は調査時の`参考/krea-2/docs/prompting.md`、入力テンプレートと最大長は`参考/krea-2/encoder.py`を根拠にしています。これらの参考ディレクトリはリポジトリに同梱していません。公式のTurbo生成例は、RAW Slider学習での画質実証とは区別しています。

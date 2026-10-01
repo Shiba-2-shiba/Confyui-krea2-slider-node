@@ -38,7 +38,14 @@ def main():
     assert inputs["training_direction"].default == "single"
     assert inputs["training_direction"].optional
     assert inputs["training_direction"].options == ["single", "bidirectional"]
-    assert inputs["prompt_yaml"].options == ["aging_slider_fullbody.yaml", "breast_size_slider.yaml", "deaging_slider_fullbody.yaml"]
+    assert inputs["anchor_strength"].default == 1.0
+    assert inputs["anchor_strength"].optional
+    assert inputs["anchor_strength"].advanced
+    assert inputs["anchor_strength"].min == 0.0
+    from krea2_slider_node.prompt_files import list_prompt_files, load_prompt_file
+    prompt_names = list_prompt_files(root / "prompts")
+    assert inputs["prompt_yaml"].options == prompt_names
+    prompt_records = {name: load_prompt_file(root / "prompts", name) for name in prompt_names}
     import torch
     import comfy.lora
     from krea2_slider_node.lora import inject_lora, lora_state_dict
@@ -55,7 +62,10 @@ def main():
     for strength in (-1., 0., 1.):
         weight = comfy.lora.calculate_weight([(strength, patches[key], 1.0, None, None)], torch.zeros(4, 4), key)
         torch.testing.assert_close(weight, torch.full((4, 4), 0.25 * strength))
-    report = {"status": "passed", "schemas": schemas, "comfy_lora_strengths": [-1, 0, 1]}
+    report = {"status": "passed", "schemas": schemas, "comfy_lora_strengths": [-1, 0, 1],
+              "presets": {name: {"records": len(records),
+                                  "anchor_records": sum("anchor" in record for record in records)}
+                          for name, records in prompt_records.items()}}
     if args.lora:
         from types import SimpleNamespace
         from safetensors.torch import load_file

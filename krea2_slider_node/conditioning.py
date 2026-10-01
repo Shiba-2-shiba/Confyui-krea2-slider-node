@@ -29,12 +29,14 @@ def validate_prompt_records(records):
     for record in records:
         if not isinstance(record, dict) or not all(isinstance(record.get(role), str) for role in ("target", "positive", "negative")):
             raise ValueError("Every record requires target, positive and negative strings")
-        if set(record) - {"target", "positive", "negative", "neutral"}:
+        if set(record) - {"target", "positive", "negative", "neutral", "anchor"}:
             raise ValueError("Unknown prompt record field")
         if record["positive"] == record["negative"]:
             raise ValueError("Positive and negative concepts must differ")
         if any(not isinstance(value, str) or len(value) > 8192 for value in record.values()):
             raise ValueError("Each prompt must be text of at most 8192 characters")
+        if "anchor" in record and not record["anchor"].strip():
+            raise ValueError("anchor must be a nonempty prompt; omit it to disable preservation")
     return records
 
 
@@ -61,13 +63,17 @@ def from_comfy_conditioning(packed, attention_mask=None):
     return TextCondition(features)
 
 
-def encode_prompt_records(clip, specifications, cancel=None, progress=None):
+def encode_prompt_records(clip, specifications, cancel=None, progress=None, *, include_anchors=True):
+    validate_prompt_records(specifications)
     cache = {}
     output = []
     with torch.inference_mode(False), torch.no_grad():
         for index, spec in enumerate(specifications):
             conditions = {}
-            for role in ("target", "positive", "negative", "neutral"):
+            roles = ("target", "positive", "negative", "neutral")
+            if include_anchors and "anchor" in spec:
+                roles += ("anchor",)
+            for role in roles:
                 if cancel:
                     cancel()
                 prompt = spec.get(role, spec["target"])
