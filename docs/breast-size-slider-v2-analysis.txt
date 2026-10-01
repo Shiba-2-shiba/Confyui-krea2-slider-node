@@ -1,0 +1,145 @@
+Krea2 breast slider: 解析結果とv2プロンプト案
+作成日: 2026-10-01
+
+対象と目的
+  学習レポート: Loraレポート/krea2_breast.json
+  学習ノード: Confyui-krea2-slider-node
+  比較画像: 新しいフォルダー/Krea2_turbo_00021_.png、Krea2_turbo_00022_.png
+  v2: Confyui-krea2-slider-node/prompts/breast_size_slider_v2.yaml
+  着衣の成人女性について、正のLoRA強度で胸部サイズを増やす方向の教師差分を明瞭にする。
+  今回はプロンプト案の作成と構造検証まで。v2の再学習・生成評価は実施していない。
+
+結論
+  「プロンプト差分が弱い」という仮説には具体的な根拠がある。
+  旧版6組のpositive/negativeは、それぞれ232〜262語のうち末尾の1語だけが異なり、
+  moderate -> largerという相対的な表現に留まる。
+  ただし、文字列の差分量だけで教師モデルの差分やLoRA品質は決まらない。
+  教師のpositive/negative生成比較がないため、これが主原因だと確定はできない。
+
+原因候補の順位（観察事実と推測を分離）
+  1. 概念差分の意味が弱く、局所形状が具体化されていない。
+     事実の確度: 高。旧版は全6組でmoderate/largerの1語差分。
+     原因としての確度: 中。教師の予測差分ノルムや教師生成画像はレポートにない。
+  2. 学習時の差分係数が胸サイズ向けREADMEの開始値より小さい。
+     事実の確度: 高。実際はeta=1、teacher_guidance_scale=1、norm_reference=none。
+     prompts/README.md:29の表ではbreast sizeのteacher_guidance_scaleは2。
+     同じ教師予測であれば、今回の差分係数1は表の係数2の半分。
+     原因としての確度: 中。生成画像の効果も半分になるとは限らず、2が最適とも限らない。
+  3. 旧版の構図・衣服が胸部輪郭の学習を難しくしている可能性。
+     事実の確度: 高。全身4組＋頭から膝下まで2組、暗色の上着、ジャケットやカーディガンを含む。
+     原因としての確度: 中〜低。胸部の画像面積や服の遮蔽は教師画像で未計測。
+     旧版でも各組の服装・構図はpositive/negative間で同一であり、その設計は保持すべき。
+  4. 併用LoRAまたは高い適用強度による効果の混在。
+     事実の確度: 高。比較画像にはdarkbrush LoRAが両方とも0.8で適用されている。
+     原因としての確度: 低〜中。胸LoRAとの相互作用は、darkbrushなしの比較がないため不明。
+
+学習レポートから確認した事実
+  status=training_completed、600 steps、rank/alpha=16/16、attention対象。
+  learning_rate=0.0001、学習解像度768×768、trajectory_steps=8。
+  training_direction=single、student_directions=[1]。
+  全600 stepのloss/grad_normは有限。operators.finite_gradients=true。
+  loss中央値は全体0.000146840、最初100stepで0.000140327、最後100stepで0.000174390。
+  step566にはloss=0.171322167、step569にはloss=0.101294599のスパイクがある。
+  異なるseed・prompt・timestepを使うため、この系列だけで収束・未収束を断定しない。
+  「lossが小さいから教師差分が十分」あるいは「lossが小さいから学習失敗」とは判定できない。
+  教師のpositive-negative予測差分ノルムはレポートに記録されていない。
+
+生成画像から確認した事実と観察
+  PNGに埋め込まれた生成ノードの設定差分は、胸LoRAのstrength_modelだけ。
+  00021: krea2_breast.safetensors、strength_model=0。
+  00022: 同じ胸LoRA、strength_model=6。
+  両方ともseed=1、1024×1024、8 steps、CFG=1、euler/simple。
+  両方ともdarkbrush LoRA=0.8。
+  学習と生成のベースモデル名はintorealismAsian_k2JAVFLASHV1.safetensorsで一致。
+  したがって、モデル名の不一致を主原因とする根拠はない。モデルファイルの同一性は未検証。
+  目視では胸部に変化はあるが、顔の描き方、輪郭、髪、服の細部にも変化がある。
+  「完全に効果ゼロ」ではなく、目的部位以外にも変化が見られる比較になっている。
+  seedは1つだけで、目視の印象は定量評価ではない。
+  元の評価プロンプトはthree-quarter viewだが、生成結果は正面寄りである。
+  胸の前方への張り出しを評価する際は、実際に指定した角度が生成されているかも確認する。
+
+ノードの実装とプロンプトの意味
+  krea2_slider_node/slider_loss.py:4
+    教師目標 = base(target) + sign * eta * teacher_guidance_scale * (positive - negative)
+    positive/negativeは同じ潜在状態で得る教師の予測を表す。
+  krea2_slider_node/training.py:44
+    singleは正方向+1だけを学習する。負のLoRA強度による逆方向は明示的に学習していない。
+  krea2_slider_node/conditioning.py:26
+    target/positive/negativeは必須、neutralは任意。targetとnegativeの一致は必須ではない。
+  krea2_slider_node/conditioning.py:54
+    エンコード後512トークン超は例外。本文が長ければ黙って末尾を切る処理ではない。
+    ただし、上流CLIP内部の挙動や実際のv2トークン数は今回未検証。
+  neutralは正規化の参照候補であり、独立した保持用lossではない。
+  teacher_norm_reference=noneでは、neutralを書いても顔・服装の保持を別途最適化しない。
+  negativeは生成時の除外語句欄ではなく、差分を引くための比較プロンプト。
+
+v2の改訂方針
+  1. 胸部の指定を冒頭の画風・成人女性指定の直後へ移動。
+  2. target=neutralは中程度の胸部。positiveは大きく豊かな胸部、negativeは小さい胸部。
+     旧版のtarget=negative=neutralから意図的に変更した、有効な3状態の設計。
+     学習する差分は「大きい−小さい」。中程度のtarget予測へこの差分を加える。
+     これは強い教師方向を作る案であり、適用時に正確なサイズへの到達を保証するものではない。
+  3. volumeに加え、服越しの胸部輪郭と肋郭から前方へ出る程度を具体化。
+  4. 各組の差分は胸部を述べる2文だけ。顔・髪・肩幅・腰・腕・服・姿勢・背景は同一。
+     文章が同一でも、生成時にそれらが完全に保持される保証はない。
+     胸部サイズと服の胸部輪郭・張り出しは同時に記述しているため、服のシルエットまで
+     変化する可能性は残る。独立レビューでもこの制約を確認した。
+  5. 重ね着をなくし、不透明な明るい色のフィットしたニットを使用。
+  6. 頭〜腰下4組、全身2組。正面・斜め・側面で胸部輪郭を学習する。
+  7. 6組構成を維持。各本文は141〜153語に短縮。
+     文字数・語数は実トークン数ではない。512以内の確認は同じKrea2 CLIPで別途必要。
+  8. 成人・着衣を維持し、胸元の露出、性的な姿勢、服の破損などを差分に入れない。
+
+主要な概念指定（前後のシーン記述は各組で共通）
+  target / neutral:
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+  positive:
+    She has large, full breasts with substantial bust volume. The opaque shirt follows a prominent rounded bust contour that projects well forward from the ribcage.
+  negative:
+    She has small breasts with very low bust volume. The opaque shirt follows a shallow chest contour that projects only slightly forward from the ribcage.
+
+使い方と評価手順（未実施）
+  学習ノードのprompt_yamlにbreast_size_slider_v2.yamlを選択。
+  ComfyUIへは、このプロンプトファイルを同じcustom nodeのpromptsフォルダーに配置する。
+  v2は既存LoRAの推論用プロンプトだけを変更する案ではなく、再学習用の概念ペア。
+  新しいLoRAはkrea2_breast_v2などの別名で保存し、旧版を比較用に残す。
+
+  A. 学習前の教師比較
+     胸LoRA=0、darkbrush=0で、同じモデル・CLIP・seedを使う。
+     v2の2組目と4組目からnegative/target/positiveの全文を使って生成する。
+     小→中→大の順に胸部輪郭が変わるか、顔・腰・肩・服の種類が同時に変わらないかを見る。
+     教師自体が区別できなければ、まずプロンプトを見直す。
+
+  B. 初回のv2学習
+     まず旧レポートと同じ設定でプロンプト変更の影響を見る。
+     eta=1、teacher_guidance_scale=1、teacher_norm_reference=none、training_direction=single。
+     rank/alpha=16/16、learning_rate=0.0001、600 steps、768×768、trajectory_steps=8。
+     強い概念ペアと係数増加を同時に変更すると原因の切り分けが難しくなる。
+     差分が十分に出ることを確認しても効果が弱い場合、別の比較実験でscale=2を検討する。
+     高強度で顔や服まで変わるなら、単純な係数増加は改善策として確定していない。
+
+  C. 学習後のLoRA比較
+     まずdarkbrush=0。元PNGの生成プロンプトを同一条件で使い、旧版とv2を比較する。
+     胸LoRAの強度0、1、2、4、seed 1、42、123、777、2026を比較候補とする。
+     胸サイズと輪郭が段階的に変化するかを確認し、顔・髪・肩幅・腰幅・服の保持も見る。
+     強度6だけの比較で優劣を決めず、低い強度で局所的な効果が出るかを重視する。
+     次にdarkbrush=0.8へ戻し、併用による変化を別に比較する。
+     上記は評価案であり、最適な強度・seed・学習設定が実証されたという意味ではない。
+
+  未学習シーンでの評価用プロンプト例（YAMLの6組には含めていない）:
+    A clean 2D anime illustration with soft cel shading shows an adult woman standing in a bright room. She has short black hair and wears a plain, opaque, sage green fitted knit shirt with a high round neckline and short sleeves, and charcoal trousers. She stands upright with relaxed shoulders and her arms at her sides. A three-quarter view shows her from the top of her head to below her hips, with the outline of her chest and waist clearly visible. A plain cream wall and soft daylight. She is fully clothed.
+    サイズの指定を入れず、同じプロンプトのままLoRA強度だけを変えて汎化を見る。
+
+検証結果と限界
+  実際のload_prompt_fileで読み込み、6件・許可キー・一覧掲載を確認。
+  target=neutral、3状態の区別、各組で胸部2文以外が完全一致することを確認。
+  成人・着衣の表記、本文の文字数制限を確認。
+  元YAMLを再読込し、レポートのprompts全6件と一致することを確認。
+  元YAMLとレポート内のバイト単位SHA256は異なるが、解析後のプロンプト文字列は一致。
+  この差だけで誤ったプロンプトが使われたとは判断しない。
+  一覧を3ファイルに固定していた既存テストの期待値にv2を追加。
+  python -m pytest tests/test_prompt_files.py -q: 3 passed。
+  学習・推論の実装、旧プロンプト、学習レポート、元画像は変更していない。
+  v2の実トークン数、教師差分の強さ、再学習後の効果・局所性は未検証。
+  元画像の胸LoRAファイルと学習レポートの対応は、ファイル名からの推定。
+  LoRAの重み・メタデータ自体は今回提供された対象から確認できていない。

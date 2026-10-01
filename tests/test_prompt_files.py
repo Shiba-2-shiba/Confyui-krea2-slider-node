@@ -13,7 +13,8 @@ class PromptFileTests(unittest.TestCase):
         api = self.api()
         root = Path(__file__).resolve().parents[1] / "prompts"
         names = api.list_prompt_files(root)
-        self.assertEqual(names, ["aging_slider_fullbody.yaml", "breast_size_slider.yaml", "deaging_slider_fullbody.yaml"])
+        self.assertEqual(names, ["aging_slider_fullbody.yaml", "breast_size_slider.yaml",
+                                 "breast_size_slider_v2.yaml", "deaging_slider_fullbody.yaml"])
         for name in names:
             records = api.load_prompt_file(root, name)
             self.assertEqual(len(records), 6)

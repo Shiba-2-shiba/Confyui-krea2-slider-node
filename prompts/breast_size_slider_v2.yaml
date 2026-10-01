@@ -1,0 +1,209 @@
+# v2: stronger bust-size contrast for fully clothed adult women.
+# target/neutral: medium bust; positive: large bust; negative: small bust.
+# negative is a teacher comparison prompt, not a generation exclusion list.
+# Within each record only the two bust-description sentences differ.
+# Start with the original training settings to isolate the prompt revision.
+
+# 1: slender build, front view, head to hips.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, and slim arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has large, full breasts with substantial bust volume. The opaque shirt follows a prominent rounded bust contour that projects well forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, and slim arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has small breasts with very low bust volume. The opaque shirt follows a shallow chest contour that projects only slightly forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, and slim arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, and slim arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+
+# 2: slender build, three-quarter view, head to hips; close to the supplied preview.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, and slim arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A three-quarter view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has large, full breasts with substantial bust volume. The opaque shirt follows a prominent rounded bust contour that projects well forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, and slim arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A three-quarter view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has small breasts with very low bust volume. The opaque shirt follows a shallow chest contour that projects only slightly forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, and slim arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A three-quarter view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, and slim arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A three-quarter view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+
+# 3: average build, front view, head to hips.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, ivory fitted knit shirt with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has large, full breasts with substantial bust volume. The opaque shirt follows a prominent rounded bust contour that projects well forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, ivory fitted knit shirt with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has small breasts with very low bust volume. The opaque shirt follows a shallow chest contour that projects only slightly forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, ivory fitted knit shirt with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, ivory fitted knit shirt with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her from the top of her head to below her hips, with her face, chest, waist, and shirt outline clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+
+# 4: average build, side view, head to hips; direct projection cue.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her dark brown hair is tied behind her head. She wears a plain, opaque, pale blue fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A side view shows her from the top of her head to below her hips, with her face in profile and the outline of her chest and waist clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has large, full breasts with substantial bust volume. The opaque shirt follows a prominent rounded bust contour that projects well forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her dark brown hair is tied behind her head. She wears a plain, opaque, pale blue fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A side view shows her from the top of her head to below her hips, with her face in profile and the outline of her chest and waist clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has small breasts with very low bust volume. The opaque shirt follows a shallow chest contour that projects only slightly forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her dark brown hair is tied behind her head. She wears a plain, opaque, pale blue fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A side view shows her from the top of her head to below her hips, with her face in profile and the outline of her chest and waist clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her dark brown hair is tied behind her head. She wears a plain, opaque, pale blue fitted knit shirt with a high round neckline and short sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A side view shows her from the top of her head to below her hips, with her face in profile and the outline of her chest and waist clearly visible.
+    A plain pale studio background and soft, even lighting. She is fully clothed.
+
+# 5: slender build, front view, full body.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, slim arms, and slim legs with adult proportions.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted ribbed knit shirt with a high round neckline and short sleeves, dark straight-leg trousers, and plain flat shoes.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her full body from the top of her head to both feet, with the chest and waist outline clearly visible.
+    A plain pale studio wall and floor with soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has large, full breasts with substantial bust volume. The opaque shirt follows a prominent rounded bust contour that projects well forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, slim arms, and slim legs with adult proportions.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted ribbed knit shirt with a high round neckline and short sleeves, dark straight-leg trousers, and plain flat shoes.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her full body from the top of her head to both feet, with the chest and waist outline clearly visible.
+    A plain pale studio wall and floor with soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has small breasts with very low bust volume. The opaque shirt follows a shallow chest contour that projects only slightly forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, slim arms, and slim legs with adult proportions.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted ribbed knit shirt with a high round neckline and short sleeves, dark straight-leg trousers, and plain flat shoes.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her full body from the top of her head to both feet, with the chest and waist outline clearly visible.
+    A plain pale studio wall and floor with soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has a slender build, narrow shoulders, a defined waist, narrow hips, slim arms, and slim legs with adult proportions.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, light gray fitted ribbed knit shirt with a high round neckline and short sleeves, dark straight-leg trousers, and plain flat shoes.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A centered front view shows her full body from the top of her head to both feet, with the chest and waist outline clearly visible.
+    A plain pale studio wall and floor with soft, even lighting. She is fully clothed.
+
+# 6: average build, three-quarter view, full body.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, moderately slender arms, and average-width legs with adult proportions.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, ivory fitted knit shirt with a high round neckline and long sleeves, dark straight-leg trousers, and plain flat shoes.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A three-quarter view shows her full body from the top of her head to both feet, with the chest and waist outline clearly visible.
+    A plain pale studio wall and floor with soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has large, full breasts with substantial bust volume. The opaque shirt follows a prominent rounded bust contour that projects well forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, moderately slender arms, and average-width legs with adult proportions.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, ivory fitted knit shirt with a high round neckline and long sleeves, dark straight-leg trousers, and plain flat shoes.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A three-quarter view shows her full body from the top of her head to both feet, with the chest and waist outline clearly visible.
+    A plain pale studio wall and floor with soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has small breasts with very low bust volume. The opaque shirt follows a shallow chest contour that projects only slightly forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, moderately slender arms, and average-width legs with adult proportions.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, ivory fitted knit shirt with a high round neckline and long sleeves, dark straight-leg trousers, and plain flat shoes.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A three-quarter view shows her full body from the top of her head to both feet, with the chest and waist outline clearly visible.
+    A plain pale studio wall and floor with soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows an adult woman.
+    She has medium-sized breasts with moderate bust volume. The opaque shirt follows a moderate rounded bust contour that projects a short distance forward from the ribcage.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, moderately slender arms, and average-width legs with adult proportions.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, ivory fitted knit shirt with a high round neckline and long sleeves, dark straight-leg trousers, and plain flat shoes.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms at her sides, leaving her torso unobstructed.
+    A three-quarter view shows her full body from the top of her head to both feet, with the chest and waist outline clearly visible.
+    A plain pale studio wall and floor with soft, even lighting. She is fully clothed.
