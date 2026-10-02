@@ -5,13 +5,18 @@ Krea2用の英語の自然文で、人物・画風・衣装・構図・背景・
 | ファイル | 正のLoRA強度の方向 | anchorで保持する対象 |
 |---|---|---|
 | [aging_slider_fullbody.yaml](aging_slider_fullbody.yaml) | 成人女性の顔・首・手の皮膚を加齢させる | 同じ構図・衣装の成人男性 |
+| [aging_slider_fullbody_v2.yaml](aging_slider_fullbody_v2.yaml) | 女性単独＋男女同時で女性だけの顔・首・手の皮膚を加齢させる | 既存6件の男性anchorを維持。追加の男女同時2件にはanchorなし |
 | [aging_slider_fullbody_male.yaml](aging_slider_fullbody_male.yaml) | 成人男性の顔・首・手の皮膚を加齢させる | 同じ構図・衣装の成人女性 |
 | [deaging_slider_fullbody.yaml](deaging_slider_fullbody.yaml) | 着衣の成人女性から幼児の女児へ、年齢・顔・頭身・手足の比率を変える | 同じ構図・衣装の成人男性 |
 | [deaging_slider_fullbody_male.yaml](deaging_slider_fullbody_male.yaml) | 着衣の成人男性から幼児の男児へ、年齢・顔・頭身・手足の比率を変える | 同じ構図・衣装の成人女性 |
 | [breast_size_slider_v2.yaml](breast_size_slider_v2.yaml) | 着衣の成人女性の胸を大きくする。小さい胸との明示的な対比 | 同じ構図・衣装で自然な男性の胸部を持つ成人男性 |
 | [breast_size_slider.yaml](breast_size_slider.yaml) | 旧版。着衣の成人女性の胸部ボリュームを中程度から大きめへ | なし。ファイルは変更せず互換性を維持 |
 
-各ファイルは**学習用6件**です。aging/deagingは全身4件＋腰上2件、breast v1は全身4件＋膝下まで2件、breast v2は頭から腰下まで4件＋全身2件です。参照元の評価用レコードは収録していません。ノードは選択したファイルの全件を学習に使います。
+aging v2は**学習用8件**、その他のファイルは**学習用6件**です。既存aging/deagingは全身4件＋腰上2件、breast v1は全身4件＋膝下まで2件、breast v2は頭から腰下まで4件＋全身2件です。参照元の評価用レコードは収録していません。ノードは選択したファイルの全件を学習に使います。
+
+女性用aging v2は、元の6件を全フィールドそのまま引き継ぎ、男女がテーブルに並ぶ腰上構図を2件追加しています。男性が左／女性が右と、その逆の2パターンで、`target`から`positive`への差分は女性の皮膚の加齢だけです。追加2件は`target = negative = neutral`で、男女とも基準状態を保持する損失が女性の加齢と競合しないよう`anchor`を省略しています。既存6件の男性anchorは引き続き有効です。
+
+ノードは8件を順番に使用するため、同じ総step数では各レコードの学習回数が6件版より少なくなります。男女同時での性別分離は未検証です。追加した構図そのものに加え、学習にない服装・背景・姿勢と複数seedで評価してください。
 
 男性用aging/deagingでは性別を表す語と代名詞だけを変えています。概念の差分に別の変化を混ぜないよう、髪・衣装・構図・光を保持し、元のスカートやブラウスもそのままです。deagingは成人から着衣の幼児へ変える意図を保持しています。若い成人への変更ではありません。
 
@@ -50,7 +55,7 @@ Krea2のtext encoderはsystem/userテンプレートを内部で付加します�
 
 ## 確認範囲と評価
 
-テストで全6ファイルの6レコード、既存4フィールドの完全一致、性別ごとの対応、breast v2の小さい胸の比較対象、breast v1の未変更を検証します。過去のローカルComfyUIのトークン数測定は女性用aging/deagingとbreast v1が対象で、新しい男性用・anchor・breast v2全体のトークン数検証の代わりにはなりません。実encoderでも長さを確認してください。
+テストで全7ファイルの読込、既存6ファイルの6レコード、aging v2の8レコードと元の6件の完全一致、男女同時2件で女性の加齢以外が変わらないこと、性別ごとの対応、breast v2の小さい胸の比較対象、breast v1の未変更を検証します。過去のローカルComfyUIのトークン数測定は女性用aging/deagingとbreast v1が対象で、新しい男性用・anchor・aging v2・breast v2全体のトークン数検証の代わりにはなりません。実encoderでも長さを確認してください。
 
 **anchorは対象外への影響がゼロになる保証ではありません。** 実GPUで学習し、男性・女性それぞれを同じseedの`-1 / 0 / +1`画像で比較する必要があります。強度`0`と`1`の学習比較、学習にない衣装・構図も含め、RAWとTurboを別々に評価します。旧版の動作確認やCPUテストだけで性別分離・衣装保持・Slider画質が確認できたとは扱いません。[画像評価の手順](../docs/anchor-preservation.md#required-image-evaluation)
 

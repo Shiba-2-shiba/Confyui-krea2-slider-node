@@ -1,13 +1,35 @@
+import ast
 from contextlib import ExitStack
+from pathlib import Path
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
 import torch
+from krea2_slider_node.config import ModelConfig
 from krea2_slider_node.memory import MemoryBudget
 
 
 class MemoryTests(unittest.TestCase):
+    def test_model_budget_keeps_default_without_a_fixed_upper_limit(self):
+        self.assertEqual(ModelConfig("").memory_budget_gib, 14.0)
+        for value in (1.0, 14.0, 14.5, 24.0, 48.0, 1000000.0):
+            with self.subTest(budget=value):
+                ModelConfig("", memory_budget_gib=value).validate()
+        for value in (0.0, 0.5, -1.0, float("nan"), float("inf"), -float("inf")):
+            with self.subTest(budget=value), self.assertRaises(ValueError):
+                ModelConfig("", memory_budget_gib=value).validate()
+
+    def test_budget_widget_keeps_default_without_a_fixed_upper_limit(self):
+        tree = ast.parse((Path(__file__).resolve().parents[1] / "nodes.py").read_text(encoding="utf-8"))
+        widget = next(node for node in ast.walk(tree) if isinstance(node, ast.Call)
+                      and node.args and isinstance(node.args[0], ast.Constant)
+                      and node.args[0].value == "memory_budget_gib")
+        options = {keyword.arg: ast.literal_eval(keyword.value) for keyword in widget.keywords}
+        self.assertEqual(options["default"], 14.0)
+        self.assertEqual(options["min"], 1.0)
+        self.assertIsNone(options.get("max"))
+
     def test_operator_preflight_works_inside_inference_context_without_changing_rng(self):
         import krea2_slider_node.memory as memory
         self.assertTrue(hasattr(memory, "probe_training_operators"))

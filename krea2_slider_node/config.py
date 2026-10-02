@@ -19,8 +19,8 @@ class ModelConfig:
             raise ValueError("Unsupported quantization")
         if not 0 <= self.blocks_to_swap <= 28:
             raise ValueError("blocks_to_swap must be in 0..28")
-        if not math.isfinite(self.memory_budget_gib) or not 1 <= self.memory_budget_gib <= 14:
-            raise ValueError("The 16GB profile requires a VRAM budget in 1..14 GiB")
+        if not math.isfinite(self.memory_budget_gib) or self.memory_budget_gib < 1:
+            raise ValueError("VRAM budget must be finite and at least 1 GiB")
         if self.compute_dtype not in ("bf16", "fp16"):
             raise ValueError("Compute dtype must be bf16 or fp16")
 

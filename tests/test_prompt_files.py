@@ -34,12 +34,40 @@ class PromptFileTests(unittest.TestCase):
         root = PROMPTS_ROOT
         names = api.list_prompt_files(root)
         self.assertEqual(names, ["aging_slider_fullbody.yaml", "aging_slider_fullbody_male.yaml",
+                                 "aging_slider_fullbody_v2.yaml",
                                  "breast_size_slider.yaml", "breast_size_slider_v2.yaml",
                                  "deaging_slider_fullbody.yaml", "deaging_slider_fullbody_male.yaml"])
         for name in names:
             records = api.load_prompt_file(root, name)
-            self.assertEqual(len(records), 6)
+            self.assertEqual(len(records), 8 if name == "aging_slider_fullbody_v2.yaml" else 6)
             self.assertTrue(all(r["positive"] != r["negative"] for r in records))
+
+    def test_aging_v2_preserves_original_records_and_only_ages_woman_in_mixed_pairs(self):
+        name = "aging_slider_fullbody_v2.yaml"
+        self.assertTrue((PROMPTS_ROOT / name).is_file())
+        records = self.api().load_prompt_file(PROMPTS_ROOT, name)
+        self.assertEqual(len(records), 8)
+        self.assertEqual(records[:6], read_preset("aging_slider_fullbody.yaml"))
+        self.assertEqual(sum("anchor" in record for record in records), 6)
+        smooth = "The woman's face, neck and hands have smooth adult skin."
+        aged = ("The woman's face, neck and hands show advanced age, with natural facial wrinkles, "
+                "fine lines around her eyes, nasolabial folds, gently sagging facial skin, "
+                "and fine skin creases on her neck and hands.")
+        for record, placement in zip(records[6:], (
+                "An adult man on the left and an adult woman on the right",
+                "An adult woman on the left and an adult man on the right")):
+            with self.subTest(placement=placement):
+                self.assertIn(placement, record["target"])
+                self.assertIn(smooth, record["target"])
+                self.assertIn(aged, record["positive"])
+                self.assertEqual(record["positive"].replace(aged, smooth), record["target"])
+                self.assertIn("The man's face, neck and hands have smooth adult skin.", record["positive"])
+                self.assertEqual(record["negative"], record["target"])
+                self.assertEqual(record["neutral"], record["target"])
+                self.assertNotIn("anchor", record)
+        self.assertEqual(records[6]["target"].replace(
+            "An adult man on the left and an adult woman on the right",
+            "An adult woman on the left and an adult man on the right"), records[7]["target"])
 
     def test_original_slider_text_is_unchanged_when_anchors_are_added(self):
         # Canonical four-role snapshots from the pre-anchor presets. Adding an
@@ -116,9 +144,12 @@ class PromptFileTests(unittest.TestCase):
                 self.assertNotEqual(record["target"], record["negative"])
                 self.assertEqual(record["target"], record["neutral"])
 
-    def test_breast_v1_stays_byte_for_byte_compatible_without_anchors(self):
+    def test_breast_v1_stays_compatible_without_anchors(self):
         name = "breast_size_slider.yaml"
-        self.assertEqual(hashlib.sha256((PROMPTS_ROOT / name).read_bytes()).hexdigest(),
+        # Git may check out LF source files with CRLF on Windows. Ignore only
+        # that newline conversion while still detecting all other byte changes.
+        payload = (PROMPTS_ROOT / name).read_bytes().replace(b"\r\n", b"\n")
+        self.assertEqual(hashlib.sha256(payload).hexdigest(),
                          "8e06fd501e4448ba223a3fc6a7ca64e5f5ac86995c2c65313138bf87d453aa4a")
         for record in read_preset(name):
             self.assertNotIn("anchor", record)

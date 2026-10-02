@@ -91,7 +91,9 @@ flowchart LR
 
 `blocks_to_swap`を増やすほどVRAMを節約できますが、転送時間は増えます。余裕が確認できたら減らせます。全Linear、高rank、1024pxは必要メモリが増えるため別途測定してください。
 
-メモリ予算は学習中だけ適用するPyTorch allocatorの上限です。ドライバー・画面表示・他プロセスを含む物理VRAMの保証ではありません。実行終了・失敗時に元のallocator設定へ戻します。
+`memory_budget_gib`は既定14GiB、最小1GiBで、設定値の上限はありません。VRAMの多いGPUでは14GiBを超える値を指定できます。実際のallocator上限は、指定値・利用可能なVRAM（1GiBを予約）・既存のallocator上限の範囲内に収まります。
+
+メモリ予算はプロンプトエンコードと学習中に適用するPyTorch allocatorの上限です。ドライバー・画面表示・他プロセスを含む物理VRAMの保証ではありません。実行終了・失敗時に元のallocator設定へ戻します。
 
 教師軌道の生成にも時間がかかります。`trajectory_steps=2`は短い動作確認向けで、通常の品質比較では複数timestepを使う設定を検討してください。学習中の画像previewは行いません。
 

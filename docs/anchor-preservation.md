@@ -31,11 +31,12 @@ An active anchor adds one student forward/backward per trained direction. Its ba
 
 ## Bundled presets
 
-All six presets contain six training records. Original filenames and all four original slider-role texts are preserved.
+The original six presets contain six training records. Female aging v2 contains eight: the original six records unchanged, plus two mixed-gender pairs with only the woman's skin aging. Its added pairs omit anchors; the original six male anchors remain. Original filenames and all four original slider-role texts are preserved.
 
 | Preset | Positive direction | Preservation anchor |
 |---|---|---|
 | `aging_slider_fullbody.yaml` | Adult woman's facial, neck and hand skin ages | Matching adult man |
+| `aging_slider_fullbody_v2.yaml` | Female aging in solo and mixed-gender scenes, with both left/right placements | Six original male anchors; none on the two mixed pairs |
 | `aging_slider_fullbody_male.yaml` | Adult man's facial, neck and hand skin ages | Matching adult woman |
 | `deaging_slider_fullbody.yaml` | Adult woman becomes a fully clothed toddler girl | Matching adult man |
 | `deaging_slider_fullbody_male.yaml` | Adult man becomes a fully clothed toddler boy | Matching adult woman |

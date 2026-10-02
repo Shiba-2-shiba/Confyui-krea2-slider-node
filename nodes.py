@@ -54,7 +54,7 @@ class Krea2SliderTrainLoRA(io.ComfyNode):
                     io.Combo.Input("model_variant", options=["raw"], tooltip="Use an unpatched RAW diffusion model; Turbo is for inference."),
                     io.Combo.Input("quantization", options=["convrot_int8", "bf16_reference"]),
                     io.Int.Input("blocks_to_swap", default=16, min=0, max=28),
-                    io.Float.Input("memory_budget_gib", default=14.0, min=1.0, max=14.0, step=0.5),
+                    io.Float.Input("memory_budget_gib", default=14.0, min=1.0, step=0.5),
                     io.Combo.Input("compute_dtype", options=["bf16", "fp16"]),
                     io.Int.Input("steps", default=100, min=1, max=100000),
                     io.Int.Input("rank", default=8, min=1, max=128),

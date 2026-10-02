@@ -59,10 +59,12 @@ def run_training_job(model_config, records, request, directory, name, *, device,
         failure = (type(error), str(error))
     finally:
         model = None
-        gc.collect()
-        if torch.device(device).type == "cuda":
-            torch.cuda.empty_cache()
-        _job_lock.release()
+        try:
+            gc.collect()
+            if torch.device(device).type == "cuda":
+                torch.cuda.empty_cache()
+        finally:
+            _job_lock.release()
     if failure:
         error_type, message = failure
         if error_type.__name__ == "InterruptProcessingException":
