@@ -1,0 +1,480 @@
+# Experimental v2 anchor ablation: same eight slider records, male-only anchors at every step.
+- target: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and long, straight legs with natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth. She wears a
+    modest dark gray short-sleeved blouse with a small pointed collar, a short central button placket,
+    straight sleeves ending halfway down her upper arms, narrow sleeve openings and a straight hem fully
+    tucked into her skirt. The skirt is dark, straight and ankle-length, with a flat waistband at her
+    natural waist. The opaque matte fabric forms a tidy, lightly fitted silhouette with straight side
+    seams. She wears plain flat shoes. She stands alone with a neutral expression, relaxed brow, a straight
+    back, level relaxed shoulders and arms resting at her sides. Her hands are clearly visible. A centered
+    front view shows her entire body from head to toe, including both feet and the studio floor. She looks
+    toward the viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright
+    floor. The scene has a neutral color palette and soft, even lighting.
+  positive: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and long, straight legs with natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands shows advanced age, with
+    natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin,
+    and fine skin creases on her neck and hands. She wears a modest dark gray short-sleeved blouse with
+    a small pointed collar, a short central button placket, straight sleeves ending halfway down her upper
+    arms, narrow sleeve openings and a straight hem fully tucked into her skirt. The skirt is dark, straight
+    and ankle-length, with a flat waistband at her natural waist. The opaque matte fabric forms a tidy,
+    lightly fitted silhouette with straight side seams. She wears plain flat shoes. She stands alone with
+    a neutral expression, relaxed brow, a straight back, level relaxed shoulders and arms resting at her
+    sides. Her hands are clearly visible. A centered front view shows her entire body from head to toe,
+    including both feet and the studio floor. She looks toward the viewer. The setting is a bright neutral
+    studio with a plain pale gray wall and a bright floor. The scene has a neutral color palette and soft,
+    even lighting.
+  negative: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and long, straight legs with natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth. She wears a
+    modest dark gray short-sleeved blouse with a small pointed collar, a short central button placket,
+    straight sleeves ending halfway down her upper arms, narrow sleeve openings and a straight hem fully
+    tucked into her skirt. The skirt is dark, straight and ankle-length, with a flat waistband at her
+    natural waist. The opaque matte fabric forms a tidy, lightly fitted silhouette with straight side
+    seams. She wears plain flat shoes. She stands alone with a neutral expression, relaxed brow, a straight
+    back, level relaxed shoulders and arms resting at her sides. Her hands are clearly visible. A centered
+    front view shows her entire body from head to toe, including both feet and the studio floor. She looks
+    toward the viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright
+    floor. The scene has a neutral color palette and soft, even lighting.
+  neutral: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and long, straight legs with natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth. She wears a
+    modest dark gray short-sleeved blouse with a small pointed collar, a short central button placket,
+    straight sleeves ending halfway down her upper arms, narrow sleeve openings and a straight hem fully
+    tucked into her skirt. The skirt is dark, straight and ankle-length, with a flat waistband at her
+    natural waist. The opaque matte fabric forms a tidy, lightly fitted silhouette with straight side
+    seams. She wears plain flat shoes. She stands alone with a neutral expression, relaxed brow, a straight
+    back, level relaxed shoulders and arms resting at her sides. Her hands are clearly visible. A centered
+    front view shows her entire body from head to toe, including both feet and the studio floor. She looks
+    toward the viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright
+    floor. The scene has a neutral color palette and soft, even lighting.
+  anchor: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully
+    clothed adult man. He has a slender adult build, a narrow waist, a flat abdomen, slim upper arms
+    and forearms, and long, straight legs with natural adult head-to-body proportions. He has an
+    oval face and dark brown, shoulder-length straight hair. The skin on his face, neck and hands is
+    smooth. He wears a modest dark gray short-sleeved blouse with a small pointed collar, a short
+    central button placket, straight sleeves ending halfway down his upper arms, narrow sleeve
+    openings and a straight hem fully tucked into his skirt. The skirt is dark, straight and
+    ankle-length, with a flat waistband at his natural waist. The opaque matte fabric forms a tidy,
+    lightly fitted silhouette with straight side seams. He wears plain flat shoes. He stands alone
+    with a neutral expression, relaxed brow, a straight back, level relaxed shoulders and arms
+    resting at his sides. His hands are clearly visible. A centered front view shows his entire body
+    from head to toe, including both feet and the studio floor. He looks toward the viewer. The
+    setting is a bright neutral studio with a plain pale gray wall and a bright floor. The scene has
+    a neutral color palette and soft, even lighting.
+- target: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and straight legs with natural adult head-to-body proportions. She has an
+    oval face and dark brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth.
+    She wears a modest charcoal sleeveless knit top with a plain round neckline, neatly bound armholes,
+    straight side seams and a straight hem fully tucked into her skirt. The skirt is dark, straight and
+    ankle-length, with a flat waistband at her natural waist. The opaque matte fabric forms a tidy, lightly
+    fitted silhouette. She wears plain flat shoes. She stands alone with a neutral expression, relaxed
+    brow, a straight back, level relaxed shoulders and arms resting at her sides. Her hands are clearly
+    visible. A centered three-quarter view shows her entire body from head to toe, including both feet
+    and the studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain
+    pale gray wall and a bright floor. The scene has a neutral color palette and soft, even lighting.
+  positive: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and straight legs with natural adult head-to-body proportions. She has an
+    oval face and dark brown, shoulder-length straight hair. The skin on her face, neck and hands shows
+    advanced age, with natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging
+    facial skin, and fine skin creases on her neck and hands. She wears a modest charcoal sleeveless knit
+    top with a plain round neckline, neatly bound armholes, straight side seams and a straight hem fully
+    tucked into her skirt. The skirt is dark, straight and ankle-length, with a flat waistband at her
+    natural waist. The opaque matte fabric forms a tidy, lightly fitted silhouette. She wears plain flat
+    shoes. She stands alone with a neutral expression, relaxed brow, a straight back, level relaxed shoulders
+    and arms resting at her sides. Her hands are clearly visible. A centered three-quarter view shows
+    her entire body from head to toe, including both feet and the studio floor. She looks toward the viewer.
+    The setting is a bright neutral studio with a plain pale gray wall and a bright floor. The scene has
+    a neutral color palette and soft, even lighting.
+  negative: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and straight legs with natural adult head-to-body proportions. She has an
+    oval face and dark brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth.
+    She wears a modest charcoal sleeveless knit top with a plain round neckline, neatly bound armholes,
+    straight side seams and a straight hem fully tucked into her skirt. The skirt is dark, straight and
+    ankle-length, with a flat waistband at her natural waist. The opaque matte fabric forms a tidy, lightly
+    fitted silhouette. She wears plain flat shoes. She stands alone with a neutral expression, relaxed
+    brow, a straight back, level relaxed shoulders and arms resting at her sides. Her hands are clearly
+    visible. A centered three-quarter view shows her entire body from head to toe, including both feet
+    and the studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain
+    pale gray wall and a bright floor. The scene has a neutral color palette and soft, even lighting.
+  neutral: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and straight legs with natural adult head-to-body proportions. She has an
+    oval face and dark brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth.
+    She wears a modest charcoal sleeveless knit top with a plain round neckline, neatly bound armholes,
+    straight side seams and a straight hem fully tucked into her skirt. The skirt is dark, straight and
+    ankle-length, with a flat waistband at her natural waist. The opaque matte fabric forms a tidy, lightly
+    fitted silhouette. She wears plain flat shoes. She stands alone with a neutral expression, relaxed
+    brow, a straight back, level relaxed shoulders and arms resting at her sides. Her hands are clearly
+    visible. A centered three-quarter view shows her entire body from head to toe, including both feet
+    and the studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain
+    pale gray wall and a bright floor. The scene has a neutral color palette and soft, even lighting.
+  anchor: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully
+    clothed adult man. He has a medium adult build, a gently defined waist, a flat abdominal
+    contour, medium-width upper arms and forearms, and straight legs with natural adult head-to-body
+    proportions. He has an oval face and dark brown, shoulder-length straight hair. The skin on his
+    face, neck and hands is smooth. He wears a modest charcoal sleeveless knit top with a plain
+    round neckline, neatly bound armholes, straight side seams and a straight hem fully tucked into
+    his skirt. The skirt is dark, straight and ankle-length, with a flat waistband at his natural
+    waist. The opaque matte fabric forms a tidy, lightly fitted silhouette. He wears plain flat
+    shoes. He stands alone with a neutral expression, relaxed brow, a straight back, level relaxed
+    shoulders and arms resting at his sides. His hands are clearly visible. A centered three-quarter
+    view shows his entire body from head to toe, including both feet and the studio floor. He looks
+    toward the viewer. The setting is a bright neutral studio with a plain pale gray wall and a
+    bright floor. The scene has a neutral color palette and soft, even lighting.
+- target: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and straight legs with natural adult head-to-body proportions. She has an
+    oval face and dark brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth.
+    She wears a modest navy short-sleeved shirt with a pointed collar, a straight central button placket,
+    straight sleeves ending halfway down her upper arms, narrow sleeve openings and a straight hem fully
+    tucked into her skirt. The skirt is dark, straight and ankle-length, with a flat waistband at her
+    natural waist. The opaque matte fabric forms a tidy, lightly fitted silhouette with straight side
+    seams. She wears plain flat shoes. She stands alone with a neutral expression, relaxed brow, a straight
+    back, level relaxed shoulders and arms resting at her sides. Her hands are clearly visible. A centered
+    front view shows her entire body from head to toe, including both feet and the studio floor. She looks
+    toward the viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright
+    floor. The scene has a neutral color palette and soft, even lighting.
+  positive: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and straight legs with natural adult head-to-body proportions. She has an
+    oval face and dark brown, shoulder-length straight hair. The skin on her face, neck and hands shows
+    advanced age, with natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging
+    facial skin, and fine skin creases on her neck and hands. She wears a modest navy short-sleeved shirt
+    with a pointed collar, a straight central button placket, straight sleeves ending halfway down her
+    upper arms, narrow sleeve openings and a straight hem fully tucked into her skirt. The skirt is dark,
+    straight and ankle-length, with a flat waistband at her natural waist. The opaque matte fabric forms
+    a tidy, lightly fitted silhouette with straight side seams. She wears plain flat shoes. She stands
+    alone with a neutral expression, relaxed brow, a straight back, level relaxed shoulders and arms resting
+    at her sides. Her hands are clearly visible. A centered front view shows her entire body from head
+    to toe, including both feet and the studio floor. She looks toward the viewer. The setting is a bright
+    neutral studio with a plain pale gray wall and a bright floor. The scene has a neutral color palette
+    and soft, even lighting.
+  negative: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and straight legs with natural adult head-to-body proportions. She has an
+    oval face and dark brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth.
+    She wears a modest navy short-sleeved shirt with a pointed collar, a straight central button placket,
+    straight sleeves ending halfway down her upper arms, narrow sleeve openings and a straight hem fully
+    tucked into her skirt. The skirt is dark, straight and ankle-length, with a flat waistband at her
+    natural waist. The opaque matte fabric forms a tidy, lightly fitted silhouette with straight side
+    seams. She wears plain flat shoes. She stands alone with a neutral expression, relaxed brow, a straight
+    back, level relaxed shoulders and arms resting at her sides. Her hands are clearly visible. A centered
+    front view shows her entire body from head to toe, including both feet and the studio floor. She looks
+    toward the viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright
+    floor. The scene has a neutral color palette and soft, even lighting.
+  neutral: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and straight legs with natural adult head-to-body proportions. She has an
+    oval face and dark brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth.
+    She wears a modest navy short-sleeved shirt with a pointed collar, a straight central button placket,
+    straight sleeves ending halfway down her upper arms, narrow sleeve openings and a straight hem fully
+    tucked into her skirt. The skirt is dark, straight and ankle-length, with a flat waistband at her
+    natural waist. The opaque matte fabric forms a tidy, lightly fitted silhouette with straight side
+    seams. She wears plain flat shoes. She stands alone with a neutral expression, relaxed brow, a straight
+    back, level relaxed shoulders and arms resting at her sides. Her hands are clearly visible. A centered
+    front view shows her entire body from head to toe, including both feet and the studio floor. She looks
+    toward the viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright
+    floor. The scene has a neutral color palette and soft, even lighting.
+  anchor: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully
+    clothed adult man. He has a medium adult build, a gently defined waist, a flat abdominal
+    contour, medium-width upper arms and forearms, and straight legs with natural adult head-to-body
+    proportions. He has an oval face and dark brown, shoulder-length straight hair. The skin on his
+    face, neck and hands is smooth. He wears a modest navy short-sleeved shirt with a pointed
+    collar, a straight central button placket, straight sleeves ending halfway down his upper arms,
+    narrow sleeve openings and a straight hem fully tucked into his skirt. The skirt is dark,
+    straight and ankle-length, with a flat waistband at his natural waist. The opaque matte fabric
+    forms a tidy, lightly fitted silhouette with straight side seams. He wears plain flat shoes. He
+    stands alone with a neutral expression, relaxed brow, a straight back, level relaxed shoulders
+    and arms resting at his sides. His hands are clearly visible. A centered front view shows his
+    entire body from head to toe, including both feet and the studio floor. He looks toward the
+    viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright floor.
+    The scene has a neutral color palette and soft, even lighting.
+- target: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and long, straight legs with natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth. She wears a
+    modest black tailored jacket with notched lapels, a single central button, straight wrist-length sleeves,
+    narrow cuffs and a straight hip-length hem. The jacket has a lightly fitted waist and straight side
+    seams. Her dark, straight, ankle-length skirt has a flat waistband at her natural waist. Both garments
+    are made of opaque matte fabric. She wears plain flat shoes. She stands alone with a neutral expression,
+    relaxed brow, a straight back, level relaxed shoulders and arms resting at her sides. Her hands are
+    clearly visible. A centered three-quarter view shows her entire body from head to toe, including both
+    feet and the studio floor. She looks toward the viewer. The setting is a bright neutral studio with
+    a plain pale gray wall and a bright floor. The scene has a neutral color palette and soft, even lighting.
+  positive: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and long, straight legs with natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands shows advanced age, with
+    natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin,
+    and fine skin creases on her neck and hands. She wears a modest black tailored jacket with notched
+    lapels, a single central button, straight wrist-length sleeves, narrow cuffs and a straight hip-length
+    hem. The jacket has a lightly fitted waist and straight side seams. Her dark, straight, ankle-length
+    skirt has a flat waistband at her natural waist. Both garments are made of opaque matte fabric. She
+    wears plain flat shoes. She stands alone with a neutral expression, relaxed brow, a straight back,
+    level relaxed shoulders and arms resting at her sides. Her hands are clearly visible. A centered three-quarter
+    view shows her entire body from head to toe, including both feet and the studio floor. She looks toward
+    the viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright floor.
+    The scene has a neutral color palette and soft, even lighting.
+  negative: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and long, straight legs with natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth. She wears a
+    modest black tailored jacket with notched lapels, a single central button, straight wrist-length sleeves,
+    narrow cuffs and a straight hip-length hem. The jacket has a lightly fitted waist and straight side
+    seams. Her dark, straight, ankle-length skirt has a flat waistband at her natural waist. Both garments
+    are made of opaque matte fabric. She wears plain flat shoes. She stands alone with a neutral expression,
+    relaxed brow, a straight back, level relaxed shoulders and arms resting at her sides. Her hands are
+    clearly visible. A centered three-quarter view shows her entire body from head to toe, including both
+    feet and the studio floor. She looks toward the viewer. The setting is a bright neutral studio with
+    a plain pale gray wall and a bright floor. The scene has a neutral color palette and soft, even lighting.
+  neutral: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and long, straight legs with natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth. She wears a
+    modest black tailored jacket with notched lapels, a single central button, straight wrist-length sleeves,
+    narrow cuffs and a straight hip-length hem. The jacket has a lightly fitted waist and straight side
+    seams. Her dark, straight, ankle-length skirt has a flat waistband at her natural waist. Both garments
+    are made of opaque matte fabric. She wears plain flat shoes. She stands alone with a neutral expression,
+    relaxed brow, a straight back, level relaxed shoulders and arms resting at her sides. Her hands are
+    clearly visible. A centered three-quarter view shows her entire body from head to toe, including both
+    feet and the studio floor. She looks toward the viewer. The setting is a bright neutral studio with
+    a plain pale gray wall and a bright floor. The scene has a neutral color palette and soft, even lighting.
+  anchor: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully
+    clothed adult man. He has a slender adult build, a narrow waist, a flat abdomen, slim upper arms
+    and forearms, and long, straight legs with natural adult head-to-body proportions. He has an
+    oval face and dark brown, shoulder-length straight hair. The skin on his face, neck and hands is
+    smooth. He wears a modest black tailored jacket with notched lapels, a single central button,
+    straight wrist-length sleeves, narrow cuffs and a straight hip-length hem. The jacket has a
+    lightly fitted waist and straight side seams. His dark, straight, ankle-length skirt has a flat
+    waistband at his natural waist. Both garments are made of opaque matte fabric. He wears plain
+    flat shoes. He stands alone with a neutral expression, relaxed brow, a straight back, level
+    relaxed shoulders and arms resting at his sides. His hands are clearly visible. A centered
+    three-quarter view shows his entire body from head to toe, including both feet and the studio
+    floor. He looks toward the viewer. The setting is a bright neutral studio with a plain pale gray
+    wall and a bright floor. The scene has a neutral color palette and soft, even lighting.
+- target: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and natural adult head-to-body proportions. She has an oval face and dark brown, shoulder-length straight
+    hair. The skin on her face, neck and hands is smooth. She wears a modest charcoal cardigan over a
+    dark blouse. The cardigan has a plain V-neck opening, a straight row of small buttons, narrow wrist-length
+    sleeves, plain cuffs and a straight hip-length hem. The blouse has a small pointed collar and is tucked
+    neatly into a flat waistband at her natural waist. The opaque matte garments form a tidy, lightly
+    fitted silhouette with straight side seams. She is alone with a neutral expression, relaxed brow,
+    a straight back and level relaxed shoulders. Her arms are relaxed and her hands are visible near the
+    lower edge of the portrait. The composition is a centered waist-up portrait from the front, with her
+    face clearly visible as she looks toward the viewer. The setting is a bright neutral studio with a
+    plain pale gray wall, a neutral color palette and soft, even lighting.
+  positive: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and natural adult head-to-body proportions. She has an oval face and dark brown, shoulder-length straight
+    hair. The skin on her face, neck and hands shows advanced age, with natural facial wrinkles, fine
+    lines around her eyes, nasolabial folds, gently sagging facial skin, and fine skin creases on her
+    neck and hands. She wears a modest charcoal cardigan over a dark blouse. The cardigan has a plain
+    V-neck opening, a straight row of small buttons, narrow wrist-length sleeves, plain cuffs and a straight
+    hip-length hem. The blouse has a small pointed collar and is tucked neatly into a flat waistband at
+    her natural waist. The opaque matte garments form a tidy, lightly fitted silhouette with straight
+    side seams. She is alone with a neutral expression, relaxed brow, a straight back and level relaxed
+    shoulders. Her arms are relaxed and her hands are visible near the lower edge of the portrait. The
+    composition is a centered waist-up portrait from the front, with her face clearly visible as she looks
+    toward the viewer. The setting is a bright neutral studio with a plain pale gray wall, a neutral color
+    palette and soft, even lighting.
+  negative: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and natural adult head-to-body proportions. She has an oval face and dark brown, shoulder-length straight
+    hair. The skin on her face, neck and hands is smooth. She wears a modest charcoal cardigan over a
+    dark blouse. The cardigan has a plain V-neck opening, a straight row of small buttons, narrow wrist-length
+    sleeves, plain cuffs and a straight hip-length hem. The blouse has a small pointed collar and is tucked
+    neatly into a flat waistband at her natural waist. The opaque matte garments form a tidy, lightly
+    fitted silhouette with straight side seams. She is alone with a neutral expression, relaxed brow,
+    a straight back and level relaxed shoulders. Her arms are relaxed and her hands are visible near the
+    lower edge of the portrait. The composition is a centered waist-up portrait from the front, with her
+    face clearly visible as she looks toward the viewer. The setting is a bright neutral studio with a
+    plain pale gray wall, a neutral color palette and soft, even lighting.
+  neutral: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a slender adult build, a narrow waist, a flat abdomen, slim upper arms and forearms,
+    and natural adult head-to-body proportions. She has an oval face and dark brown, shoulder-length straight
+    hair. The skin on her face, neck and hands is smooth. She wears a modest charcoal cardigan over a
+    dark blouse. The cardigan has a plain V-neck opening, a straight row of small buttons, narrow wrist-length
+    sleeves, plain cuffs and a straight hip-length hem. The blouse has a small pointed collar and is tucked
+    neatly into a flat waistband at her natural waist. The opaque matte garments form a tidy, lightly
+    fitted silhouette with straight side seams. She is alone with a neutral expression, relaxed brow,
+    a straight back and level relaxed shoulders. Her arms are relaxed and her hands are visible near the
+    lower edge of the portrait. The composition is a centered waist-up portrait from the front, with her
+    face clearly visible as she looks toward the viewer. The setting is a bright neutral studio with a
+    plain pale gray wall, a neutral color palette and soft, even lighting.
+  anchor: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully
+    clothed adult man. He has a slender adult build, a narrow waist, a flat abdomen, slim upper arms
+    and forearms, and natural adult head-to-body proportions. He has an oval face and dark brown,
+    shoulder-length straight hair. The skin on his face, neck and hands is smooth. He wears a modest
+    charcoal cardigan over a dark blouse. The cardigan has a plain V-neck opening, a straight row of
+    small buttons, narrow wrist-length sleeves, plain cuffs and a straight hip-length hem. The
+    blouse has a small pointed collar and is tucked neatly into a flat waistband at his natural
+    waist. The opaque matte garments form a tidy, lightly fitted silhouette with straight side
+    seams. He is alone with a neutral expression, relaxed brow, a straight back and level relaxed
+    shoulders. His arms are relaxed and his hands are visible near the lower edge of the portrait.
+    The composition is a centered waist-up portrait from the front, with his face clearly visible as
+    he looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall,
+    a neutral color palette and soft, even lighting.
+- target: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth. She wears a
+    modest dark turtleneck sweater with a plain folded high neck, straight wrist-length sleeves, narrow
+    cuffs and a straight hem tucked into a flat waistband at her natural waist. The opaque matte fabric
+    forms a tidy, lightly fitted silhouette with straight side seams. She is alone with a neutral expression,
+    relaxed brow, a straight back and level relaxed shoulders. Her arms are relaxed and her hands are
+    visible near the lower edge of the portrait. The composition is a centered waist-up portrait in a
+    three-quarter view, with her face clearly visible as she looks toward the viewer. The setting is a
+    bright neutral studio with a plain pale gray wall, a neutral color palette and soft, even lighting.
+  positive: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands shows advanced age, with
+    natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin,
+    and fine skin creases on her neck and hands. She wears a modest dark turtleneck sweater with a plain
+    folded high neck, straight wrist-length sleeves, narrow cuffs and a straight hem tucked into a flat
+    waistband at her natural waist. The opaque matte fabric forms a tidy, lightly fitted silhouette with
+    straight side seams. She is alone with a neutral expression, relaxed brow, a straight back and level
+    relaxed shoulders. Her arms are relaxed and her hands are visible near the lower edge of the portrait.
+    The composition is a centered waist-up portrait in a three-quarter view, with her face clearly visible
+    as she looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall,
+    a neutral color palette and soft, even lighting.
+  negative: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth. She wears a
+    modest dark turtleneck sweater with a plain folded high neck, straight wrist-length sleeves, narrow
+    cuffs and a straight hem tucked into a flat waistband at her natural waist. The opaque matte fabric
+    forms a tidy, lightly fitted silhouette with straight side seams. She is alone with a neutral expression,
+    relaxed brow, a straight back and level relaxed shoulders. Her arms are relaxed and her hands are
+    visible near the lower edge of the portrait. The composition is a centered waist-up portrait in a
+    three-quarter view, with her face clearly visible as she looks toward the viewer. The setting is a
+    bright neutral studio with a plain pale gray wall, a neutral color palette and soft, even lighting.
+  neutral: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully clothed
+    adult woman. She has a medium adult build, a gently defined waist, a flat abdominal contour, medium-width
+    upper arms and forearms, and natural adult head-to-body proportions. She has an oval face and dark
+    brown, shoulder-length straight hair. The skin on her face, neck and hands is smooth. She wears a
+    modest dark turtleneck sweater with a plain folded high neck, straight wrist-length sleeves, narrow
+    cuffs and a straight hem tucked into a flat waistband at her natural waist. The opaque matte fabric
+    forms a tidy, lightly fitted silhouette with straight side seams. She is alone with a neutral expression,
+    relaxed brow, a straight back and level relaxed shoulders. Her arms are relaxed and her hands are
+    visible near the lower edge of the portrait. The composition is a centered waist-up portrait in a
+    three-quarter view, with her face clearly visible as she looks toward the viewer. The setting is a
+    bright neutral studio with a plain pale gray wall, a neutral color palette and soft, even lighting.
+  anchor: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading depicts a fully
+    clothed adult man. He has a medium adult build, a gently defined waist, a flat abdominal
+    contour, medium-width upper arms and forearms, and natural adult head-to-body proportions. He
+    has an oval face and dark brown, shoulder-length straight hair. The skin on his face, neck and
+    hands is smooth. He wears a modest dark turtleneck sweater with a plain folded high neck,
+    straight wrist-length sleeves, narrow cuffs and a straight hem tucked into a flat waistband at
+    his natural waist. The opaque matte fabric forms a tidy, lightly fitted silhouette with straight
+    side seams. He is alone with a neutral expression, relaxed brow, a straight back and level
+    relaxed shoulders. His arms are relaxed and his hands are visible near the lower edge of the
+    portrait. The composition is a centered waist-up portrait in a three-quarter view, with his face
+    clearly visible as he looks toward the viewer. The setting is a bright neutral studio with a
+    plain pale gray wall, a neutral color palette and soft, even lighting.
+
+
+# Mixed slider conditions are unchanged from v2. Each added anchor contains only
+# a smooth-skinned adult man; it does not preserve the whole mixed-gender scene.
+# This tests missing anchor steps, NOT spatial preservation inside the mixed pair.
+- target: &mixed_baseline_man_left >-
+    A detailed 2D anime illustration with clean linework and soft cel shading.
+    An adult man on the left and an adult woman on the right sit side by side
+    behind a wooden table. Both have short dark brown hair and wear plain navy
+    short-sleeved crew-neck shirts. Both face the viewer with neutral expressions.
+    The man's face, neck and hands have smooth adult skin.
+    The woman's face, neck and hands have smooth adult skin.
+    Their hands rest on the tabletop. Both faces and necks are clearly visible.
+    Waist-up composition, plain light gray background, soft even lighting.
+  positive: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading.
+    An adult man on the left and an adult woman on the right sit side by side
+    behind a wooden table. Both have short dark brown hair and wear plain navy
+    short-sleeved crew-neck shirts. Both face the viewer with neutral expressions.
+    The man's face, neck and hands have smooth adult skin.
+    The woman's face, neck and hands show advanced age, with natural facial
+    wrinkles, fine lines around her eyes, nasolabial folds, gently sagging
+    facial skin, and fine skin creases on her neck and hands.
+    Their hands rest on the tabletop. Both faces and necks are clearly visible.
+    Waist-up composition, plain light gray background, soft even lighting.
+  negative: *mixed_baseline_man_left
+  neutral: *mixed_baseline_man_left
+  anchor: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading.
+    An adult man sits alone on the left behind a wooden table.
+    He has short dark brown hair and wears a plain navy short-sleeved crew-neck shirt.
+    He faces the viewer with a neutral expression.
+    His face, neck and hands have smooth adult skin.
+    His hands rest on the tabletop. His face and neck are clearly visible.
+    Waist-up composition, plain light gray background, soft even lighting.
+
+- target: &mixed_baseline_woman_left >-
+    A detailed 2D anime illustration with clean linework and soft cel shading.
+    An adult woman on the left and an adult man on the right sit side by side
+    behind a wooden table. Both have short dark brown hair and wear plain navy
+    short-sleeved crew-neck shirts. Both face the viewer with neutral expressions.
+    The man's face, neck and hands have smooth adult skin.
+    The woman's face, neck and hands have smooth adult skin.
+    Their hands rest on the tabletop. Both faces and necks are clearly visible.
+    Waist-up composition, plain light gray background, soft even lighting.
+  positive: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading.
+    An adult woman on the left and an adult man on the right sit side by side
+    behind a wooden table. Both have short dark brown hair and wear plain navy
+    short-sleeved crew-neck shirts. Both face the viewer with neutral expressions.
+    The man's face, neck and hands have smooth adult skin.
+    The woman's face, neck and hands show advanced age, with natural facial
+    wrinkles, fine lines around her eyes, nasolabial folds, gently sagging
+    facial skin, and fine skin creases on her neck and hands.
+    Their hands rest on the tabletop. Both faces and necks are clearly visible.
+    Waist-up composition, plain light gray background, soft even lighting.
+  negative: *mixed_baseline_woman_left
+  neutral: *mixed_baseline_woman_left
+  anchor: >-
+    A detailed 2D anime illustration with clean linework and soft cel shading.
+    An adult man sits alone on the right behind a wooden table.
+    He has short dark brown hair and wears a plain navy short-sleeved crew-neck shirt.
+    He faces the viewer with a neutral expression.
+    His face, neck and hands have smooth adult skin.
+    His hands rest on the tabletop. His face and neck are clearly visible.
+    Waist-up composition, plain light gray background, soft even lighting.

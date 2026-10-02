@@ -35,11 +35,13 @@ class PromptFileTests(unittest.TestCase):
         names = api.list_prompt_files(root)
         self.assertEqual(names, ["aging_slider_fullbody.yaml", "aging_slider_fullbody_male.yaml",
                                  "aging_slider_fullbody_v2.yaml",
+                                 "aging_slider_fullbody_v2_anchor_ablation.yaml",
                                  "breast_size_slider.yaml", "breast_size_slider_v2.yaml",
                                  "deaging_slider_fullbody.yaml", "deaging_slider_fullbody_male.yaml"])
         for name in names:
             records = api.load_prompt_file(root, name)
-            self.assertEqual(len(records), 8 if name == "aging_slider_fullbody_v2.yaml" else 6)
+            self.assertEqual(len(records), 8 if name in (
+                "aging_slider_fullbody_v2.yaml", "aging_slider_fullbody_v2_anchor_ablation.yaml") else 6)
             self.assertTrue(all(r["positive"] != r["negative"] for r in records))
 
     def test_aging_v2_preserves_original_records_and_only_ages_woman_in_mixed_pairs(self):
@@ -68,6 +70,25 @@ class PromptFileTests(unittest.TestCase):
         self.assertEqual(records[6]["target"].replace(
             "An adult man on the left and an adult woman on the right",
             "An adult woman on the left and an adult man on the right"), records[7]["target"])
+
+    def test_aging_anchor_ablation_changes_only_missing_male_anchors(self):
+        name = "aging_slider_fullbody_v2_anchor_ablation.yaml"
+        self.assertTrue((PROMPTS_ROOT / name).is_file())
+        records = self.api().load_prompt_file(PROMPTS_ROOT, name)
+        original = read_preset("aging_slider_fullbody_v2.yaml")
+        self.assertEqual(records[:6], original[:6])
+        self.assertEqual(len(records), len(original))
+        self.assertEqual(sum("anchor" in record for record in records), 8)
+        for record, baseline, side in zip(records[6:], original[6:], ("left", "right")):
+            with self.subTest(side=side):
+                self.assertEqual({key: value for key, value in record.items() if key != "anchor"}, baseline)
+                anchor = record["anchor"]
+                self.assertIn(f"An adult man sits alone on the {side}", anchor)
+                self.assertIn("His face, neck and hands have smooth adult skin.", anchor)
+                self.assertIn("wooden table", anchor)
+                self.assertIn("plain navy short-sleeved crew-neck shirt", anchor)
+                self.assertNotIn("woman", anchor)
+                self.assertNotIn("advanced age", anchor)
 
     def test_original_slider_text_is_unchanged_when_anchors_are_added(self):
         # Canonical four-role snapshots from the pre-anchor presets. Adding an

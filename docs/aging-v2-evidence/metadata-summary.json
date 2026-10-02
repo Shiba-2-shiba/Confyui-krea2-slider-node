@@ -1,0 +1,1873 @@
+{
+  "scope": "Metadata and training-log facts; no automatic image-quality score.",
+  "round_robin_assumption": "Current training.py uses records[step % len(records)]; record ids are inferred, not stored in the uploaded logs.",
+  "reports": {
+    "v1": {
+      "input_context": {
+        "prompt_yaml": "aging_slider_fullbody.yaml",
+        "prompt_sha256": "55499cdd7ff1ae25b608d59f08d008430a4e9bd27efca7fd64b5262f1ceb5944",
+        "encoder_memory": [
+          {
+            "stage": "encoded_prompts",
+            "allocated_gib": 0.008550643920898438,
+            "reserved_gib": 0.21484375,
+            "peak_allocated_gib": 0.17652225494384766,
+            "peak_reserved_gib": 0.21484375,
+            "device_free_gib": 7.77874755859375,
+            "device_total_gib": 15.724365234375,
+            "process_rss_gib": 9.630882263183594
+          }
+        ],
+        "source": "native_model_and_clip_inputs"
+      },
+      "settings": {
+        "steps": 400,
+        "rank": 16,
+        "alpha": 16.0,
+        "target": "attention",
+        "learning_rate": 0.0001,
+        "width": 768,
+        "height": 768,
+        "trajectory_steps": 8,
+        "eta": 1.0,
+        "teacher_guidance_scale": 1.0,
+        "teacher_norm_reference": "none",
+        "seed": 42,
+        "vary_seed": true,
+        "gradient_checkpointing": true,
+        "max_grad_norm": 1.0,
+        "training_direction": "single",
+        "anchor_strength": 1.0
+      },
+      "model_settings": {
+        "path": "",
+        "source_kind": "raw",
+        "quantization": "convrot_int8",
+        "blocks_to_swap": 6,
+        "memory_budget_gib": 14.0,
+        "compute_dtype": "bf16"
+      },
+      "loading": {
+        "source": {
+          "type": "native_comfyui_model",
+          "architecture": "krea2",
+          "patcher_class": "ModelPatcherDynamic",
+          "tensor_count": 878,
+          "native_loader_source": "/tmp/ComfyUI/models/diffusion_models/intorealismAsian_k2JAVFLASHV1.safetensors"
+        },
+        "source_metadata": {},
+        "quantization": "convrot_int8",
+        "quantized_linears": 224,
+        "offloaded_blocks": [
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "storage_bytes": {
+          "cpu": 2606112768,
+          "device": 10885706904
+        },
+        "offload_mode": "immutable_cpu_linear_staging",
+        "compute_dtype": "torch.bfloat16",
+        "linear_backend": "pytorch_eager"
+      },
+      "status": "training_completed",
+      "total_seconds": 16010.425343253184,
+      "nonzero_gradient_steps": 400,
+      "anchor_active_steps": 400,
+      "max_grad_norm": 0.22617781162261963,
+      "step_windows": [
+        {
+          "start": 1,
+          "end": 100,
+          "slider_loss": 0.010054361108195735,
+          "anchor_loss": 0.001437714403782593,
+          "grad_norm": 0.019831878575787415
+        },
+        {
+          "start": 101,
+          "end": 200,
+          "slider_loss": 0.0059021094848867505,
+          "anchor_loss": 0.0017713334198560915,
+          "grad_norm": 0.028590817791700827
+        },
+        {
+          "start": 201,
+          "end": 300,
+          "slider_loss": 0.00339304821784026,
+          "anchor_loss": 0.0005873680618606158,
+          "grad_norm": 0.017454861320147758
+        },
+        {
+          "start": 301,
+          "end": 400,
+          "slider_loss": 0.002498582447587978,
+          "anchor_loss": 0.0003199982457590522,
+          "grad_norm": 0.015520446479640668
+        }
+      ],
+      "per_record_inferred_from_round_robin": [
+        {
+          "record": 1,
+          "steps": 67,
+          "anchor_active_steps": 67,
+          "first_10_slider_loss": 0.007226217983406969,
+          "last_10_slider_loss": 0.0023686032101977615
+        },
+        {
+          "record": 2,
+          "steps": 67,
+          "anchor_active_steps": 67,
+          "first_10_slider_loss": 0.0048544987279456105,
+          "last_10_slider_loss": 0.0009739415210788139
+        },
+        {
+          "record": 3,
+          "steps": 67,
+          "anchor_active_steps": 67,
+          "first_10_slider_loss": 0.009927921084454283,
+          "last_10_slider_loss": 0.0025140939513221385
+        },
+        {
+          "record": 4,
+          "steps": 67,
+          "anchor_active_steps": 67,
+          "first_10_slider_loss": 0.01105926970485598,
+          "last_10_slider_loss": 0.0022298347612377256
+        },
+        {
+          "record": 5,
+          "steps": 66,
+          "anchor_active_steps": 66,
+          "first_10_slider_loss": 0.01318317601981107,
+          "last_10_slider_loss": 0.0036555353319272397
+        },
+        {
+          "record": 6,
+          "steps": 66,
+          "anchor_active_steps": 66,
+          "first_10_slider_loss": 0.013592952152248473,
+          "last_10_slider_loss": 0.002989964434527792
+        }
+      ]
+    },
+    "v2": {
+      "input_context": {
+        "prompt_yaml": "aging_slider_fullbody_v2.yaml",
+        "prompt_sha256": "80ef5f09cb0f346599261eac099d99b56664afedb0c8f53fea9b6c16f1f781e8",
+        "encoder_memory": [
+          {
+            "stage": "encoded_prompts",
+            "allocated_gib": 0.008550643920898438,
+            "reserved_gib": 0.216796875,
+            "peak_allocated_gib": 0.17652225494384766,
+            "peak_reserved_gib": 0.216796875,
+            "device_free_gib": 7.77679443359375,
+            "device_total_gib": 15.724365234375,
+            "process_rss_gib": 9.632122039794922
+          }
+        ],
+        "source": "native_model_and_clip_inputs"
+      },
+      "settings": {
+        "steps": 400,
+        "rank": 16,
+        "alpha": 16.0,
+        "target": "attention",
+        "learning_rate": 0.0001,
+        "width": 768,
+        "height": 768,
+        "trajectory_steps": 8,
+        "eta": 1.0,
+        "teacher_guidance_scale": 1.0,
+        "teacher_norm_reference": "none",
+        "seed": 42,
+        "vary_seed": true,
+        "gradient_checkpointing": true,
+        "max_grad_norm": 1.0,
+        "training_direction": "single",
+        "anchor_strength": 1.0
+      },
+      "model_settings": {
+        "path": "",
+        "source_kind": "raw",
+        "quantization": "convrot_int8",
+        "blocks_to_swap": 6,
+        "memory_budget_gib": 14.0,
+        "compute_dtype": "bf16"
+      },
+      "loading": {
+        "source": {
+          "type": "native_comfyui_model",
+          "architecture": "krea2",
+          "patcher_class": "ModelPatcherDynamic",
+          "tensor_count": 878,
+          "native_loader_source": "/tmp/ComfyUI/models/diffusion_models/intorealismAsian_k2JAVFLASHV1.safetensors"
+        },
+        "source_metadata": {},
+        "quantization": "convrot_int8",
+        "quantized_linears": 224,
+        "offloaded_blocks": [
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "storage_bytes": {
+          "cpu": 2606112768,
+          "device": 10885706904
+        },
+        "offload_mode": "immutable_cpu_linear_staging",
+        "compute_dtype": "torch.bfloat16",
+        "linear_backend": "pytorch_eager"
+      },
+      "status": "training_completed",
+      "total_seconds": 15724.70357639715,
+      "nonzero_gradient_steps": 400,
+      "anchor_active_steps": 300,
+      "max_grad_norm": 0.30224210023880005,
+      "step_windows": [
+        {
+          "start": 1,
+          "end": 100,
+          "slider_loss": 0.010949767031706869,
+          "anchor_loss": 0.001087771404054365,
+          "grad_norm": 0.020675007198587992
+        },
+        {
+          "start": 101,
+          "end": 200,
+          "slider_loss": 0.008589296247519087,
+          "anchor_loss": 0.001856979680378572,
+          "grad_norm": 0.02698270777676953
+        },
+        {
+          "start": 201,
+          "end": 300,
+          "slider_loss": 0.005101576348679373,
+          "anchor_loss": 0.0006799737889377866,
+          "grad_norm": 0.025290721490455324
+        },
+        {
+          "start": 301,
+          "end": 400,
+          "slider_loss": 0.004352351871784776,
+          "anchor_loss": 0.0005123087242827751,
+          "grad_norm": 0.01999828706830158
+        }
+      ],
+      "per_record_inferred_from_round_robin": [
+        {
+          "record": 1,
+          "steps": 50,
+          "anchor_active_steps": 50,
+          "first_10_slider_loss": 0.010314684209879488,
+          "last_10_slider_loss": 0.0011947083025006578
+        },
+        {
+          "record": 2,
+          "steps": 50,
+          "anchor_active_steps": 50,
+          "first_10_slider_loss": 0.004248975205700845,
+          "last_10_slider_loss": 0.0014270696061430498
+        },
+        {
+          "record": 3,
+          "steps": 50,
+          "anchor_active_steps": 50,
+          "first_10_slider_loss": 0.008935331276734359,
+          "last_10_slider_loss": 0.0015509667136939242
+        },
+        {
+          "record": 4,
+          "steps": 50,
+          "anchor_active_steps": 50,
+          "first_10_slider_loss": 0.005792753206333145,
+          "last_10_slider_loss": 0.001088215468917042
+        },
+        {
+          "record": 5,
+          "steps": 50,
+          "anchor_active_steps": 50,
+          "first_10_slider_loss": 0.012024183731409722,
+          "last_10_slider_loss": 0.008149581114412285
+        },
+        {
+          "record": 6,
+          "steps": 50,
+          "anchor_active_steps": 50,
+          "first_10_slider_loss": 0.013528857569326647,
+          "last_10_slider_loss": 0.0038813959836261347
+        },
+        {
+          "record": 7,
+          "steps": 50,
+          "anchor_active_steps": 0,
+          "first_10_slider_loss": 0.009665311296703293,
+          "last_10_slider_loss": 0.009583515743725003
+        },
+        {
+          "record": 8,
+          "steps": 50,
+          "anchor_active_steps": 0,
+          "first_10_slider_loss": 0.01498903272440657,
+          "last_10_slider_loss": 0.0064664528705179695
+        }
+      ]
+    }
+  },
+  "pngs": [
+    {
+      "path": "生成画像/Krea2_turbo_00041_.png",
+      "sha256": "68e61df39bdc0d7e6a9ada0fbd8b87585efccdafb774ed17cbaf9a0f8c1a7bed",
+      "size": [
+        1024,
+        1024
+      ],
+      "api_prompt": {
+        "29": {
+          "inputs": {
+            "filename_prefix": "Krea2_turbo",
+            "images": [
+              "54",
+              0
+            ]
+          },
+          "class_type": "SaveImage",
+          "_meta": {
+            "title": "画像を保存"
+          }
+        },
+        "49": {
+          "inputs": {
+            "aspect_ratio": "1:1 (Square)",
+            "megapixels": 1.0,
+            "multiple": 8
+          },
+          "class_type": "ResolutionSelector",
+          "_meta": {
+            "title": "解像度セレクター"
+          }
+        },
+        "51": {
+          "inputs": {
+            "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+            "clip": [
+              "56",
+              0
+            ]
+          },
+          "class_type": "CLIPTextEncode",
+          "_meta": {
+            "title": "CLIPテキストエンコード（プロンプト）"
+          }
+        },
+        "52": {
+          "inputs": {
+            "width": [
+              "49",
+              0
+            ],
+            "height": [
+              "49",
+              1
+            ],
+            "batch_size": 1
+          },
+          "class_type": "EmptyLatentImage",
+          "_meta": {
+            "title": "空の潜在画像"
+          }
+        },
+        "53": {
+          "inputs": {
+            "seed": 1,
+            "steps": 8,
+            "cfg": 1.0,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1.0,
+            "model": [
+              "66",
+              0
+            ],
+            "positive": [
+              "51",
+              0
+            ],
+            "negative": [
+              "58",
+              0
+            ],
+            "latent_image": [
+              "52",
+              0
+            ]
+          },
+          "class_type": "KSampler",
+          "_meta": {
+            "title": "Kサンプラー"
+          }
+        },
+        "54": {
+          "inputs": {
+            "samples": [
+              "53",
+              0
+            ],
+            "vae": [
+              "57",
+              0
+            ]
+          },
+          "class_type": "VAEDecode",
+          "_meta": {
+            "title": "VAEデコード"
+          }
+        },
+        "55": {
+          "inputs": {
+            "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+            "weight_dtype": "default"
+          },
+          "class_type": "UNETLoader",
+          "_meta": {
+            "title": "拡散モデルを読み込む"
+          }
+        },
+        "56": {
+          "inputs": {
+            "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+            "type": "krea2",
+            "device": "default"
+          },
+          "class_type": "CLIPLoader",
+          "_meta": {
+            "title": "CLIPを読み込む"
+          }
+        },
+        "57": {
+          "inputs": {
+            "vae_name": "qwen_image_vae.safetensors"
+          },
+          "class_type": "VAELoader",
+          "_meta": {
+            "title": "VAEを読み込む"
+          }
+        },
+        "58": {
+          "inputs": {
+            "conditioning": [
+              "51",
+              0
+            ]
+          },
+          "class_type": "ConditioningZeroOut",
+          "_meta": {
+            "title": "条件付けゼロアウト"
+          }
+        },
+        "59": {
+          "inputs": {
+            "lora_name": "krea2_darkbrush.safetensors",
+            "strength_model": 0.8,
+            "model": [
+              "55",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        },
+        "66": {
+          "inputs": {
+            "switch": [
+              "67",
+              0
+            ],
+            "on_false": [
+              "71",
+              0
+            ],
+            "on_true": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "ComfySwitchNode",
+          "_meta": {
+            "title": "Switch (Model)"
+          }
+        },
+        "67": {
+          "inputs": {
+            "value": false
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Enable LoRA?)"
+          }
+        },
+        "68": {
+          "inputs": {
+            "value": true
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Refine Prompt?)"
+          }
+        },
+        "71": {
+          "inputs": {
+            "lora_name": "krea2_aging_20261002T050755Z_fccfa81a.safetensors",
+            "strength_model": 0.0,
+            "model": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        }
+      }
+    },
+    {
+      "path": "生成画像/Krea2_turbo_00043_.png",
+      "sha256": "003b21f9aca637756761469fd3f1dba7ec01eb45eb8d443bec9469b7cb33c84c",
+      "size": [
+        1024,
+        1024
+      ],
+      "api_prompt": {
+        "29": {
+          "inputs": {
+            "filename_prefix": "Krea2_turbo",
+            "images": [
+              "54",
+              0
+            ]
+          },
+          "class_type": "SaveImage",
+          "_meta": {
+            "title": "画像を保存"
+          }
+        },
+        "49": {
+          "inputs": {
+            "aspect_ratio": "1:1 (Square)",
+            "megapixels": 1.0,
+            "multiple": 8
+          },
+          "class_type": "ResolutionSelector",
+          "_meta": {
+            "title": "解像度セレクター"
+          }
+        },
+        "51": {
+          "inputs": {
+            "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+            "clip": [
+              "56",
+              0
+            ]
+          },
+          "class_type": "CLIPTextEncode",
+          "_meta": {
+            "title": "CLIPテキストエンコード（プロンプト）"
+          }
+        },
+        "52": {
+          "inputs": {
+            "width": [
+              "49",
+              0
+            ],
+            "height": [
+              "49",
+              1
+            ],
+            "batch_size": 1
+          },
+          "class_type": "EmptyLatentImage",
+          "_meta": {
+            "title": "空の潜在画像"
+          }
+        },
+        "53": {
+          "inputs": {
+            "seed": 1,
+            "steps": 8,
+            "cfg": 1.0,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1.0,
+            "model": [
+              "66",
+              0
+            ],
+            "positive": [
+              "51",
+              0
+            ],
+            "negative": [
+              "58",
+              0
+            ],
+            "latent_image": [
+              "52",
+              0
+            ]
+          },
+          "class_type": "KSampler",
+          "_meta": {
+            "title": "Kサンプラー"
+          }
+        },
+        "54": {
+          "inputs": {
+            "samples": [
+              "53",
+              0
+            ],
+            "vae": [
+              "57",
+              0
+            ]
+          },
+          "class_type": "VAEDecode",
+          "_meta": {
+            "title": "VAEデコード"
+          }
+        },
+        "55": {
+          "inputs": {
+            "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+            "weight_dtype": "default"
+          },
+          "class_type": "UNETLoader",
+          "_meta": {
+            "title": "拡散モデルを読み込む"
+          }
+        },
+        "56": {
+          "inputs": {
+            "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+            "type": "krea2",
+            "device": "default"
+          },
+          "class_type": "CLIPLoader",
+          "_meta": {
+            "title": "CLIPを読み込む"
+          }
+        },
+        "57": {
+          "inputs": {
+            "vae_name": "qwen_image_vae.safetensors"
+          },
+          "class_type": "VAELoader",
+          "_meta": {
+            "title": "VAEを読み込む"
+          }
+        },
+        "58": {
+          "inputs": {
+            "conditioning": [
+              "51",
+              0
+            ]
+          },
+          "class_type": "ConditioningZeroOut",
+          "_meta": {
+            "title": "条件付けゼロアウト"
+          }
+        },
+        "59": {
+          "inputs": {
+            "lora_name": "krea2_darkbrush.safetensors",
+            "strength_model": 0.8,
+            "model": [
+              "55",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        },
+        "66": {
+          "inputs": {
+            "switch": [
+              "67",
+              0
+            ],
+            "on_false": [
+              "71",
+              0
+            ],
+            "on_true": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "ComfySwitchNode",
+          "_meta": {
+            "title": "Switch (Model)"
+          }
+        },
+        "67": {
+          "inputs": {
+            "value": false
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Enable LoRA?)"
+          }
+        },
+        "68": {
+          "inputs": {
+            "value": true
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Refine Prompt?)"
+          }
+        },
+        "71": {
+          "inputs": {
+            "lora_name": "krea2_aging_20261002T050755Z_fccfa81a.safetensors",
+            "strength_model": 1.0,
+            "model": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        }
+      }
+    },
+    {
+      "path": "生成画像/Krea2_turbo_00045_.png",
+      "sha256": "588d1f00dcb80e7d1765526c785b39138534b00cdbbcd71fad94e0424976ecb4",
+      "size": [
+        1024,
+        1024
+      ],
+      "api_prompt": {
+        "29": {
+          "inputs": {
+            "filename_prefix": "Krea2_turbo",
+            "images": [
+              "54",
+              0
+            ]
+          },
+          "class_type": "SaveImage",
+          "_meta": {
+            "title": "画像を保存"
+          }
+        },
+        "49": {
+          "inputs": {
+            "aspect_ratio": "1:1 (Square)",
+            "megapixels": 1.0,
+            "multiple": 8
+          },
+          "class_type": "ResolutionSelector",
+          "_meta": {
+            "title": "解像度セレクター"
+          }
+        },
+        "51": {
+          "inputs": {
+            "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+            "clip": [
+              "56",
+              0
+            ]
+          },
+          "class_type": "CLIPTextEncode",
+          "_meta": {
+            "title": "CLIPテキストエンコード（プロンプト）"
+          }
+        },
+        "52": {
+          "inputs": {
+            "width": [
+              "49",
+              0
+            ],
+            "height": [
+              "49",
+              1
+            ],
+            "batch_size": 1
+          },
+          "class_type": "EmptyLatentImage",
+          "_meta": {
+            "title": "空の潜在画像"
+          }
+        },
+        "53": {
+          "inputs": {
+            "seed": 1,
+            "steps": 8,
+            "cfg": 1.0,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1.0,
+            "model": [
+              "66",
+              0
+            ],
+            "positive": [
+              "51",
+              0
+            ],
+            "negative": [
+              "58",
+              0
+            ],
+            "latent_image": [
+              "52",
+              0
+            ]
+          },
+          "class_type": "KSampler",
+          "_meta": {
+            "title": "Kサンプラー"
+          }
+        },
+        "54": {
+          "inputs": {
+            "samples": [
+              "53",
+              0
+            ],
+            "vae": [
+              "57",
+              0
+            ]
+          },
+          "class_type": "VAEDecode",
+          "_meta": {
+            "title": "VAEデコード"
+          }
+        },
+        "55": {
+          "inputs": {
+            "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+            "weight_dtype": "default"
+          },
+          "class_type": "UNETLoader",
+          "_meta": {
+            "title": "拡散モデルを読み込む"
+          }
+        },
+        "56": {
+          "inputs": {
+            "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+            "type": "krea2",
+            "device": "default"
+          },
+          "class_type": "CLIPLoader",
+          "_meta": {
+            "title": "CLIPを読み込む"
+          }
+        },
+        "57": {
+          "inputs": {
+            "vae_name": "qwen_image_vae.safetensors"
+          },
+          "class_type": "VAELoader",
+          "_meta": {
+            "title": "VAEを読み込む"
+          }
+        },
+        "58": {
+          "inputs": {
+            "conditioning": [
+              "51",
+              0
+            ]
+          },
+          "class_type": "ConditioningZeroOut",
+          "_meta": {
+            "title": "条件付けゼロアウト"
+          }
+        },
+        "59": {
+          "inputs": {
+            "lora_name": "krea2_darkbrush.safetensors",
+            "strength_model": 0.8,
+            "model": [
+              "55",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        },
+        "66": {
+          "inputs": {
+            "switch": [
+              "67",
+              0
+            ],
+            "on_false": [
+              "71",
+              0
+            ],
+            "on_true": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "ComfySwitchNode",
+          "_meta": {
+            "title": "Switch (Model)"
+          }
+        },
+        "67": {
+          "inputs": {
+            "value": false
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Enable LoRA?)"
+          }
+        },
+        "68": {
+          "inputs": {
+            "value": true
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Refine Prompt?)"
+          }
+        },
+        "71": {
+          "inputs": {
+            "lora_name": "krea2_aging_20261002T050755Z_fccfa81a.safetensors",
+            "strength_model": 2.0,
+            "model": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        }
+      }
+    },
+    {
+      "path": "生成画像/Krea2_turbo_00047_.png",
+      "sha256": "353ab3251b5757d5e54755986c5181c1a8bc0e127486508052f097df7619b017",
+      "size": [
+        1024,
+        1024
+      ],
+      "api_prompt": {
+        "29": {
+          "inputs": {
+            "filename_prefix": "Krea2_turbo",
+            "images": [
+              "54",
+              0
+            ]
+          },
+          "class_type": "SaveImage",
+          "_meta": {
+            "title": "画像を保存"
+          }
+        },
+        "49": {
+          "inputs": {
+            "aspect_ratio": "1:1 (Square)",
+            "megapixels": 1.0,
+            "multiple": 8
+          },
+          "class_type": "ResolutionSelector",
+          "_meta": {
+            "title": "解像度セレクター"
+          }
+        },
+        "51": {
+          "inputs": {
+            "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+            "clip": [
+              "56",
+              0
+            ]
+          },
+          "class_type": "CLIPTextEncode",
+          "_meta": {
+            "title": "CLIPテキストエンコード（プロンプト）"
+          }
+        },
+        "52": {
+          "inputs": {
+            "width": [
+              "49",
+              0
+            ],
+            "height": [
+              "49",
+              1
+            ],
+            "batch_size": 1
+          },
+          "class_type": "EmptyLatentImage",
+          "_meta": {
+            "title": "空の潜在画像"
+          }
+        },
+        "53": {
+          "inputs": {
+            "seed": 1,
+            "steps": 8,
+            "cfg": 1.0,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1.0,
+            "model": [
+              "66",
+              0
+            ],
+            "positive": [
+              "51",
+              0
+            ],
+            "negative": [
+              "58",
+              0
+            ],
+            "latent_image": [
+              "52",
+              0
+            ]
+          },
+          "class_type": "KSampler",
+          "_meta": {
+            "title": "Kサンプラー"
+          }
+        },
+        "54": {
+          "inputs": {
+            "samples": [
+              "53",
+              0
+            ],
+            "vae": [
+              "57",
+              0
+            ]
+          },
+          "class_type": "VAEDecode",
+          "_meta": {
+            "title": "VAEデコード"
+          }
+        },
+        "55": {
+          "inputs": {
+            "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+            "weight_dtype": "default"
+          },
+          "class_type": "UNETLoader",
+          "_meta": {
+            "title": "拡散モデルを読み込む"
+          }
+        },
+        "56": {
+          "inputs": {
+            "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+            "type": "krea2",
+            "device": "default"
+          },
+          "class_type": "CLIPLoader",
+          "_meta": {
+            "title": "CLIPを読み込む"
+          }
+        },
+        "57": {
+          "inputs": {
+            "vae_name": "qwen_image_vae.safetensors"
+          },
+          "class_type": "VAELoader",
+          "_meta": {
+            "title": "VAEを読み込む"
+          }
+        },
+        "58": {
+          "inputs": {
+            "conditioning": [
+              "51",
+              0
+            ]
+          },
+          "class_type": "ConditioningZeroOut",
+          "_meta": {
+            "title": "条件付けゼロアウト"
+          }
+        },
+        "59": {
+          "inputs": {
+            "lora_name": "krea2_darkbrush.safetensors",
+            "strength_model": 0.8,
+            "model": [
+              "55",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        },
+        "66": {
+          "inputs": {
+            "switch": [
+              "67",
+              0
+            ],
+            "on_false": [
+              "71",
+              0
+            ],
+            "on_true": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "ComfySwitchNode",
+          "_meta": {
+            "title": "Switch (Model)"
+          }
+        },
+        "67": {
+          "inputs": {
+            "value": false
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Enable LoRA?)"
+          }
+        },
+        "68": {
+          "inputs": {
+            "value": true
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Refine Prompt?)"
+          }
+        },
+        "71": {
+          "inputs": {
+            "lora_name": "krea2_aging_20261002T050755Z_fccfa81a.safetensors",
+            "strength_model": 3.0,
+            "model": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        }
+      }
+    },
+    {
+      "path": "生成画像/生成画像３/Krea2_turbo_00041_.png",
+      "sha256": "6560d23ee3f7469cfd9fc8bd4e3f057d32409ebdaf9d2bee04ca3698cdad5dd2",
+      "size": [
+        1024,
+        1024
+      ],
+      "api_prompt": {
+        "29": {
+          "inputs": {
+            "filename_prefix": "Krea2_turbo",
+            "images": [
+              "54",
+              0
+            ]
+          },
+          "class_type": "SaveImage",
+          "_meta": {
+            "title": "画像を保存"
+          }
+        },
+        "49": {
+          "inputs": {
+            "aspect_ratio": "1:1 (Square)",
+            "megapixels": 1.0,
+            "multiple": 8
+          },
+          "class_type": "ResolutionSelector",
+          "_meta": {
+            "title": "解像度セレクター"
+          }
+        },
+        "51": {
+          "inputs": {
+            "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+            "clip": [
+              "56",
+              0
+            ]
+          },
+          "class_type": "CLIPTextEncode",
+          "_meta": {
+            "title": "CLIPテキストエンコード（プロンプト）"
+          }
+        },
+        "52": {
+          "inputs": {
+            "width": [
+              "49",
+              0
+            ],
+            "height": [
+              "49",
+              1
+            ],
+            "batch_size": 1
+          },
+          "class_type": "EmptyLatentImage",
+          "_meta": {
+            "title": "空の潜在画像"
+          }
+        },
+        "53": {
+          "inputs": {
+            "seed": 1,
+            "steps": 8,
+            "cfg": 1.0,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1.0,
+            "model": [
+              "66",
+              0
+            ],
+            "positive": [
+              "51",
+              0
+            ],
+            "negative": [
+              "58",
+              0
+            ],
+            "latent_image": [
+              "52",
+              0
+            ]
+          },
+          "class_type": "KSampler",
+          "_meta": {
+            "title": "Kサンプラー"
+          }
+        },
+        "54": {
+          "inputs": {
+            "samples": [
+              "53",
+              0
+            ],
+            "vae": [
+              "57",
+              0
+            ]
+          },
+          "class_type": "VAEDecode",
+          "_meta": {
+            "title": "VAEデコード"
+          }
+        },
+        "55": {
+          "inputs": {
+            "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+            "weight_dtype": "default"
+          },
+          "class_type": "UNETLoader",
+          "_meta": {
+            "title": "拡散モデルを読み込む"
+          }
+        },
+        "56": {
+          "inputs": {
+            "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+            "type": "krea2",
+            "device": "default"
+          },
+          "class_type": "CLIPLoader",
+          "_meta": {
+            "title": "CLIPを読み込む"
+          }
+        },
+        "57": {
+          "inputs": {
+            "vae_name": "qwen_image_vae.safetensors"
+          },
+          "class_type": "VAELoader",
+          "_meta": {
+            "title": "VAEを読み込む"
+          }
+        },
+        "58": {
+          "inputs": {
+            "conditioning": [
+              "51",
+              0
+            ]
+          },
+          "class_type": "ConditioningZeroOut",
+          "_meta": {
+            "title": "条件付けゼロアウト"
+          }
+        },
+        "59": {
+          "inputs": {
+            "lora_name": "krea2_darkbrush.safetensors",
+            "strength_model": 0.8,
+            "model": [
+              "55",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        },
+        "66": {
+          "inputs": {
+            "switch": [
+              "67",
+              0
+            ],
+            "on_false": [
+              "71",
+              0
+            ],
+            "on_true": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "ComfySwitchNode",
+          "_meta": {
+            "title": "Switch (Model)"
+          }
+        },
+        "67": {
+          "inputs": {
+            "value": false
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Enable LoRA?)"
+          }
+        },
+        "68": {
+          "inputs": {
+            "value": true
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Refine Prompt?)"
+          }
+        },
+        "71": {
+          "inputs": {
+            "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+            "strength_model": 1.0,
+            "model": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        }
+      }
+    },
+    {
+      "path": "生成画像/生成画像３/Krea2_turbo_00042_.png",
+      "sha256": "c150b39e41805682f1aecc64b0af782138f8847f3bc094a4bb0b30c8e714d9c9",
+      "size": [
+        1024,
+        1024
+      ],
+      "api_prompt": {
+        "29": {
+          "inputs": {
+            "filename_prefix": "Krea2_turbo",
+            "images": [
+              "54",
+              0
+            ]
+          },
+          "class_type": "SaveImage",
+          "_meta": {
+            "title": "画像を保存"
+          }
+        },
+        "49": {
+          "inputs": {
+            "aspect_ratio": "1:1 (Square)",
+            "megapixels": 1.0,
+            "multiple": 8
+          },
+          "class_type": "ResolutionSelector",
+          "_meta": {
+            "title": "解像度セレクター"
+          }
+        },
+        "51": {
+          "inputs": {
+            "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+            "clip": [
+              "56",
+              0
+            ]
+          },
+          "class_type": "CLIPTextEncode",
+          "_meta": {
+            "title": "CLIPテキストエンコード（プロンプト）"
+          }
+        },
+        "52": {
+          "inputs": {
+            "width": [
+              "49",
+              0
+            ],
+            "height": [
+              "49",
+              1
+            ],
+            "batch_size": 1
+          },
+          "class_type": "EmptyLatentImage",
+          "_meta": {
+            "title": "空の潜在画像"
+          }
+        },
+        "53": {
+          "inputs": {
+            "seed": 1,
+            "steps": 8,
+            "cfg": 1.0,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1.0,
+            "model": [
+              "66",
+              0
+            ],
+            "positive": [
+              "51",
+              0
+            ],
+            "negative": [
+              "58",
+              0
+            ],
+            "latent_image": [
+              "52",
+              0
+            ]
+          },
+          "class_type": "KSampler",
+          "_meta": {
+            "title": "Kサンプラー"
+          }
+        },
+        "54": {
+          "inputs": {
+            "samples": [
+              "53",
+              0
+            ],
+            "vae": [
+              "57",
+              0
+            ]
+          },
+          "class_type": "VAEDecode",
+          "_meta": {
+            "title": "VAEデコード"
+          }
+        },
+        "55": {
+          "inputs": {
+            "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+            "weight_dtype": "default"
+          },
+          "class_type": "UNETLoader",
+          "_meta": {
+            "title": "拡散モデルを読み込む"
+          }
+        },
+        "56": {
+          "inputs": {
+            "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+            "type": "krea2",
+            "device": "default"
+          },
+          "class_type": "CLIPLoader",
+          "_meta": {
+            "title": "CLIPを読み込む"
+          }
+        },
+        "57": {
+          "inputs": {
+            "vae_name": "qwen_image_vae.safetensors"
+          },
+          "class_type": "VAELoader",
+          "_meta": {
+            "title": "VAEを読み込む"
+          }
+        },
+        "58": {
+          "inputs": {
+            "conditioning": [
+              "51",
+              0
+            ]
+          },
+          "class_type": "ConditioningZeroOut",
+          "_meta": {
+            "title": "条件付けゼロアウト"
+          }
+        },
+        "59": {
+          "inputs": {
+            "lora_name": "krea2_darkbrush.safetensors",
+            "strength_model": 0.8,
+            "model": [
+              "55",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        },
+        "66": {
+          "inputs": {
+            "switch": [
+              "67",
+              0
+            ],
+            "on_false": [
+              "71",
+              0
+            ],
+            "on_true": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "ComfySwitchNode",
+          "_meta": {
+            "title": "Switch (Model)"
+          }
+        },
+        "67": {
+          "inputs": {
+            "value": false
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Enable LoRA?)"
+          }
+        },
+        "68": {
+          "inputs": {
+            "value": true
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Refine Prompt?)"
+          }
+        },
+        "71": {
+          "inputs": {
+            "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+            "strength_model": 2.0,
+            "model": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        }
+      }
+    },
+    {
+      "path": "生成画像/生成画像３/Krea2_turbo_00043_.png",
+      "sha256": "cbe820cdc870460a7d970d52a58ce3e8e40a3af97f2dddefe72f66861e8c0287",
+      "size": [
+        1024,
+        1024
+      ],
+      "api_prompt": {
+        "29": {
+          "inputs": {
+            "filename_prefix": "Krea2_turbo",
+            "images": [
+              "54",
+              0
+            ]
+          },
+          "class_type": "SaveImage",
+          "_meta": {
+            "title": "画像を保存"
+          }
+        },
+        "49": {
+          "inputs": {
+            "aspect_ratio": "1:1 (Square)",
+            "megapixels": 1.0,
+            "multiple": 8
+          },
+          "class_type": "ResolutionSelector",
+          "_meta": {
+            "title": "解像度セレクター"
+          }
+        },
+        "51": {
+          "inputs": {
+            "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+            "clip": [
+              "56",
+              0
+            ]
+          },
+          "class_type": "CLIPTextEncode",
+          "_meta": {
+            "title": "CLIPテキストエンコード（プロンプト）"
+          }
+        },
+        "52": {
+          "inputs": {
+            "width": [
+              "49",
+              0
+            ],
+            "height": [
+              "49",
+              1
+            ],
+            "batch_size": 1
+          },
+          "class_type": "EmptyLatentImage",
+          "_meta": {
+            "title": "空の潜在画像"
+          }
+        },
+        "53": {
+          "inputs": {
+            "seed": 1,
+            "steps": 8,
+            "cfg": 1.0,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1.0,
+            "model": [
+              "66",
+              0
+            ],
+            "positive": [
+              "51",
+              0
+            ],
+            "negative": [
+              "58",
+              0
+            ],
+            "latent_image": [
+              "52",
+              0
+            ]
+          },
+          "class_type": "KSampler",
+          "_meta": {
+            "title": "Kサンプラー"
+          }
+        },
+        "54": {
+          "inputs": {
+            "samples": [
+              "53",
+              0
+            ],
+            "vae": [
+              "57",
+              0
+            ]
+          },
+          "class_type": "VAEDecode",
+          "_meta": {
+            "title": "VAEデコード"
+          }
+        },
+        "55": {
+          "inputs": {
+            "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+            "weight_dtype": "default"
+          },
+          "class_type": "UNETLoader",
+          "_meta": {
+            "title": "拡散モデルを読み込む"
+          }
+        },
+        "56": {
+          "inputs": {
+            "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+            "type": "krea2",
+            "device": "default"
+          },
+          "class_type": "CLIPLoader",
+          "_meta": {
+            "title": "CLIPを読み込む"
+          }
+        },
+        "57": {
+          "inputs": {
+            "vae_name": "qwen_image_vae.safetensors"
+          },
+          "class_type": "VAELoader",
+          "_meta": {
+            "title": "VAEを読み込む"
+          }
+        },
+        "58": {
+          "inputs": {
+            "conditioning": [
+              "51",
+              0
+            ]
+          },
+          "class_type": "ConditioningZeroOut",
+          "_meta": {
+            "title": "条件付けゼロアウト"
+          }
+        },
+        "59": {
+          "inputs": {
+            "lora_name": "krea2_darkbrush.safetensors",
+            "strength_model": 0.8,
+            "model": [
+              "55",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        },
+        "66": {
+          "inputs": {
+            "switch": [
+              "67",
+              0
+            ],
+            "on_false": [
+              "71",
+              0
+            ],
+            "on_true": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "ComfySwitchNode",
+          "_meta": {
+            "title": "Switch (Model)"
+          }
+        },
+        "67": {
+          "inputs": {
+            "value": false
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Enable LoRA?)"
+          }
+        },
+        "68": {
+          "inputs": {
+            "value": true
+          },
+          "class_type": "PrimitiveBoolean",
+          "_meta": {
+            "title": "Boolean (Refine Prompt?)"
+          }
+        },
+        "71": {
+          "inputs": {
+            "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+            "strength_model": 3.0,
+            "model": [
+              "59",
+              0
+            ]
+          },
+          "class_type": "LoraLoaderModelOnly",
+          "_meta": {
+            "title": "LoRAローダーモデルのみ"
+          }
+        }
+      }
+    }
+  ],
+  "matched_pairs": [
+    {
+      "v1": "生成画像/Krea2_turbo_00043_.png",
+      "v2": "生成画像/生成画像３/Krea2_turbo_00041_.png",
+      "strength": 1.0,
+      "only_changed_field": "71.inputs.lora_name"
+    },
+    {
+      "v1": "生成画像/Krea2_turbo_00045_.png",
+      "v2": "生成画像/生成画像３/Krea2_turbo_00042_.png",
+      "strength": 2.0,
+      "only_changed_field": "71.inputs.lora_name"
+    },
+    {
+      "v1": "生成画像/Krea2_turbo_00047_.png",
+      "v2": "生成画像/生成画像３/Krea2_turbo_00043_.png",
+      "strength": 3.0,
+      "only_changed_field": "71.inputs.lora_name"
+    }
+  ],
+  "local_v2_yaml_lf_sha256": "80ef5f09cb0f346599261eac099d99b56664afedb0c8f53fea9b6c16f1f781e8"
+}

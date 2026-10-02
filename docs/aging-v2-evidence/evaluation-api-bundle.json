@@ -1,0 +1,3477 @@
+{
+  "schema": "aging_v2_evaluation_api_bundle_v1",
+  "not_executed": true,
+  "usage": "Send one cases[i].api_request JSON as POST /prompt to the intended ComfyUI server. This bundle is not a UI workflow and is not itself a /prompt request. No submissions are made by creating it.",
+  "fixed_stack": "Original PNG loader names, Turbo LoRA krea2_darkbrush strength 0.8, seed per case, 1024x1024, steps 8, CFG 1, euler/simple, denoise 1.",
+  "probe_limit": "Text binding probes keep the Turbo inference stack; they are NOT training-teacher predictions or proof of the RAW checkpoint architecture.",
+  "cases": [
+    {
+      "id": "standing_left_seed1_v2_strength0",
+      "purpose": "adapter_evaluation",
+      "adapter": "none",
+      "strength": 0,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/standing_left_seed1_v2_strength0",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "59",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "standing_left_seed1_v2_strength1",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 1,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/standing_left_seed1_v2_strength1",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 1,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "standing_left_seed1_v2_strength2",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 2,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/standing_left_seed1_v2_strength2",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 2,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "female_seed1_v2_strength0",
+      "purpose": "adapter_evaluation",
+      "adapter": "none",
+      "strength": 0,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/female_seed1_v2_strength0",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. A single adult woman with short dark brown hair, wearing a plain navy short-sleeved crew-neck shirt. She sits behind a simple wooden table, facing the viewer with a neutral expression and relaxed eyebrows. Waist-up composition. Both hands rest naturally on the tabletop, with the backs of her hands visible. Her face and neck are clearly visible. Plain light gray background, soft even lighting, clear facial and hand details.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "59",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "female_seed1_v2_strength1",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 1,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/female_seed1_v2_strength1",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. A single adult woman with short dark brown hair, wearing a plain navy short-sleeved crew-neck shirt. She sits behind a simple wooden table, facing the viewer with a neutral expression and relaxed eyebrows. Waist-up composition. Both hands rest naturally on the tabletop, with the backs of her hands visible. Her face and neck are clearly visible. Plain light gray background, soft even lighting, clear facial and hand details.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 1,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "female_seed1_v2_strength2",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 2,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/female_seed1_v2_strength2",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. A single adult woman with short dark brown hair, wearing a plain navy short-sleeved crew-neck shirt. She sits behind a simple wooden table, facing the viewer with a neutral expression and relaxed eyebrows. Waist-up composition. Both hands rest naturally on the tabletop, with the backs of her hands visible. Her face and neck are clearly visible. Plain light gray background, soft even lighting, clear facial and hand details.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 2,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "male_seed1_v2_strength0",
+      "purpose": "adapter_evaluation",
+      "adapter": "none",
+      "strength": 0,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/male_seed1_v2_strength0",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. A single adult man with short dark brown hair, wearing a plain navy short-sleeved crew-neck shirt. He sits behind a simple wooden table, facing the viewer with a neutral expression and relaxed eyebrows. Waist-up composition. Both hands rest naturally on the tabletop, with the backs of his hands visible. His face and neck are clearly visible. Plain light gray background, soft even lighting, clear facial and hand details.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "59",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "male_seed1_v2_strength1",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 1,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/male_seed1_v2_strength1",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. A single adult man with short dark brown hair, wearing a plain navy short-sleeved crew-neck shirt. He sits behind a simple wooden table, facing the viewer with a neutral expression and relaxed eyebrows. Waist-up composition. Both hands rest naturally on the tabletop, with the backs of his hands visible. His face and neck are clearly visible. Plain light gray background, soft even lighting, clear facial and hand details.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 1,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "male_seed1_v2_strength2",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 2,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/male_seed1_v2_strength2",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. A single adult man with short dark brown hair, wearing a plain navy short-sleeved crew-neck shirt. He sits behind a simple wooden table, facing the viewer with a neutral expression and relaxed eyebrows. Waist-up composition. Both hands rest naturally on the tabletop, with the backs of his hands visible. His face and neck are clearly visible. Plain light gray background, soft even lighting, clear facial and hand details.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 2,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "seated_left_seed1_v2_strength0",
+      "purpose": "adapter_evaluation",
+      "adapter": "none",
+      "strength": 0,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/seated_left_seed1_v2_strength0",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults sit side by side behind a simple wooden table: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved crew-neck shirts. Both face the viewer with neutral expressions and relaxed eyebrows. Waist-up composition. Their hands rest naturally on the tabletop, with the backs of their hands visible. Both faces and necks are clearly visible and unobstructed. Plain light gray background, soft even lighting, equally detailed faces and hands.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "59",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "seated_left_seed1_v2_strength1",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 1,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/seated_left_seed1_v2_strength1",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults sit side by side behind a simple wooden table: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved crew-neck shirts. Both face the viewer with neutral expressions and relaxed eyebrows. Waist-up composition. Their hands rest naturally on the tabletop, with the backs of their hands visible. Both faces and necks are clearly visible and unobstructed. Plain light gray background, soft even lighting, equally detailed faces and hands.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 1,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "seated_left_seed1_v2_strength2",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 2,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/seated_left_seed1_v2_strength2",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults sit side by side behind a simple wooden table: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved crew-neck shirts. Both face the viewer with neutral expressions and relaxed eyebrows. Waist-up composition. Their hands rest naturally on the tabletop, with the backs of their hands visible. Both faces and necks are clearly visible and unobstructed. Plain light gray background, soft even lighting, equally detailed faces and hands.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 2,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "seated_right_seed1_v2_strength0",
+      "purpose": "adapter_evaluation",
+      "adapter": "none",
+      "strength": 0,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/seated_right_seed1_v2_strength0",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults sit side by side behind a simple wooden table: an adult woman on the left and an adult man on the right. Both have short dark brown hair and wear matching plain navy short-sleeved crew-neck shirts. Both face the viewer with neutral expressions and relaxed eyebrows. Waist-up composition. Their hands rest naturally on the tabletop, with the backs of their hands visible. Both faces and necks are clearly visible and unobstructed. Plain light gray background, soft even lighting, equally detailed faces and hands.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "59",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "seated_right_seed1_v2_strength1",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 1,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/seated_right_seed1_v2_strength1",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults sit side by side behind a simple wooden table: an adult woman on the left and an adult man on the right. Both have short dark brown hair and wear matching plain navy short-sleeved crew-neck shirts. Both face the viewer with neutral expressions and relaxed eyebrows. Waist-up composition. Their hands rest naturally on the tabletop, with the backs of their hands visible. Both faces and necks are clearly visible and unobstructed. Plain light gray background, soft even lighting, equally detailed faces and hands.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 1,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "seated_right_seed1_v2_strength2",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 2,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/seated_right_seed1_v2_strength2",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults sit side by side behind a simple wooden table: an adult woman on the left and an adult man on the right. Both have short dark brown hair and wear matching plain navy short-sleeved crew-neck shirts. Both face the viewer with neutral expressions and relaxed eyebrows. Waist-up composition. Their hands rest naturally on the tabletop, with the backs of their hands visible. Both faces and necks are clearly visible and unobstructed. Plain light gray background, soft even lighting, equally detailed faces and hands.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 2,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "standing_left_seed2_v2_strength0",
+      "purpose": "adapter_evaluation",
+      "adapter": "none",
+      "strength": 0,
+      "seed": 2,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/standing_left_seed2_v2_strength0",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 2,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "59",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "standing_left_seed2_v2_strength2",
+      "purpose": "adapter_evaluation",
+      "adapter": "v2",
+      "strength": 2,
+      "seed": 2,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/standing_left_seed2_v2_strength2",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 2,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T174434Z_5e6cf2dc.safetensors",
+              "strength_model": 2,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "standing_left_seed2_v1_strength2",
+      "purpose": "adapter_evaluation",
+      "adapter": "v1",
+      "strength": 2,
+      "seed": 2,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/standing_left_seed2_v1_strength2",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. Two adults stand side by side: an adult man on the left and an adult woman on the right. Both have short dark brown hair and wear matching plain navy short-sleeved shirts. Waist-up composition, front view. Both look toward the viewer with neutral expressions. Their faces and necks are clearly visible and separated. Plain light gray background, soft even lighting, equally detailed faces",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 2,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "71",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          },
+          "71": {
+            "inputs": {
+              "lora_name": "krea2_aging_20261002T050755Z_fccfa81a.safetensors",
+              "strength_model": 2,
+              "model": [
+                "59",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "prompt_binding_record7_target_seed1",
+      "purpose": "turbo_inference_text_binding_probe",
+      "adapter": "none",
+      "strength": 0,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/prompt_binding_record7_target_seed1",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. An adult man on the left and an adult woman on the right sit side by side behind a wooden table. Both have short dark brown hair and wear plain navy short-sleeved crew-neck shirts. Both face the viewer with neutral expressions. The man's face, neck and hands have smooth adult skin. The woman's face, neck and hands have smooth adult skin. Their hands rest on the tabletop. Both faces and necks are clearly visible. Waist-up composition, plain light gray background, soft even lighting.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "59",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "prompt_binding_record7_positive_seed1",
+      "purpose": "turbo_inference_text_binding_probe",
+      "adapter": "none",
+      "strength": 0,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/prompt_binding_record7_positive_seed1",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. An adult man on the left and an adult woman on the right sit side by side behind a wooden table. Both have short dark brown hair and wear plain navy short-sleeved crew-neck shirts. Both face the viewer with neutral expressions. The man's face, neck and hands have smooth adult skin. The woman's face, neck and hands show advanced age, with natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin, and fine skin creases on her neck and hands. Their hands rest on the tabletop. Both faces and necks are clearly visible. Waist-up composition, plain light gray background, soft even lighting.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "59",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "prompt_binding_record8_target_seed1",
+      "purpose": "turbo_inference_text_binding_probe",
+      "adapter": "none",
+      "strength": 0,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/prompt_binding_record8_target_seed1",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. An adult woman on the left and an adult man on the right sit side by side behind a wooden table. Both have short dark brown hair and wear plain navy short-sleeved crew-neck shirts. Both face the viewer with neutral expressions. The man's face, neck and hands have smooth adult skin. The woman's face, neck and hands have smooth adult skin. Their hands rest on the tabletop. Both faces and necks are clearly visible. Waist-up composition, plain light gray background, soft even lighting.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "59",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "prompt_binding_record8_positive_seed1",
+      "purpose": "turbo_inference_text_binding_probe",
+      "adapter": "none",
+      "strength": 0,
+      "seed": 1,
+      "api_request": {
+        "prompt": {
+          "29": {
+            "inputs": {
+              "filename_prefix": "aging_v2_evaluation/prompt_binding_record8_positive_seed1",
+              "images": [
+                "54",
+                0
+              ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+              "title": "画像を保存"
+            }
+          },
+          "51": {
+            "inputs": {
+              "text": "A detailed 2D anime illustration with clean linework and soft cel shading. An adult woman on the left and an adult man on the right sit side by side behind a wooden table. Both have short dark brown hair and wear plain navy short-sleeved crew-neck shirts. Both face the viewer with neutral expressions. The man's face, neck and hands have smooth adult skin. The woman's face, neck and hands show advanced age, with natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin, and fine skin creases on her neck and hands. Their hands rest on the tabletop. Both faces and necks are clearly visible. Waist-up composition, plain light gray background, soft even lighting.",
+              "clip": [
+                "56",
+                0
+              ]
+            },
+            "class_type": "CLIPTextEncode",
+            "_meta": {
+              "title": "CLIPテキストエンコード（プロンプト）"
+            }
+          },
+          "52": {
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+              "title": "空の潜在画像"
+            }
+          },
+          "53": {
+            "inputs": {
+              "seed": 1,
+              "steps": 8,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0,
+              "model": [
+                "59",
+                0
+              ],
+              "positive": [
+                "51",
+                0
+              ],
+              "negative": [
+                "58",
+                0
+              ],
+              "latent_image": [
+                "52",
+                0
+              ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+              "title": "Kサンプラー"
+            }
+          },
+          "54": {
+            "inputs": {
+              "samples": [
+                "53",
+                0
+              ],
+              "vae": [
+                "57",
+                0
+              ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+              "title": "VAEデコード"
+            }
+          },
+          "55": {
+            "inputs": {
+              "unet_name": "intorealismAsian_k2JAVFLASHV1.safetensors",
+              "weight_dtype": "default"
+            },
+            "class_type": "UNETLoader",
+            "_meta": {
+              "title": "拡散モデルを読み込む"
+            }
+          },
+          "56": {
+            "inputs": {
+              "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+              "type": "krea2",
+              "device": "default"
+            },
+            "class_type": "CLIPLoader",
+            "_meta": {
+              "title": "CLIPを読み込む"
+            }
+          },
+          "57": {
+            "inputs": {
+              "vae_name": "qwen_image_vae.safetensors"
+            },
+            "class_type": "VAELoader",
+            "_meta": {
+              "title": "VAEを読み込む"
+            }
+          },
+          "58": {
+            "inputs": {
+              "conditioning": [
+                "51",
+                0
+              ]
+            },
+            "class_type": "ConditioningZeroOut",
+            "_meta": {
+              "title": "条件付けゼロアウト"
+            }
+          },
+          "59": {
+            "inputs": {
+              "lora_name": "krea2_darkbrush.safetensors",
+              "strength_model": 0.8,
+              "model": [
+                "55",
+                0
+              ]
+            },
+            "class_type": "LoraLoaderModelOnly",
+            "_meta": {
+              "title": "LoRAローダーモデルのみ"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
