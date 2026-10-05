@@ -29,7 +29,7 @@ RAWを示すmetadataがないファイルでは、選択したモデルをRAWと
 
 ## 使い方
 
-カスタムノードは **Krea2 Slider Train LoRA** の1つです。モデルとtext encoderはComfyUIのネイティブノードで選択します。
+カスタムノードは **Krea2 Slider Train LoRA**、**Krea2 Native LoRA Hooks Fix**、**Krea2 Region Masks** の3つです。学習ではモデルとtext encoderをComfyUIのネイティブノードで選択します。
 
 1. **Load Diffusion Model / UNETLoader**でKrea2 RAWを選び、`MODEL`出力を学習ノードの`model`へ接続します。`weight_dtype`は`default`を使用します。
 2. **CLIP Loader**でQwen3-VL-4Bを選び、typeを`krea2`にして、`CLIP`出力を学習ノードの`clip`へ接続します。
@@ -65,6 +65,23 @@ flowchart LR
 出力は`ComfyUI/output/krea2_slider_loras/`です。ComfyUIで出力ディレクトリを変更している場合はその配下になります。フォルダーはLoRA検索対象に登録されます。各実行で固有名を使い、既存LoRAを上書きしません。
 
 学習後は[生成確認テンプレート](workflows/krea2_slider_preview.json)のLoRA Loaderで保存したファイルを選択し、同じseedのまま強度を`-1 / 0 / +1`に変えて比較します。このテンプレートのLoRA選択欄は意図的に空です。初期モデルは手元で確認済みのRAWで、Turboに切り替える場合はTurboの推奨step数・CFGへ変更してください。RAW/Turboそれぞれで効果を確認してください。
+
+## 推論用のLoRA Hooksと領域マスク
+
+**Krea2 Native LoRA Hooks Fix**（`model/krea2 slider`）は、量子化・mixed precisionのKrea2 MODELで標準LoRA Hooksを使うための互換性ノードです。
+
+1. `Load Diffusion Model → Krea2 Native LoRA Hooks Fix → KSampler` とMODELを接続します。
+2. `Create Hook LoRA (MO)`でSlider LoRAを選びます。
+3. `Cond Pair Set Props`にpositive/negative、対象MASK、Hookを渡します。最初は`strength=1`、`set_cond_area=default`で比較します。
+4. その出力を`Cond Pair Set Default Combine`へ渡し、Hookなしの元のpositive/negativeをDEFAULT入力へ接続します。最後のpositive/negativeをKSamplerへ渡します。
+
+2つの領域を使う場合は、各MASKとHookに対応する`Cond Pair Set Props`を作り、`Cond Pair Combine`でまとめてから背景用のDefault条件を追加します。同じSliderを通常のLoRA Loaderで全体にも適用すると、対象外にも効果が残ります。
+
+**Krea2 Region Masks** は元画像なしで2つの矩形MASKを作ります。`width`・`height`を生成サイズに合わせ、矩形内部のドラッグで移動、選択中の四隅でサイズ変更します。`Region 1/2`で選択し、`Reset left / right`で左右半分に戻せます。配置は`regions`に保存され、解像度変更後も比率を保ちます。外部入力から`regions`を接続すると編集UIを停止します。不正なJSONはエラーを表示し、resetで復旧できます。
+
+出力は`mask_1`、`mask_2`、`width`、`height`です。MASKを`Cond Pair Set Props`へ、幅・高さをEmpty Latent系ノードへ接続します。領域番号に性別の意味はなく、人物検出や対象外の最終画素の完全一致を保証するものではありません。
+
+Hook修正は出力patcherとそのcloneに限定しますが、内部モデルは共有します。同じモデルを使う並列サンプリングは未検証です。学習ノードには従来どおり未加工のRAW loader出力を接続します。領域の切替は`MinVram`で再計算するため、速度とメモリ使用量は別途確認してください。
 
 ## 16GB向けの開始設定
 
@@ -102,6 +119,17 @@ pytestのないComfyUI用Pythonでも、`python -m unittest discover -s tests -v
 ```powershell
 python tools/validate_comfy.py C:/path/to/ComfyUI
 ```
+
+Hook専用テストは通常のPythonではskipされる場合があるため、ComfyUI用Pythonで別途実行します。引数は`comfy/model_patcher.py`があるComfyUI本体のルートです。
+
+```powershell
+& 'C:/ComfyUI/.venv/Scripts/python.exe' -B tools/validate_native_hooks.py C:/path/to/ComfyUI
+node --test tests/web/test_region_mask_geometry.mjs
+# 既存のPlaywrightとChromeが利用可能な場合のDOM編集UI検証:
+node tools/validate_region_masks_ui.mjs C:/path/to/node_modules/@playwright/test
+```
+
+専用ランナーは11件の実行とskipなしを確認します。ComfyUI更新後も再実行してください。DOM検証は単独fixtureであり、実ComfyUI画面での拡張ロード・保存復元は別に確認します。
 
 実モデルのメモリ試験（人工のテキスト特徴を使用）：
 
