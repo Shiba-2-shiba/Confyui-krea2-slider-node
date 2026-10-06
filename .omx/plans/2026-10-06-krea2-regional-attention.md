@@ -1,6 +1,6 @@
 # Krea2 Regional Attention 実装計画
 
-作成日: 2026-10-06。状態: Phase A実装候補／CPU確認済み／実機Gate A待ち。
+作成日: 2026-10-06。状態: Phase A実装候補／CPU確認済み／実機Gate Aの小マスク条件は未達。
 
 **目的:** 1つのKSamplerで男女を生成し、女性の文章とSlider LoRAを指定領域へ割り当てる。小マスクの外側に別の女性や顔が出る問題を、attentionの情報経路から改善する。
 

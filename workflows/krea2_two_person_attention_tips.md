@@ -19,7 +19,7 @@
 
 ## プロンプトの分け方
 
-- Baseは撮影様式、カメラ、光、フレーミングだけにします。人物、性別、人数は書きません。
+- この初期比較ではBaseを共通の撮影条件にしています。人物をBaseへ書かないことは分離試験の初期条件であり、配置を制御する普遍的な規則ではありません。位置を指定するBaseは、下の`layout_base`で別途比較します。
 - Backgroundは壁・床・光だけにします。`woman`、`man`、`person`などを入れません。
 - 女性・男性のregion promptには、それぞれ1人だけを書きます。`left half`や`right half`のような固定座標は使わず、`within her/his own assigned frame`として矩形編集と矛盾しにくくしています。
 - Gate Aでは胸、年齢、幼児化などのSlider評価語を入れません。まず文章だけの隔離を評価します。
@@ -42,3 +42,21 @@ PNGのAPIメタデータと、同じrun IDの`[Krea2HookDebug] regional_*`ログ
 このJSONはprompt-onlyの実験版です。Regional Slider、`balanced` release、動画、reference latentには対応していません。`Krea2 Native LoRA Hooks Fix`、`Create Hook LoRA`、`Cond Pair Set Props`、`Krea2 Pair Region Area`を同じMODEL/conditioning経路へ追加しないでください。
 
 許可行列、複数層での情報遮断、V3スキーマ、JSONリンクはCPUテスト済みです。一方、開発側のローカル環境では実機と同じComfyUI commitの読み込みに必要な`comfy_aimdo.storage`が不足しており、Krea2本体を使う統合テストとGPU生成は未実施です。このワークフローの画像品質は、上記Gate Aの10枚と同じrun IDのログで判定してください。
+
+## 初回実機結果と切り分け用JSON
+
+`attention_00001`（seed42）、`00002`（4444）、`00003`（444444444）は同じ小マスク・文章・8 steps・CFG1です。3枚とも女性の頭がマスク上端で切れ、上側にはそれぞれ別の女性が1人／2人／0人見えます。小マスク条件のGate Aは未達です。画像だけでは女性文章が背景へ伝わったかを確定できません。
+
+今回のマスク上端は画素で約376pxですが、token ownerの包含矩形は`[0,23,30,64]`、画像換算で`[0,368,480,1024]`です。画像の水平な切れ目はこの実効境界と一致します。マスクを人物の配置・縮尺へ変換する処理はまだなく、`own assigned frame`という語にも矩形座標は付いていません。
+
+同じseed42、同じモデルで次の3つを個別に比較します。診断ログはONです。ログONには`comfy.__file__=None`の修正版が必要です。
+
+| JSON | 変更する条件 | 確認すること |
+| --- | --- | --- |
+| [neutral_base](krea2_two_person_attention_neutral_base.json) | Baseを光・色・露出・画質だけにする | 上側の別女性が減るか。人物向け構図語が背景へ与える影響 |
+| [layout_base](krea2_two_person_attention_layout_base.json) | Baseへ下左の矩形位置・小さい成人女性・右男性・上左の空壁を明記 | 頭を含む全身が小矩形へ入るか。共有Baseによる領域外人物の再発も評価 |
+| [half_mask](krea2_two_person_attention_half_mask.json) | 元の文章のまま女性マスクを左半分全高へ変更 | 上端の制約を外すと女性の頭が戻るか |
+
+既定JSONは比較用に保持しています。これらは原因判別用で、配置改善を検証済みの修正版ではありません。まずseedを固定し、比較する条件以外を変えないでください。`layout_base`の座標文は現在の小矩形用なので、矩形を変更した場合は文も更新します。
+
+参照実装のREADMEは、Baseへの位置ヒントが人物配置を導き、attention maskは分離を担当すると説明しています。また、画像間attentionを終始遮断すると貼り合わせ状の境界が出ることも説明しています。後半で画像間attentionを開く方法と、領域内位置座標へ変換する方法は追加実験の候補ですが、現在は未実装であり、人物重複が解決すると保証できません。

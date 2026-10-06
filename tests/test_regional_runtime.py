@@ -3,6 +3,10 @@ import sys
 
 import pytest
 import torch
+from pathlib import Path
+from types import ModuleType
+
+import krea2_slider_node.regional_runtime as runtime
 
 from krea2_slider_node.regional_runtime import (
     CURRENT_REGIONAL_CALL, RegionSpec, RegionalAttentionWrapper,
@@ -255,3 +259,63 @@ def test_video_reference_and_foreign_positive_are_rejected():
         wrapper(executor,torch.zeros(1,16,8,8),torch.ones(1),context,ref_latents=[torch.zeros(1)])
     with pytest.raises(ValueError,match='conditioning'):
         wrapper(executor,torch.zeros(1,16,8,8),torch.ones(1),context[:,:2])
+
+
+@pytest.mark.parametrize('case', ['namespace', 'missing_submodule_path', 'hash_read_error', 'git_unavailable'])
+def test_debug_pre_run_handles_namespace_package_and_optional_metadata_failures(monkeypatch,tmp_path,case):
+    # Unit lifecycle adapter; this does not substitute for real Comfy integration.
+    class Patcher:
+        def __init__(self):
+            self.model = SimpleNamespace(model_config=SimpleNamespace(unet_config={'image_model':'krea2'}),
+                                         diffusion_model=SimpleNamespace(txtlayers=1,txtdim=8))
+            self.wrappers = {}
+            self.callbacks = {}
+        def clone(self): return Patcher()
+        def get_wrappers(self,kind,key): return self.wrappers.get((kind,key),[])
+        def get_all_wrappers(self,kind): return []
+        def add_wrapper_with_key(self,kind,key,wrapper): self.wrappers[(kind,key)] = [wrapper]
+        def remove_wrappers_with_key(self,kind,key): self.wrappers.pop((kind,key),None)
+        def add_callback_with_key(self,kind,key,callback): self.callbacks[kind] = callback
+    comfy = ModuleType('comfy'); comfy.__file__ = None; comfy.__path__ = [str(tmp_path/'comfy')]
+    extension = ModuleType('comfy.patcher_extension')
+    extension.__file__ = None if case == 'missing_submodule_path' else str(tmp_path/'comfy/patcher_extension.py')
+    extension.CallbacksMP = SimpleNamespace(ON_CLONE='clone',ON_PRE_RUN='pre_run')
+    extension.WrappersMP = SimpleNamespace(DIFFUSION_MODEL='diffusion')
+    comfy.patcher_extension = extension
+    monkeypatch.setitem(sys.modules,'comfy',comfy)
+    monkeypatch.setitem(sys.modules,'comfy.patcher_extension',extension)
+    if case == 'git_unavailable':
+        def no_git(*args,**kwargs): raise FileNotFoundError('unit git unavailable')
+        monkeypatch.setattr(runtime.subprocess,'check_output',no_git)
+    else:
+        monkeypatch.setattr(runtime,'_revision',lambda directory:'unit-test-revision')
+    if case == 'hash_read_error':
+        def unreadable(self): raise PermissionError('unit metadata read denied')
+        monkeypatch.setattr(Path,'read_bytes',unreadable)
+    events = []
+    monkeypatch.setattr(runtime,'emit_debug',events.append)
+    region = RegionSpec(conditioning(),torch.ones(1,8,8))
+    applied, output = runtime.apply_regional_attention(Patcher(),conditioning(),conditioning(),
+                                                      [region],debug_logging=True)
+    wrapper = applied.get_wrappers('diffusion',runtime.WRAPPER_KEY)[0]
+    old_run = wrapper.run_id
+    wrapper.forward_count = 9
+    applied.callbacks['pre_run'](applied)
+    assert wrapper.run_id != old_run and wrapper.forward_count == 0
+    assert len(events) == 1 and events[0]['event'] == 'regional_run_start'
+    if case == 'missing_submodule_path': assert events[0]['comfy_commit'] == 'unknown'
+    if case == 'hash_read_error': assert events[0]['runtime_sha256'] == 'unknown'
+    if case == 'git_unavailable':
+        assert events[0]['comfy_commit'] == events[0]['extension_commit'] == 'unknown'
+    assert output[0][0].shape == (1,6,8)
+
+
+def test_logging_flag_does_not_change_attention_permissions(monkeypatch):
+    context,bundle = setup_bundle()
+    logged = runtime.RegionalBundle(bundle.segments,bundle.masks,debug_logging=True)
+    monkeypatch.setattr(runtime,'emit_debug',lambda event:None)
+    executor = Executor(lambda x,c,o:attention_probe(o,1))
+    x,ts = torch.zeros(1,16,8,8),torch.ones(1)
+    without_log = RegionalAttentionWrapper(bundle)(executor,x,ts,context)
+    with_log = RegionalAttentionWrapper(logged)(executor,x,ts,context)
+    torch.testing.assert_close(without_log,with_log)

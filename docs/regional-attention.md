@@ -80,3 +80,23 @@ Local validation against the user's core commit `7c8fbc698b3c3dce0f525f6b5044b93
 With `debug_logging=true`, events use the existing `[Krea2HookDebug]` prefix and distinct `regional_*` names. `regional_run_start` includes the run ID, source revisions, runtime-file SHA-256 (including uncommitted changes), torch version, and zero regional LoRA count. `regional_geometry` includes latent/token dimensions, segments, pixel-mask hashes, owner counts and token bounding boxes (exclusive upper bounds), mask size, and base-to-image allowed-edge count (zero in strict). `regional_forward` records the masked forward count, CFG flags, joint/text/tap attention calls, and CUDA peak counters. Negative-only forwards use the unchanged model path and do not increment the masked forward counter. Peak counters are process-wide; this node does not reset other GPU users' counters. Save the complete run log with each PNG, including any `regional_error` event. Prompts and weights are not printed.
 
 Owner bounds are token coordinates, not original pixels. For a standard patch-2 model and 128×128 latent, the token grid is 64×64. Decode and patch boundaries can affect neighboring pixels, so mathematical attention isolation is not a promise of identical outside-mask pixels or of artifact-free subject placement.
+
+## First real-machine Gate A result
+
+The user generated three prompt-only images with logging disabled to bypass the namespace-package diagnostic error. Embedded API metadata confirms identical prompts, masks, darkbrush 0.8, 1024×1024, CFG1 and eight Euler/simple steps; only the seed changes.
+
+| Image suffix | Seed | Visual observation |
+| --- | --- | --- |
+| `attention_00001` | 42 | One additional woman in upper-left background; headless green-clothed body below the mask edge |
+| `attention_00002` | 4444 | Two additional women in upper-left background; headless green-clothed body below the mask edge |
+| `attention_00003` | 444444444 | Upper-left background contains wall; the lower-left body still has no head |
+
+The small-mask condition fails Gate A. Archive Regional Area images also show duplicate heads, but have different prompts/engine and, for one image, nonzero sliders; they are qualitative comparisons rather than controlled pixel comparisons.
+
+The current rasterizer and attention owner reduction resolve the woman region to 1,229 tokens with bounding box `[0,23,30,64]`, the man to 2,048 tokens, and background to 819 tokens. At 16 output pixels per token the woman bounds are `[0,368,480,1024]`, matching the visible horizontal cutoff. A bounding box is not a claim that every enclosed token belongs to that owner.
+
+Code evidence: masks control attention permissions, while native `SingleStreamDiT.process_img` retains global row/column position IDs. The runtime neither crops/resizes the latent per region nor remaps the positional encoding to a region-local frame. All owners can also read Base text, which contains portrait/composition cues in the original workflow. Inference: global layout priors and permanent image isolation are plausible causes of the headless/tile-like result; shared Base/model priors can produce people in background despite correct region-prompt isolation. Actual leakage through a runtime/backend bug is not established or excluded by the images alone. A statement of mathematical independence does not establish semantic absence of people in a background prediction.
+
+The reference README explicitly recommends anchored position hints in Base and warns that permanent image-to-image restriction can look collaged. The earlier “no people in Base” tip is a baseline for an isolation experiment, not a universal placement rule. Three controlled workflow variants (`neutral_base`, `layout_base`, `half_mask`) now vary Base or mask geometry one at a time. They are experiments, not a claimed fix for image placement. Region-local RoPE and scheduled image-attention release remain unimplemented; the latter can reintroduce subject propagation and requires separate locality/quality evaluation.
+
+The debug lifecycle now derives ComfyUI provenance from the concrete `comfy.patcher_extension` module, rather than the namespace package's `comfy.__file__`. Missing paths, source hashes, or Git data are reported as `unknown`; this recovery applies only to optional provenance metadata, not attention control errors. Unit regression cases cover namespace packaging, missing submodule paths, source-read errors, missing Git, and unchanged masks with logging ON/OFF. The native clone/run integration case also enables logging, but still requires the user's compatible runtime to execute.

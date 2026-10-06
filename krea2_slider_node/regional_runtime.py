@@ -31,6 +31,26 @@ def _revision(directory):
         return 'unknown'
 
 
+def _run_provenance():
+    """Optional diagnostic metadata must not prevent sampling from starting."""
+    extension = sys.modules.get('comfy.patcher_extension')
+    sources = {
+        'comfy_commit': lambda: _revision(Path(extension.__file__).resolve().parents[1]),
+        'extension_commit': lambda: _revision(Path(__file__).resolve().parents[1]),
+        'runtime_sha256': lambda: hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+    }
+    result, errors = {}, []
+    for name, get_value in sources.items():
+        try:
+            result[name] = get_value()
+        except (OSError, TypeError, ValueError, AttributeError):
+            result[name] = 'unknown'
+            errors.append(name)
+    if errors:
+        result['metadata_unavailable'] = errors
+    return result
+
+
 def _supported_native_replacement(override):
     """Recognize the core setter closure and only its mask-aware native backends."""
     patcher_module = sys.modules.get('comfy.model_patcher')
@@ -337,12 +357,8 @@ def apply_regional_attention(model, base, background, regions, isolation='strict
         for wrapper in patcher.get_wrappers(WrappersMP.DIFFUSION_MODEL, WRAPPER_KEY):
             wrapper.reset()
             if bundle.debug_logging:
-                import comfy
-                comfy_root = Path(comfy.__file__).resolve().parent.parent
                 wrapper._log('regional_run_start', torch_version=torch.__version__, regional_lora_count=0,
-                             comfy_commit=_revision(comfy_root),
-                             extension_commit=_revision(Path(__file__).resolve().parents[1]),
-                             runtime_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                             **_run_provenance(),
                              peak_scope='process CUDA peak; not reset by this node')
 
     clone.add_callback_with_key(CallbacksMP.ON_CLONE, WRAPPER_KEY, on_clone)

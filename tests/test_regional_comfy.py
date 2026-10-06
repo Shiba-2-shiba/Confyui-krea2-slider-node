@@ -95,7 +95,7 @@ class RegionalComfyTests(unittest.TestCase):
         native.model_config = SimpleNamespace(unet_config={'image_model':'krea2'})
         native.diffusion_model = self.model
         patcher = ModelPatcher(native, torch.device('cpu'), torch.device('cpu'))
-        applied, _ = apply_regional_attention(patcher, self.base, self.background, self.regions)
+        applied, _ = apply_regional_attention(patcher, self.base, self.background, self.regions, debug_logging=True)
         copied = applied.clone()
         a = applied.get_wrappers(WrappersMP.DIFFUSION_MODEL, WRAPPER_KEY)[0]
         b = copied.get_wrappers(WrappersMP.DIFFUSION_MODEL, WRAPPER_KEY)[0]
