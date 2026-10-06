@@ -33,6 +33,10 @@
 
 1回生成の[領域ワークフロー](krea2_two_person_region_slider.json)では、右条件から女性の記述を除いています。これは追加の女性を減らすための**プロンプト切り分け**であり、マスク外に女性を生成しない保証ではありません。特にdeagingのように頭・顔・体格が変わる操作では、左マスクを対象人物の頭から体まで覆う大きさにしてください。
 
+同じ1回生成のまま条件をより領域寄りにする[領域area比較版](krea2_two_person_regional_bounds.json)もあります。女性側の`Cond Pair Set Props`は`set_cond_area=default`のまま、その出力を`Krea2 Pair Region Area`に通します。このノードは同じMASKとLATENTから外接矩形を計算し、女性のpositive/negative条件に空間的な`area`を設定します。前回の小マスク・seed・モデル・プロンプトは維持しています。初期値では両Sliderが0なので、画像`krea2_two_person_region_debug_00002_.png`との比較でareaの効果を見られます。その後、deagingだけを2にしてHookの追加効果を確認できます。
+
+Krea2は時間軸1の3D latentを使います。ComfyUIの標準`mask bounds`は、このlatentで2D専用のAABB計算へ入り`too many values to unpack (expected 2, got 3)`となる版があります。area比較版はMASKを残したまま`set_area_to_bounds=false`と明示的な`area=(height,width,y,x)`を渡し、その経路を避けます。診断ログの女性条件には`area=[81,59,47,0]`が出る想定です。人物を必ず矩形内に配置する保証はなく、矩形が小さすぎる場合は顔や体が切れます。
+
 マスク外の最終画素を固定したい場合は、別の[二段階編集ワークフロー](krea2_two_person_masked_edit_composite.json)を使います。最初に「右の男性だけ、左は空の背景」のベース画像を作り、次に左マスク内へ成人女性を生成し、`Image Composite Masked`で編集画像の左だけをベースへ貼ります。このテンプレートは胸Sliderを1つだけ選ぶ開始例です。ベース画像の左が実際に空であることを確認してください。ベースに女性が残れば、最終合成もその女性を残します。
 
 二段階版の`denoise=0.85`は初期案です。生成可能性と人物の自然さは実機で未確認です。硬い二値マスクなら最終合成のマスク外はベース画像と同じ画素になりますが、境界の不自然さは残り得ます。対象人物の一部しか入らない小さな矩形で全身の年齢変化を成立させることはできません。

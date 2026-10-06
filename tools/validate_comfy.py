@@ -31,10 +31,10 @@ def main():
         schema.validate()
         schemas.append({"id": schema.node_id, "inputs": [item.id for item in schema.inputs], "output_node": schema.is_output_node})
     nodes_by_id = {node.GET_SCHEMA().node_id: node for node in nodes}
-    assert len(nodes) == 4 and set(nodes_by_id) == {
+    assert len(nodes) == 5 and set(nodes_by_id) == {
         "Krea2SliderTrainLoRA", "Krea2NativeLoRAHooksFix", "Krea2RegionMasks",
-        "Krea2ConditioningDebug",
-    }, "Expose training, inference, and opt-in conditioning diagnostics"
+        "Krea2ConditioningDebug", "Krea2PairRegionArea",
+    }, "Expose training, inference, regional area, and diagnostics"
     inputs = {item.id: item for item in nodes_by_id["Krea2SliderTrainLoRA"].GET_SCHEMA().inputs}
     assert {"model", "clip", "prompt_yaml"} <= inputs.keys(), "Native MODEL/CLIP sockets and YAML selection are required"
     assert inputs["model"].Parent.io_type == "MODEL"
@@ -51,6 +51,9 @@ def main():
     debug_schema = nodes_by_id["Krea2ConditioningDebug"].GET_SCHEMA()
     assert [item.Parent.io_type for item in debug_schema.inputs[:2]] == ["CONDITIONING", "CONDITIONING"]
     assert [item.Parent.io_type for item in debug_schema.outputs] == ["CONDITIONING", "CONDITIONING"]
+    area_schema = nodes_by_id["Krea2PairRegionArea"].GET_SCHEMA()
+    assert [item.Parent.io_type for item in area_schema.inputs] == ["CONDITIONING", "CONDITIONING", "MASK", "LATENT"]
+    assert [item.Parent.io_type for item in area_schema.outputs] == ["CONDITIONING", "CONDITIONING"]
     region_node = nodes_by_id["Krea2RegionMasks"]
     assert [item.Parent.io_type for item in region_node.GET_SCHEMA().outputs] == ["MASK", "MASK", "INT", "INT"]
     region_output = region_node.execute(16, 8).result
@@ -61,6 +64,25 @@ def main():
     assert bool((region_output[0][:, :, 8:] == 0).all())
     assert (root / package.WEB_DIRECTORY / "region_masks.js").is_file()
     import torch
+    import uuid
+    import comfy.samplers
+    from krea2_slider_node.region_area import latent_area_from_mask
+
+    diagnostic_mask = torch.zeros(1, 1024, 1024)
+    diagnostic_mask[:, 376:, :472] = 1
+    diagnostic_latent = {"samples": torch.zeros(1, 16, 1, 128, 128)}
+    area = latent_area_from_mask(diagnostic_mask, diagnostic_latent)
+    assert area == (81, 59, 47, 0)
+    conditions = [{"model_conds": {}, "uuid": uuid.uuid4(), "mask": diagnostic_mask,
+                   "area": area, "set_area_to_bounds": False}]
+    comfy.samplers.resolve_areas_and_cond_masks_multidim(
+        conditions, diagnostic_latent["samples"].shape[2:], torch.device("cpu"))
+    assert conditions[0]["mask"].shape == (1, 1, 128, 128)
+    region = comfy.samplers.get_area_and_mult(
+        conditions[0], diagnostic_latent["samples"], torch.tensor([0.5]))
+    assert tuple(region.area) == (1, 81, 59, 0, 47, 0)
+    assert region.input_x.shape == region.mult.shape == (1, 16, 1, 81, 59)
+
     import comfy.lora
     from krea2_slider_node.lora import inject_lora, lora_state_dict
     from krea2_slider_node.quantization import FrozenLinear
@@ -76,7 +98,8 @@ def main():
     for strength in (-1., 0., 1.):
         weight = comfy.lora.calculate_weight([(strength, patches[key], 1.0, None, None)], torch.zeros(4, 4), key)
         torch.testing.assert_close(weight, torch.full((4, 4), 0.25 * strength))
-    report = {"status": "passed", "schemas": schemas, "comfy_lora_strengths": [-1, 0, 1]}
+    report = {"status": "passed", "schemas": schemas, "comfy_lora_strengths": [-1, 0, 1],
+              "region_area_5d": list(region.area)}
     if args.lora:
         from types import SimpleNamespace
         from safetensors.torch import load_file

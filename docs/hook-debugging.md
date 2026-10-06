@@ -16,7 +16,7 @@
 
 | `event` | 調べられること |
 | --- | --- |
-| `conditioning` | Samplerに渡す直前のpositive/negative各条件。`mask.bounds_xyxy`は右端・下端を含まない画素座標、`mask.coverage`は非ゼロ率、`default`は残余領域用条件、`hooks.items[].strength_model`は接続されたLoRA強度です。`uncovered_fraction`は矩形マスクの幾何学的な空き率で、Sampler内部の重みと同一ではありません。 |
+| `conditioning` | Samplerに渡す直前のpositive/negative各条件。`mask.bounds_xyxy`は右端・下端を含まない画素座標、`mask.coverage`は非ゼロ率、`area`はlatent座標の`[height,width,y,x]`、`default`は残余領域用条件、`hooks.items[].strength_model`は接続されたLoRA強度です。`uncovered_fraction`は矩形マスクの幾何学的な空き率で、Sampler内部の重みと同一ではありません。 |
 | `hook_fix_installed` | 互換修正を付けたpatcherと共有内部モデルのID。`dynamic`はDynamicVRAMの経路を示します。 |
 | `hook_switch_start` / `hook_switch_end` | SamplerのHookGroup切替前後。Hookなし（`requested.present=false`、または`count=0`）への切替後に`backup_after=0`なら、重みバックアップは残っていません。 |
 | `hook_restore` | 実際に戻した重みの件数と残数。`backup_after=0`、`current_hooks_cleared=true`を確認します。 |

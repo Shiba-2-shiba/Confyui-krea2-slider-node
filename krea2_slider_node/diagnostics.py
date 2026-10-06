@@ -81,6 +81,7 @@ def _side_summary(conditioning):
             "index": index,
             "default": bool(metadata.get("default", False)),
             "mask": summary,
+            "area": list(metadata["area"]) if isinstance(metadata.get("area"), (list, tuple)) else None,
             "mask_strength": metadata.get("mask_strength"),
             "set_area_to_bounds": bool(metadata.get("set_area_to_bounds", False)),
             "hooks": describe_hooks(metadata.get("hooks")),

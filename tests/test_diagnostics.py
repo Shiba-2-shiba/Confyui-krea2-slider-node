@@ -22,6 +22,7 @@ def test_conditioning_summary_shows_hooked_mask_and_unhooked_default():
     group = SimpleNamespace(hooks=[hook])
     positive = [
         [torch.zeros(1), {"mask": left, "mask_strength": 1.0, "hooks": group,
+                          "area": (6, 3, 2, 0),
                           "set_area_to_bounds": False}],
         [torch.zeros(1), {"mask": right, "mask_strength": 1.0}],
         [torch.zeros(1), {"default": True}],
@@ -34,6 +35,7 @@ def test_conditioning_summary_shows_hooked_mask_and_unhooked_default():
     assert result["label"] == "small-mask"
     assert result["positive"]["entries"][0]["mask"]["bounds_xyxy"] == [0, 2, 3, 8]
     assert result["positive"]["entries"][0]["mask"]["coverage"] == 0.28125
+    assert result["positive"]["entries"][0]["area"] == [6, 3, 2, 0]
     assert result["positive"]["entries"][0]["hooks"]["count"] == 1
     assert result["positive"]["entries"][0]["hooks"]["items"][0]["strength_model"] == 2.0
     assert result["positive"]["entries"][1]["hooks"]["present"] is False

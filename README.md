@@ -29,7 +29,7 @@ RAWを示すmetadataがないファイルでは、選択したモデルをRAWと
 
 ## 使い方
 
-カスタムノードは **Krea2 Slider Train LoRA**、**Krea2 Native LoRA Hooks Fix**、**Krea2 Region Masks**、**Krea2 Conditioning Debug** の4つです。学習ではモデルとtext encoderをComfyUIのネイティブノードで選択します。
+カスタムノードは **Krea2 Slider Train LoRA**、**Krea2 Native LoRA Hooks Fix**、**Krea2 Region Masks**、**Krea2 Conditioning Debug**、**Krea2 Pair Region Area** の5つです。学習ではモデルとtext encoderをComfyUIのネイティブノードで選択します。
 
 1. **Load Diffusion Model / UNETLoader**でKrea2 RAWを選び、`MODEL`出力を学習ノードの`model`へ接続します。`weight_dtype`は`default`を使用します。
 2. **CLIP Loader**でQwen3-VL-4Bを選び、typeを`krea2`にして、`CLIP`出力を学習ノードの`clip`へ接続します。
@@ -85,6 +85,8 @@ Hook修正は出力patcherとそのcloneに限定しますが、内部モデル�
 
 領域生成の診断には[デバッグ用ワークフロー](workflows/krea2_two_person_region_slider_debug.json)を使えます。`Krea2 Conditioning Debug`はSampler直前のマスク範囲・DEFAULT・Hook強度だけをログに記録し、CONDITIONINGをそのまま通します。`Krea2 Native LoRA Hooks Fix`の`debug_logging`を有効にすると、Hook重みの適用・解除と復元件数も記録します。ログはComfyUIの起動コンソールに`[Krea2HookDebug]`で出ます。設定と判定方法は[診断手順](docs/hook-debugging.md)を参照してください。
 
+Krea2は3D latentを使うため、ComfyUIの標準`set_cond_area=mask bounds`は`get_mask_aabb`で次元エラーになる版があります。[領域area比較版](workflows/krea2_two_person_regional_bounds.json)では`Cond Pair Set Props`を`default`にし、`Krea2 Pair Region Area`がMASKとLATENTから空間的な`area`を設定します。MASKとHookは保持し、ComfyUI本体の2D専用AABB経路を通りません。
+
 ## 16GB向けの開始設定
 
 | 設定 | 開始値 |
@@ -112,7 +114,7 @@ Hook修正は出力patcherとそのcloneに限定しますが、内部モデル�
 
 ```powershell
 python -m pytest -q
-python -m compileall -q krea2_slider_node nodes.py nodes_native_hooks.py nodes_region_masks.py nodes_diagnostics.py tools
+python -m compileall -q krea2_slider_node nodes.py nodes_native_hooks.py nodes_region_masks.py nodes_diagnostics.py nodes_region_area.py tools
 python tools/probe_krea2_environment.py
 ```
 
