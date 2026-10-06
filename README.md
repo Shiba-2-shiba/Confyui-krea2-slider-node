@@ -29,7 +29,7 @@ RAWを示すmetadataがないファイルでは、選択したモデルをRAWと
 
 ## 使い方
 
-カスタムノードは **Krea2 Slider Train LoRA**、**Krea2 Native LoRA Hooks Fix**、**Krea2 Region Masks** の3つです。学習ではモデルとtext encoderをComfyUIのネイティブノードで選択します。
+カスタムノードは **Krea2 Slider Train LoRA**、**Krea2 Native LoRA Hooks Fix**、**Krea2 Region Masks**、**Krea2 Conditioning Debug** の4つです。学習ではモデルとtext encoderをComfyUIのネイティブノードで選択します。
 
 1. **Load Diffusion Model / UNETLoader**でKrea2 RAWを選び、`MODEL`出力を学習ノードの`model`へ接続します。`weight_dtype`は`default`を使用します。
 2. **CLIP Loader**でQwen3-VL-4Bを選び、typeを`krea2`にして、`CLIP`出力を学習ノードの`clip`へ接続します。
@@ -83,6 +83,8 @@ flowchart LR
 
 Hook修正は出力patcherとそのcloneに限定しますが、内部モデルは共有します。同じモデルを使う並列サンプリングは未検証です。学習ノードには従来どおり未加工のRAW loader出力を接続します。領域の切替は`MinVram`で再計算するため、速度とメモリ使用量は別途確認してください。
 
+領域生成の診断には[デバッグ用ワークフロー](workflows/krea2_two_person_region_slider_debug.json)を使えます。`Krea2 Conditioning Debug`はSampler直前のマスク範囲・DEFAULT・Hook強度だけをログに記録し、CONDITIONINGをそのまま通します。`Krea2 Native LoRA Hooks Fix`の`debug_logging`を有効にすると、Hook重みの適用・解除と復元件数も記録します。ログはComfyUIの起動コンソールに`[Krea2HookDebug]`で出ます。設定と判定方法は[診断手順](docs/hook-debugging.md)を参照してください。
+
 ## 16GB向けの開始設定
 
 | 設定 | 開始値 |
@@ -110,7 +112,7 @@ Hook修正は出力patcherとそのcloneに限定しますが、内部モデル�
 
 ```powershell
 python -m pytest -q
-python -m compileall -q krea2_slider_node nodes.py tools
+python -m compileall -q krea2_slider_node nodes.py nodes_native_hooks.py nodes_region_masks.py nodes_diagnostics.py tools
 python tools/probe_krea2_environment.py
 ```
 

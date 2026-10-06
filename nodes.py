@@ -17,6 +17,7 @@ from .krea2_slider_node.native_model import validate_native_model
 from .krea2_slider_node.prompt_files import list_prompt_files, load_prompt_file, prompt_file_fingerprint
 from .nodes_native_hooks import Krea2NativeLoRAHooksFix
 from .nodes_region_masks import Krea2RegionMasks
+from .nodes_diagnostics import Krea2ConditioningDebug
 
 LOGGER = logging.getLogger(__name__)
 PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
@@ -123,4 +124,5 @@ class Krea2SliderTrainLoRA(io.ComfyNode):
 class Krea2SliderExtension(ComfyExtension):
     async def get_node_list(self):
         folder_paths.add_model_folder_path("loras", str(Path(folder_paths.get_output_directory()) / "krea2_slider_loras"))
-        return [Krea2SliderTrainLoRA, Krea2NativeLoRAHooksFix, Krea2RegionMasks]
+        return [Krea2SliderTrainLoRA, Krea2NativeLoRAHooksFix, Krea2RegionMasks,
+                Krea2ConditioningDebug]

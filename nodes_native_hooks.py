@@ -16,10 +16,11 @@ class Krea2NativeLoRAHooksFix(io.ComfyNode):
                          "Uses uncached Hooks to preserve quantization metadata."),
             search_aliases=["krea2 regional lora", "masked slider", "quantized hooks fix"],
             is_experimental=True,
-            inputs=[io.Model.Input("model")],
+            inputs=[io.Model.Input("model"),
+                    io.Boolean.Input("debug_logging", default=False, advanced=True, optional=True)],
             outputs=[io.Model.Output("model")],
         )
 
     @classmethod
-    def execute(cls, model):
-        return io.NodeOutput(repair_native_hook_model(model))
+    def execute(cls, model, debug_logging=False):
+        return io.NodeOutput(repair_native_hook_model(model, debug_logging=debug_logging))

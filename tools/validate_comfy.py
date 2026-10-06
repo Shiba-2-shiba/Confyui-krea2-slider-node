@@ -31,9 +31,10 @@ def main():
         schema.validate()
         schemas.append({"id": schema.node_id, "inputs": [item.id for item in schema.inputs], "output_node": schema.is_output_node})
     nodes_by_id = {node.GET_SCHEMA().node_id: node for node in nodes}
-    assert len(nodes) == 3 and set(nodes_by_id) == {
+    assert len(nodes) == 4 and set(nodes_by_id) == {
         "Krea2SliderTrainLoRA", "Krea2NativeLoRAHooksFix", "Krea2RegionMasks",
-    }, "Expose only the existing training node and the two inference nodes"
+        "Krea2ConditioningDebug",
+    }, "Expose training, inference, and opt-in conditioning diagnostics"
     inputs = {item.id: item for item in nodes_by_id["Krea2SliderTrainLoRA"].GET_SCHEMA().inputs}
     assert {"model", "clip", "prompt_yaml"} <= inputs.keys(), "Native MODEL/CLIP sockets and YAML selection are required"
     assert inputs["model"].Parent.io_type == "MODEL"
@@ -44,8 +45,12 @@ def main():
     assert inputs["prompt_yaml"].options == ["aging_slider_fullbody.yaml", "breast_size_slider.yaml",
                                            "breast_size_slider_v2.yaml", "deaging_slider_fullbody.yaml"]
     hook_schema = nodes_by_id["Krea2NativeLoRAHooksFix"].GET_SCHEMA()
-    assert [item.Parent.io_type for item in hook_schema.inputs] == ["MODEL"]
+    assert [item.Parent.io_type for item in hook_schema.inputs] == ["MODEL", "BOOLEAN"]
+    assert hook_schema.inputs[1].optional and hook_schema.inputs[1].default is False
     assert [item.Parent.io_type for item in hook_schema.outputs] == ["MODEL"]
+    debug_schema = nodes_by_id["Krea2ConditioningDebug"].GET_SCHEMA()
+    assert [item.Parent.io_type for item in debug_schema.inputs[:2]] == ["CONDITIONING", "CONDITIONING"]
+    assert [item.Parent.io_type for item in debug_schema.outputs] == ["CONDITIONING", "CONDITIONING"]
     region_node = nodes_by_id["Krea2RegionMasks"]
     assert [item.Parent.io_type for item in region_node.GET_SCHEMA().outputs] == ["MASK", "MASK", "INT", "INT"]
     region_output = region_node.execute(16, 8).result
