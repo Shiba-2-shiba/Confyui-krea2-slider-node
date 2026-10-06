@@ -13,6 +13,7 @@ Krea2 RAWを使い、概念を正負の強度で調整するLoRAをComfyUI内で
 - Krea2用CLIPの条件をCPUにキャッシュし、学習中はencoder/VAEをGPUに常駐させません。
 - 標準のComfyUI LoRA Loaderで使用できるsafetensorsと、設定・損失・メモリのJSONレポートを保存します。
 - キャンセル対応。学習用モデルは独立して所有し、接続済みの推論MODELを書き換えません。
+- 実験版のRegional Attention: 文章と画像tokenの参照先を分離し、1回のKSamplerで領域ごとの人物配置を評価できます。現在は文章のみの検証段階です。
 
 ## 必要な環境とモデル
 
@@ -29,7 +30,13 @@ RAWを示すmetadataがないファイルでは、選択したモデルをRAWと
 
 ## 使い方
 
-カスタムノードは **Krea2 Slider Train LoRA**、**Krea2 Native LoRA Hooks Fix**、**Krea2 Region Masks**、**Krea2 Conditioning Debug**、**Krea2 Pair Region Area** の5つです。学習ではモデルとtext encoderをComfyUIのネイティブノードで選択します。
+カスタムノードは **Krea2 Slider Train LoRA**、**Krea2 Native LoRA Hooks Fix**、**Krea2 Region Masks**、**Krea2 Conditioning Debug**、**Krea2 Pair Region Area**、**Krea2 Regional Prompt Region**、**Krea2 Apply Regional Attention** の7つです。学習ではモデルとtext encoderをComfyUIのネイティブノードで選択します。
+
+### Regional Attentionの実機評価
+
+[文章だけの比較ワークフロー](workflows/krea2_two_person_attention.json)を読み込み、実機のモデル・text encoder・VAE・darkbrushを選択します。女性・男性の文章をそれぞれのMASKに結び、残りを背景へ割り当てます。native Hookやarea conditioningを追加せず、まずSliderなしで人物の重複を確認してください。
+
+マスク変更と10枚の比較条件は[操作Tips](workflows/krea2_two_person_attention_tips.md)、情報経路と検証の制限は[実装説明](docs/regional-attention.md)にあります。領域Slider LoRAは文章分離の実機Gate A合格後に実装します。
 
 1. **Load Diffusion Model / UNETLoader**でKrea2 RAWを選び、`MODEL`出力を学習ノードの`model`へ接続します。`weight_dtype`は`default`を使用します。
 2. **CLIP Loader**でQwen3-VL-4Bを選び、typeを`krea2`にして、`CLIP`出力を学習ノードの`clip`へ接続します。

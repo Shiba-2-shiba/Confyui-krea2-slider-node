@@ -31,10 +31,11 @@ def main():
         schema.validate()
         schemas.append({"id": schema.node_id, "inputs": [item.id for item in schema.inputs], "output_node": schema.is_output_node})
     nodes_by_id = {node.GET_SCHEMA().node_id: node for node in nodes}
-    assert len(nodes) == 5 and set(nodes_by_id) == {
+    assert len(nodes) == 7 and set(nodes_by_id) == {
         "Krea2SliderTrainLoRA", "Krea2NativeLoRAHooksFix", "Krea2RegionMasks",
-        "Krea2ConditioningDebug", "Krea2PairRegionArea",
-    }, "Expose training, inference, regional area, and diagnostics"
+        "Krea2ConditioningDebug", "Krea2PairRegionArea", "Krea2RegionalPromptRegion",
+        "Krea2ApplyRegionalAttention",
+    }, "Expose training, inference, regional attention, regional area, and diagnostics"
     inputs = {item.id: item for item in nodes_by_id["Krea2SliderTrainLoRA"].GET_SCHEMA().inputs}
     assert {"model", "clip", "prompt_yaml"} <= inputs.keys(), "Native MODEL/CLIP sockets and YAML selection are required"
     assert inputs["model"].Parent.io_type == "MODEL"
@@ -54,6 +55,19 @@ def main():
     area_schema = nodes_by_id["Krea2PairRegionArea"].GET_SCHEMA()
     assert [item.Parent.io_type for item in area_schema.inputs] == ["CONDITIONING", "CONDITIONING", "MASK", "LATENT"]
     assert [item.Parent.io_type for item in area_schema.outputs] == ["CONDITIONING", "CONDITIONING"]
+    prompt_region_schema = nodes_by_id["Krea2RegionalPromptRegion"].GET_SCHEMA()
+    assert [item.Parent.io_type for item in prompt_region_schema.inputs] == [
+        "CONDITIONING", "MASK", "KREA2_SLIDER_REGIONS"
+    ]
+    assert prompt_region_schema.inputs[-1].optional
+    assert [item.Parent.io_type for item in prompt_region_schema.outputs] == ["KREA2_SLIDER_REGIONS"]
+    regional_apply_schema = nodes_by_id["Krea2ApplyRegionalAttention"].GET_SCHEMA()
+    assert [item.Parent.io_type for item in regional_apply_schema.inputs] == [
+        "MODEL", "CONDITIONING", "CONDITIONING", "KREA2_SLIDER_REGIONS", "COMBO", "BOOLEAN"
+    ]
+    assert regional_apply_schema.inputs[4].options == ["strict"]
+    assert regional_apply_schema.inputs[4].default == "strict"
+    assert [item.Parent.io_type for item in regional_apply_schema.outputs] == ["MODEL", "CONDITIONING"]
     region_node = nodes_by_id["Krea2RegionMasks"]
     assert [item.Parent.io_type for item in region_node.GET_SCHEMA().outputs] == ["MASK", "MASK", "INT", "INT"]
     region_output = region_node.execute(16, 8).result
