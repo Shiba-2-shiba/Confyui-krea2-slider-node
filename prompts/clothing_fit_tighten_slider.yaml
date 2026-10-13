@@ -1,0 +1,214 @@
+# Krea2 clothing fit tighten: original regular-to-fitted prompts for fully clothed adult women.
+# Adapted from Comfyui-anima-slider-node/prompts/prompts-anima-clothing_fit_slider_v2.yaml.
+# Natural-language style and folded YAML blocks follow breast_size_slider_v2.yaml.
+# target == negative == neutral: regular clothing fit; positive changes clothing fit only.
+# Within each record only the two clothing-fit sentences differ.
+# negative is a teacher comparison prompt, not a generation exclusion list.
+# Use training_direction=single; positive LoRA weights move toward the positive fit.
+# Includes source training indices 0..5 only; held-out evaluation indices 6/7 are omitted.
+# Anima guidance_scale/action/width/height/batch_size are not Krea2 prompt fields.
+# Training settings are selected on the node; no training or image-quality evaluation yet.
+
+# 0: training; blouse, front view, upper body.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The blouse has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal blouse with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to the middle of her torso, with her face, shoulders, sleeves, and blouse outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The blouse is closely fitted with a tailored fit that follows her torso and arms. Its fabric has a smooth contour with minimal excess material, creating a neat fitted silhouette.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal blouse with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to the middle of her torso, with her face, shoulders, sleeves, and blouse outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The blouse has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal blouse with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to the middle of her torso, with her face, shoulders, sleeves, and blouse outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The blouse has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal blouse with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to the middle of her torso, with her face, shoulders, sleeves, and blouse outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+
+# 1: training; cardigan over top, three-quarter view, waist up.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The cardigan has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal cardigan buttoned over a light gray top with a high round neckline, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to just below her waist, with her face, shoulders, sleeves, and cardigan outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The cardigan is closely fitted with a tailored fit that follows her torso and arms. Its fabric has a smooth contour with minimal excess material, creating a neat fitted silhouette.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal cardigan buttoned over a light gray top with a high round neckline, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to just below her waist, with her face, shoulders, sleeves, and cardigan outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The cardigan has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal cardigan buttoned over a light gray top with a high round neckline, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to just below her waist, with her face, shoulders, sleeves, and cardigan outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The cardigan has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal cardigan buttoned over a light gray top with a high round neckline, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to just below her waist, with her face, shoulders, sleeves, and cardigan outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+
+# 2: training; jacket and skirt, front view, thigh up.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The jacket has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, charcoal hip-length jacket closed over a light gray top with a high round neckline, and a dark knee-length skirt.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to the middle of her thighs, with her face, shoulders, sleeves, jacket outline, and upper skirt clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The jacket is closely fitted with a tailored fit that follows her torso and arms. Its fabric has a smooth contour with minimal excess material, creating a neat fitted silhouette.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, charcoal hip-length jacket closed over a light gray top with a high round neckline, and a dark knee-length skirt.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to the middle of her thighs, with her face, shoulders, sleeves, jacket outline, and upper skirt clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The jacket has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, charcoal hip-length jacket closed over a light gray top with a high round neckline, and a dark knee-length skirt.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to the middle of her thighs, with her face, shoulders, sleeves, jacket outline, and upper skirt clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The jacket has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, charcoal hip-length jacket closed over a light gray top with a high round neckline, and a dark knee-length skirt.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to the middle of her thighs, with her face, shoulders, sleeves, jacket outline, and upper skirt clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+
+# 3: training; sweater, three-quarter view, upper body.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The sweater has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal knit sweater with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to the middle of her torso, with her face, shoulders, sleeves, and sweater outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The sweater is closely fitted with a tailored fit that follows her torso and arms. Its fabric has a smooth contour with minimal excess material, creating a neat fitted silhouette.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal knit sweater with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to the middle of her torso, with her face, shoulders, sleeves, and sweater outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The sweater has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal knit sweater with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to the middle of her torso, with her face, shoulders, sleeves, and sweater outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The sweater has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her shoulder-length dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal knit sweater with a high round neckline and long sleeves, and dark straight-leg trousers.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to the middle of her torso, with her face, shoulders, sleeves, and sweater outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+
+# 4: training; long-sleeve top and skirt, front view, waist up.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The top has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal long-sleeve top with a high round neckline, and a dark knee-length skirt.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to just below her waist, with her face, shoulders, sleeves, and top outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The top is closely fitted with a tailored fit that follows her torso and arms. Its fabric has a smooth contour with minimal excess material, creating a neat fitted silhouette.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal long-sleeve top with a high round neckline, and a dark knee-length skirt.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to just below her waist, with her face, shoulders, sleeves, and top outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The top has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal long-sleeve top with a high round neckline, and a dark knee-length skirt.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to just below her waist, with her face, shoulders, sleeves, and top outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The top has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her long dark brown hair rests behind her shoulders. She wears a plain, opaque, charcoal long-sleeve top with a high round neckline, and a dark knee-length skirt.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A centered front view shows her from the top of her head to just below her waist, with her face, shoulders, sleeves, and top outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+
+# 5: training; casual dress, three-quarter view, thigh up.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The dress has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to the middle of her thighs, with her face, shoulders, sleeves, waist, and dress outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The dress is closely fitted with a tailored fit that follows her torso and arms. Its fabric has a smooth contour with minimal excess material, creating a neat fitted silhouette.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to the middle of her thighs, with her face, shoulders, sleeves, waist, and dress outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The dress has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to the middle of her thighs, with her face, shoulders, sleeves, waist, and dress outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows a single adult woman.
+    The dress has a regular clothing fit with moderate ease around her torso and arms. Its fabric rests between a close fit and a loose fit, with a natural contour and a few soft folds.
+    She has an average build, medium-width shoulders, a defined waist, medium-width hips, and moderately slender arms.
+    Her short dark brown hair is tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves.
+    She stands upright with relaxed shoulders, a neutral expression, and her arms slightly away from her sides, leaving the garment outline unobstructed.
+    A three-quarter view shows her from the top of her head to the middle of her thighs, with her face, shoulders, sleeves, waist, and dress outline clearly visible.
+    A clean, bright studio with a plain pale wall and soft, even lighting. She is fully clothed.

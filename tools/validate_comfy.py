@@ -42,8 +42,8 @@ def main():
     assert inputs["training_direction"].default == "single"
     assert inputs["training_direction"].optional
     assert inputs["training_direction"].options == ["single", "bidirectional"]
-    assert inputs["prompt_yaml"].options == ["aging_slider_fullbody.yaml", "breast_size_slider.yaml",
-                                           "breast_size_slider_v2.yaml", "deaging_slider_fullbody.yaml"]
+    from krea2_slider_node.prompt_files import list_prompt_files
+    assert inputs["prompt_yaml"].options == list_prompt_files(root / "prompts")
     hook_schema = nodes_by_id["Krea2NativeLoRAHooksFix"].GET_SCHEMA()
     assert [item.Parent.io_type for item in hook_schema.inputs] == ["MODEL", "BOOLEAN"]
     assert hook_schema.inputs[1].optional and hook_schema.inputs[1].default is False

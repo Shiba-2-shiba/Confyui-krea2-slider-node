@@ -1,0 +1,292 @@
+# Krea2 female size decrease: normal-sized adult woman to half the normal-sized man's height.
+# One-direction prompt design; use training_direction=single.
+# Positive LoRA weights move toward the positive female-size description in both files.
+# Strong contrast follows breast_size_slider_v2.yaml: target == neutral is normal size.
+# positive: miniature woman; negative: giant-sized woman; man stays normal-sized in both.
+# The two female-size/relative-height sentences occur immediately after the introduction.
+# Only those two sentences differ between target, positive, negative, and neutral.
+# The man, clothing descriptions, pose, positions, view, background, and lighting are identical within each pair.
+# Both people remain adults; female size changes proportionally across the whole body.
+# Both stand at the same camera distance on the same floor; every view includes both complete bodies.
+# Six training records; left/right positions and clothing vary between records.
+# Start with the same training settings to isolate this stronger prompt contrast.
+# Natural-language style and folded YAML blocks follow breast_size_slider_v2.yaml.
+# negative is a teacher comparison prompt, not a generation exclusion list.
+# This is an original prompt design, not a reproduction of the Civitai model training recipe.
+# Training settings are selected on the node; training and image quality have not been evaluated.
+
+# 0: training; front view, woman left, blouse and trousers.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has shoulder-length dark brown hair resting behind her shoulders. She wears a plain, opaque, light gray blouse with a high round neckline and long sleeves, dark straight-leg trousers, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, blue long-sleeve shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a tiny, miniature adult with a much smaller full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all reduced in the same proportion. She stands approximately half the normal-sized man's height, with the top of her head reaching approximately his waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has shoulder-length dark brown hair resting behind her shoulders. She wears a plain, opaque, light gray blouse with a high round neckline and long sleeves, dark straight-leg trousers, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, blue long-sleeve shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a towering, giant-sized adult with a much larger full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all enlarged in the same proportion. She stands approximately twice the normal-sized man's height, with the top of his head reaching approximately her waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has shoulder-length dark brown hair resting behind her shoulders. She wears a plain, opaque, light gray blouse with a high round neckline and long sleeves, dark straight-leg trousers, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, blue long-sleeve shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has shoulder-length dark brown hair resting behind her shoulders. She wears a plain, opaque, light gray blouse with a high round neckline and long sleeves, dark straight-leg trousers, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, blue long-sleeve shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+
+# 1: training; front view, woman right, blouse and trousers.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has shoulder-length dark brown hair resting behind her shoulders. She wears a plain, opaque, light gray blouse with a high round neckline and long sleeves, dark straight-leg trousers, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, blue long-sleeve shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a tiny, miniature adult with a much smaller full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all reduced in the same proportion. She stands approximately half the normal-sized man's height, with the top of her head reaching approximately his waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has shoulder-length dark brown hair resting behind her shoulders. She wears a plain, opaque, light gray blouse with a high round neckline and long sleeves, dark straight-leg trousers, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, blue long-sleeve shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a towering, giant-sized adult with a much larger full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all enlarged in the same proportion. She stands approximately twice the normal-sized man's height, with the top of his head reaching approximately her waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has shoulder-length dark brown hair resting behind her shoulders. She wears a plain, opaque, light gray blouse with a high round neckline and long sleeves, dark straight-leg trousers, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, blue long-sleeve shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has shoulder-length dark brown hair resting behind her shoulders. She wears a plain, opaque, light gray blouse with a high round neckline and long sleeves, dark straight-leg trousers, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, blue long-sleeve shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+
+# 2: training; three-quarter view, woman left, casual dress.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has short dark brown hair tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves, and flat shoes.
+    The man has short dark brown hair. He wears a plain, opaque, ivory knit sweater, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a tiny, miniature adult with a much smaller full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all reduced in the same proportion. She stands approximately half the normal-sized man's height, with the top of her head reaching approximately his waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has short dark brown hair tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves, and flat shoes.
+    The man has short dark brown hair. He wears a plain, opaque, ivory knit sweater, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a towering, giant-sized adult with a much larger full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all enlarged in the same proportion. She stands approximately twice the normal-sized man's height, with the top of his head reaching approximately her waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has short dark brown hair tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves, and flat shoes.
+    The man has short dark brown hair. He wears a plain, opaque, ivory knit sweater, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has short dark brown hair tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves, and flat shoes.
+    The man has short dark brown hair. He wears a plain, opaque, ivory knit sweater, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+
+# 3: training; three-quarter view, woman right, casual dress.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has short dark brown hair tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves, and flat shoes.
+    The man has short dark brown hair. He wears a plain, opaque, ivory knit sweater, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a tiny, miniature adult with a much smaller full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all reduced in the same proportion. She stands approximately half the normal-sized man's height, with the top of her head reaching approximately his waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has short dark brown hair tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves, and flat shoes.
+    The man has short dark brown hair. He wears a plain, opaque, ivory knit sweater, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a towering, giant-sized adult with a much larger full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all enlarged in the same proportion. She stands approximately twice the normal-sized man's height, with the top of his head reaching approximately her waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has short dark brown hair tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves, and flat shoes.
+    The man has short dark brown hair. He wears a plain, opaque, ivory knit sweater, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has short dark brown hair tucked behind her ears. She wears a plain, opaque, charcoal knee-length casual dress with a high round neckline and long sleeves, and flat shoes.
+    The man has short dark brown hair. He wears a plain, opaque, ivory knit sweater, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+
+# 4: training; front view, woman left, cardigan and skirt.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has long dark brown hair resting behind her shoulders. She wears a plain, opaque, pale gray cardigan over an ivory top with a high round neckline, a dark ankle-length skirt, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, navy jacket over a light gray shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a tiny, miniature adult with a much smaller full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all reduced in the same proportion. She stands approximately half the normal-sized man's height, with the top of her head reaching approximately his waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has long dark brown hair resting behind her shoulders. She wears a plain, opaque, pale gray cardigan over an ivory top with a high round neckline, a dark ankle-length skirt, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, navy jacket over a light gray shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a towering, giant-sized adult with a much larger full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all enlarged in the same proportion. She stands approximately twice the normal-sized man's height, with the top of his head reaching approximately her waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has long dark brown hair resting behind her shoulders. She wears a plain, opaque, pale gray cardigan over an ivory top with a high round neckline, a dark ankle-length skirt, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, navy jacket over a light gray shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has long dark brown hair resting behind her shoulders. She wears a plain, opaque, pale gray cardigan over an ivory top with a high round neckline, a dark ankle-length skirt, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, navy jacket over a light gray shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the left and the man on the right, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide front view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+
+# 5: training; three-quarter view, woman right, cardigan and skirt.
+- target: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has long dark brown hair resting behind her shoulders. She wears a plain, opaque, pale gray cardigan over an ivory top with a high round neckline, a dark ankle-length skirt, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, navy jacket over a light gray shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  positive: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a tiny, miniature adult with a much smaller full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all reduced in the same proportion. She stands approximately half the normal-sized man's height, with the top of her head reaching approximately his waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has long dark brown hair resting behind her shoulders. She wears a plain, opaque, pale gray cardigan over an ivory top with a high round neckline, a dark ankle-length skirt, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, navy jacket over a light gray shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  negative: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman is a towering, giant-sized adult with a much larger full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet are all enlarged in the same proportion. She stands approximately twice the normal-sized man's height, with the top of his head reaching approximately her waist.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has long dark brown hair resting behind her shoulders. She wears a plain, opaque, pale gray cardigan over an ivory top with a high round neckline, a dark ankle-length skirt, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, navy jacket over a light gray shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
+  neutral: >-
+    A clean 2D anime illustration with soft cel shading shows exactly two adults, one woman and one man.
+    The woman has a normal-sized adult full-body silhouette; her head, shoulders, torso, arms, hands, legs, and feet have ordinary adult dimensions. She is approximately the same height as the normal-sized man, with their heads at a similar level.
+    She has an adult face and adult head-to-body proportions.
+    The man has ordinary adult height and an average build, with an adult face and adult body proportions.
+    The woman has long dark brown hair resting behind her shoulders. She wears a plain, opaque, pale gray cardigan over an ivory top with a high round neckline, a dark ankle-length skirt, and flat shoes.
+    The man has short black hair. He wears a plain, opaque, navy jacket over a light gray shirt, dark straight-leg trousers, and flat shoes.
+    The woman stands on the right and the man on the left, side by side at the same distance from the camera.
+    Both stand upright with relaxed arms slightly away from their sides and neutral expressions, leaving their body outlines unobstructed.
+    A wide three-quarter view shows both complete bodies from the tops of their heads to their feet, with ample open space above and beside them.
+    Their feet rest on the same level floor in a spacious studio with a plain pale wall, evenly spaced floor tiles, and soft, even lighting. Both are fully clothed.
