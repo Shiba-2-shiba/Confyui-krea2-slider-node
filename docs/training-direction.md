@@ -30,7 +30,7 @@ The old 100-step acceptance reports describe the earlier bidirectional implement
 
 ## Bounded timing check
 
-Measured through the actual ComfyUI API on the R9700, using the native RAW/CLIP inputs, `aging_slider_fullbody.yaml`, 512px, rank/alpha 8/8, attention targets, 16 CPU blocks, checkpointing, trajectory_steps=8 and seeds 42–44. Both modes use the same teacher-reuse optimization. Each run contains three steps; the comparison below excludes its first step and averages steps 2–3. These are short-run measurements, not a general throughput guarantee.
+Measured through the actual ComfyUI API on the R9700, using the native RAW/CLIP inputs, `anime_aging_slider_fullbody.yaml` (named `aging_slider_fullbody.yaml` at the time), 512px, rank/alpha 8/8, attention targets, 16 CPU blocks, checkpointing, trajectory_steps=8 and seeds 42–44. Both modes use the same teacher-reuse optimization. Each run contains three steps; the comparison below excludes its first step and averages steps 2–3. These are short-run measurements, not a general throughput guarantee.
 
 | Mode | Student backwards/step | Mean seconds/step after first | Peak torch reserved |
 |---|---:|---:|---:|

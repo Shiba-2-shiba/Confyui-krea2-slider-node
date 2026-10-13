@@ -1,17 +1,19 @@
 # Krea2 Slider prompts
 
-Krea2公式の [`docs/prompting.md`](../参考/krea-2/docs/prompting.md) に従い、人物・画風・衣装・構図・背景・光を記述する英語の自然文にしています。アニメ画風と、概念以外の体型・衣服の変化を抑えるMageFlow改訂版の記述を引き継ぎました。
+Krea2公式の [`docs/prompting.md`](../参考/krea-2/docs/prompting.md) に従い、人物・画風・衣装・構図・背景・光を記述する英語の自然文にしています。アニメ版はアニメ画風と、概念以外の体型・衣服の変化を抑えるMageFlow改訂版の記述を引き継ぎました。aging/deagingには写真調の肌・布の質感を使う実写風版もあります。
 
 | ファイル | 正のLoRA強度の方向 | 参照元 |
 |---|---|---|
-| [aging_slider_fullbody.yaml](aging_slider_fullbody.yaml) | 成人女性の顔・首・手の皮膚を加齢させる | MageFlow aging v2 |
+| [anime_aging_slider_fullbody.yaml](anime_aging_slider_fullbody.yaml) | アニメ調で成人女性の顔・首・手の皮膚を加齢させる | MageFlow aging v2 |
+| [realistic_aging_slider_fullbody.yaml](realistic_aging_slider_fullbody.yaml) | 実写風で成人女性の顔・首・手の皮膚を加齢させる | anime agingの写真調版 |
 | [breast_size_slider.yaml](breast_size_slider.yaml) | 着衣の成人女性の胸部ボリュームを中程度から大きめへ | MageFlow breast v5 |
 | [breast_size_slider_v2.yaml](breast_size_slider_v2.yaml) | 胸部ボリュームの大小を服の輪郭で明示する改訂版 | Krea2 breast size改訂版 |
 | [clothing_fit_tighten_slider.yaml](clothing_fit_tighten_slider.yaml) | 標準的な服から、体に沿う仕立て・滑らかな輪郭へ（既存版） | Anima clothing fit v2 |
 | [clothing_fit_loosen_slider.yaml](clothing_fit_loosen_slider.yaml) | 標準的な服から、ゆったりした仕立て・余り布の折り目へ（既存版） | Anima clothing fit v3 |
 | [clothing_fit_tighten_slider_v2.yaml](clothing_fit_tighten_slider_v2.yaml) | ゆったりした服との対比で、布と身体の隙間を小さくする（改訂版） | Krea2 clothing fit改訂版 |
 | [clothing_fit_loosen_slider_v2.yaml](clothing_fit_loosen_slider_v2.yaml) | 密着した服との対比で、布と身体の隙間を大きくする（改訂版） | Krea2 clothing fit改訂版 |
-| [deaging_slider_fullbody.yaml](deaging_slider_fullbody.yaml) | 着衣の成人女性から幼児へ、年齢・顔・頭身・手足の比率を変える | MageFlow deaging v2 |
+| [anime_deaging_slider_fullbody.yaml](anime_deaging_slider_fullbody.yaml) | アニメ調で着衣の成人女性から幼児へ、年齢・顔・頭身・手足の比率を変える | MageFlow deaging v2 |
+| [realistic_deaging_slider_fullbody.yaml](realistic_deaging_slider_fullbody.yaml) | 実写風で着衣の成人女性から幼児へ、年齢・顔・頭身・手足の比率を変える | anime deagingの写真調版 |
 | [female_size_increase_slider.yaml](female_size_increase_slider.yaml) | 通常サイズの成人男性との構図で、成人女性の全身を比例拡大する | Krea2用の新規プロンプト設計 |
 | [female_size_decrease_slider.yaml](female_size_decrease_slider.yaml) | 通常サイズの成人男性との構図で、成人女性の全身を比例縮小する | Krea2用の新規プロンプト設計 |
 
@@ -44,6 +46,16 @@ MageFlow／Animaの`guidance_scale`、`action`、解像度、`batch_size`はKrea
 この係数は参照元の概念差分の強さを対応づけた開始値であり、Krea2での最適値や同じ画質を保証するものではありません。胸サイズの効果が強すぎる場合は`teacher_guidance_scale=1`も比較対象になります。
 
 16GB向けの動作確認はノードの既定値である512×512、rank/alpha 8/8、INT8、checkpoint ON、CPU退避16ブロックから開始できます。参照元の1024×1024／896×1152をファイルから自動適用する処理はありません。
+
+## Aging/deagingの画風別ファイル
+
+既存の`aging_slider_fullbody.yaml`を`anime_aging_slider_fullbody.yaml`へ、`deaging_slider_fullbody.yaml`を`anime_deaging_slider_fullbody.yaml`へ改名しました。アニメ版のプロンプト本文はそのままです。保存済みワークフローで旧名を使っている場合は、`prompt_yaml`で新しい名前を選び直してください。
+
+追加した`realistic_aging_slider_fullbody.yaml`／`realistic_deaging_slider_fullbody.yaml`は、同じ6件の年齢差分・衣装・姿勢・構図・背景・照明を引き継ぎ、画風を実写風のスタジオ写真へ変更しています。全フィールドで写真、自然な肌の質感、現実的な布の質感を共通にし、deagingの`matte skin shading`も肌の質感の表現へ置き換えています。
+
+agingは成人の顔・首・手の皮膚の加齢、deagingは成人から幼児への顔・頭身・手足の比率の変化を学習する構成です。deagingは成人の範囲内だけの若返りではありません。両者とも着衣の構図を維持し、`target = negative = neutral`を基準に、`positive`へ向かう1方向の学習にします。
+
+`training_direction=single`で画風・方向ごとに別々に学習し、`output_name`も`krea2_realistic_aging`／`krea2_realistic_deaging`などに分けてください。実写風版の学習・画像生成は未実施で、肌や衣装の保持とSlider効果は画像で未評価です。
 
 ## Clothing fit tighten/loosen
 
