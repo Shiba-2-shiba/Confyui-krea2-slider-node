@@ -32,9 +32,13 @@
         "Node name for S&R": "UNETLoader"
       },
       "widgets_values": [
-        "krea2CatTower_v20Raw_int8.safetensors",
+        "moodyKrea2MixUncensoredV8SEGoes_v80_int8.safetensors",
         "default"
-      ]
+      ],
+      "widgets_values_named": {
+        "unet_name": "moodyKrea2MixUncensoredV8SEGoes_v80_int8.safetensors",
+        "weight_dtype": "default"
+      }
     },
     {
       "id": 2,
@@ -64,10 +68,15 @@
         "Node name for S&R": "CLIPLoader"
       },
       "widgets_values": [
-        "qwen3vl_4b_bf16.safetensors",
+        "wen3vl_4b_bf16.safetensors",
         "krea2",
         "default"
-      ]
+      ],
+      "widgets_values_named": {
+        "clip_name": "wen3vl_4b_bf16.safetensors",
+        "type": "krea2",
+        "device": "default"
+      }
     },
     {
       "id": 4,
@@ -111,30 +120,55 @@
         "Node name for S&R": "Krea2SliderTrainLoRA"
       },
       "widgets_values": [
-        "aging_slider_fullbody.yaml",
+        "breast_size_slider_v2.yaml",
         "raw",
         "convrot_int8",
-        16,
-        14.0,
+        6,
+        14,
         "bf16",
-        100,
-        8,
-        8.0,
+        400,
+        16,
+        16,
         "attention",
         0.0001,
-        512,
-        512,
+        768,
+        768,
         8,
-        1.0,
-        1.0,
+        1,
+        1.5,
         "none",
         42,
         "fixed",
         true,
         true,
-        "krea2_aging",
+        "krea2_breast",
         "single"
-      ]
+      ],
+      "widgets_values_named": {
+        "prompt_yaml": "breast_size_slider_v2.yaml",
+        "model_variant": "raw",
+        "quantization": "convrot_int8",
+        "blocks_to_swap": 6,
+        "memory_budget_gib": 14,
+        "compute_dtype": "bf16",
+        "steps": 400,
+        "rank": 16,
+        "alpha": 16,
+        "target": "attention",
+        "learning_rate": 0.0001,
+        "width": 768,
+        "height": 768,
+        "trajectory_steps": 8,
+        "eta": 1,
+        "teacher_guidance_scale": 1.5,
+        "teacher_norm_reference": "none",
+        "seed": 42,
+        "control_after_generate": "fixed",
+        "vary_seed": true,
+        "gradient_checkpointing": true,
+        "output_name": "krea2_breast",
+        "training_direction": "single"
+      }
     }
   ],
   "links": [
