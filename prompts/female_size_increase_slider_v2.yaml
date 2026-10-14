@@ -1,0 +1,260 @@
+# Krea2 female size increase v2: provisional revision after the 10-candidate image review.
+# Positive LoRA weights aim to increase the adult woman's whole-body scale relative to the adult man.
+# target == negative == neutral: ordinary-size baseline; positive is the requested direction.
+# The opposite extreme is not used as a negative teacher; the earlier miniature prompts produced extra people.
+# Female-first wording and left/right placement are motivated by candidates 06 and 08; wording is revised.
+# Very short/tall is the primary cue, with approximate half/twice height and head/waist alignment as secondary cues.
+# Six records are three clothing/background scenes with left/right variants, not six independent validated scenes.
+# Within each record, only the two female-stature sentences differ between baseline and positive.
+# Male description, clothing, pose, camera, background and adult proportions are shared across roles.
+# Start with single direction, eta=1, teacher_guidance_scale=1, teacher_norm_reference=none.
+# At that scale the teacher equals the positive prediction because target equals negative.
+# This changes wording and teacher construction from v1; improvements cannot be attributed to wording alone.
+# The reviewed images used darkbrush=0.8 and one seed. This v2 text has not been generated or trained.
+# The exact 0.5/2.0 height ratios and retention of the male figure are not established.
+
+# 0: candidate 06 clothing, cream gallery; woman left
+- target: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the left wearing
+    an opaque orange blouse, dark denim trousers, and white trainers. The man stands on the right wearing an
+    opaque teal shirt, khaki trousers, and brown shoes. He is 180 cm tall with an average adult build. These are
+    the only two people, both fully clothed adults. They stand upright on the same floor at the same camera
+    distance, with relaxed arms and clear space between them. A wide frontal view includes both complete bodies
+    and ample headroom. The background is a plain cream gallery wall and a level floor, with soft even lighting.
+  positive: >-
+    Clean 2D anime illustration with soft cel shading. A very tall adult woman stands beside an adult man. Her
+    full figure is approximately twice his height, with the top of his head roughly level with her waist. The
+    woman retains an average build and consistent adult proportions across her head, torso, arms, and legs. She
+    stands on the left wearing an opaque orange blouse, dark denim trousers, and white trainers. The man stands on
+    the right wearing an opaque teal shirt, khaki trousers, and brown shoes. He is 180 cm tall with an average
+    adult build. These are the only two people, both fully clothed adults. They stand upright on the same floor at
+    the same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain cream gallery wall and a level floor, with soft
+    even lighting.
+  negative: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the left wearing
+    an opaque orange blouse, dark denim trousers, and white trainers. The man stands on the right wearing an
+    opaque teal shirt, khaki trousers, and brown shoes. He is 180 cm tall with an average adult build. These are
+    the only two people, both fully clothed adults. They stand upright on the same floor at the same camera
+    distance, with relaxed arms and clear space between them. A wide frontal view includes both complete bodies
+    and ample headroom. The background is a plain cream gallery wall and a level floor, with soft even lighting.
+  neutral: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the left wearing
+    an opaque orange blouse, dark denim trousers, and white trainers. The man stands on the right wearing an
+    opaque teal shirt, khaki trousers, and brown shoes. He is 180 cm tall with an average adult build. These are
+    the only two people, both fully clothed adults. They stand upright on the same floor at the same camera
+    distance, with relaxed arms and clear space between them. A wide frontal view includes both complete bodies
+    and ample headroom. The background is a plain cream gallery wall and a level floor, with soft even lighting.
+
+# 1: candidate 06 clothing, cream gallery; woman right
+- target: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the right wearing
+    an opaque orange blouse, dark denim trousers, and white trainers. The man stands on the left wearing an opaque
+    teal shirt, khaki trousers, and brown shoes. He is 180 cm tall with an average adult build. These are the only
+    two people, both fully clothed adults. They stand upright on the same floor at the same camera distance, with
+    relaxed arms and clear space between them. A wide frontal view includes both complete bodies and ample
+    headroom. The background is a plain cream gallery wall and a level floor, with soft even lighting.
+  positive: >-
+    Clean 2D anime illustration with soft cel shading. A very tall adult woman stands beside an adult man. Her
+    full figure is approximately twice his height, with the top of his head roughly level with her waist. The
+    woman retains an average build and consistent adult proportions across her head, torso, arms, and legs. She
+    stands on the right wearing an opaque orange blouse, dark denim trousers, and white trainers. The man stands
+    on the left wearing an opaque teal shirt, khaki trousers, and brown shoes. He is 180 cm tall with an average
+    adult build. These are the only two people, both fully clothed adults. They stand upright on the same floor at
+    the same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain cream gallery wall and a level floor, with soft
+    even lighting.
+  negative: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the right wearing
+    an opaque orange blouse, dark denim trousers, and white trainers. The man stands on the left wearing an opaque
+    teal shirt, khaki trousers, and brown shoes. He is 180 cm tall with an average adult build. These are the only
+    two people, both fully clothed adults. They stand upright on the same floor at the same camera distance, with
+    relaxed arms and clear space between them. A wide frontal view includes both complete bodies and ample
+    headroom. The background is a plain cream gallery wall and a level floor, with soft even lighting.
+  neutral: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the right wearing
+    an opaque orange blouse, dark denim trousers, and white trainers. The man stands on the left wearing an opaque
+    teal shirt, khaki trousers, and brown shoes. He is 180 cm tall with an average adult build. These are the only
+    two people, both fully clothed adults. They stand upright on the same floor at the same camera distance, with
+    relaxed arms and clear space between them. A wide frontal view includes both complete bodies and ample
+    headroom. The background is a plain cream gallery wall and a level floor, with soft even lighting.
+
+# 2: candidate 08 clothing, warm-gray hall; woman left
+- target: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the left wearing
+    an opaque coral blouse, forest-green trousers, and cream flat shoes. The man stands on the right wearing an
+    opaque dark blue polo shirt, light gray trousers, and black shoes. He is 180 cm tall with an average adult
+    build. These are the only two people, both fully clothed adults. They stand upright on the same floor at the
+    same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain warm-gray hall wall and a level floor, with soft
+    even lighting.
+  positive: >-
+    Clean 2D anime illustration with soft cel shading. A very tall adult woman stands beside an adult man. Her
+    full figure is approximately twice his height, with the top of his head roughly level with her waist. The
+    woman retains an average build and consistent adult proportions across her head, torso, arms, and legs. She
+    stands on the left wearing an opaque coral blouse, forest-green trousers, and cream flat shoes. The man stands
+    on the right wearing an opaque dark blue polo shirt, light gray trousers, and black shoes. He is 180 cm tall
+    with an average adult build. These are the only two people, both fully clothed adults. They stand upright on
+    the same floor at the same camera distance, with relaxed arms and clear space between them. A wide frontal
+    view includes both complete bodies and ample headroom. The background is a plain warm-gray hall wall and a
+    level floor, with soft even lighting.
+  negative: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the left wearing
+    an opaque coral blouse, forest-green trousers, and cream flat shoes. The man stands on the right wearing an
+    opaque dark blue polo shirt, light gray trousers, and black shoes. He is 180 cm tall with an average adult
+    build. These are the only two people, both fully clothed adults. They stand upright on the same floor at the
+    same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain warm-gray hall wall and a level floor, with soft
+    even lighting.
+  neutral: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the left wearing
+    an opaque coral blouse, forest-green trousers, and cream flat shoes. The man stands on the right wearing an
+    opaque dark blue polo shirt, light gray trousers, and black shoes. He is 180 cm tall with an average adult
+    build. These are the only two people, both fully clothed adults. They stand upright on the same floor at the
+    same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain warm-gray hall wall and a level floor, with soft
+    even lighting.
+
+# 3: candidate 08 clothing, warm-gray hall; woman right
+- target: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the right wearing
+    an opaque coral blouse, forest-green trousers, and cream flat shoes. The man stands on the left wearing an
+    opaque dark blue polo shirt, light gray trousers, and black shoes. He is 180 cm tall with an average adult
+    build. These are the only two people, both fully clothed adults. They stand upright on the same floor at the
+    same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain warm-gray hall wall and a level floor, with soft
+    even lighting.
+  positive: >-
+    Clean 2D anime illustration with soft cel shading. A very tall adult woman stands beside an adult man. Her
+    full figure is approximately twice his height, with the top of his head roughly level with her waist. The
+    woman retains an average build and consistent adult proportions across her head, torso, arms, and legs. She
+    stands on the right wearing an opaque coral blouse, forest-green trousers, and cream flat shoes. The man
+    stands on the left wearing an opaque dark blue polo shirt, light gray trousers, and black shoes. He is 180 cm
+    tall with an average adult build. These are the only two people, both fully clothed adults. They stand upright
+    on the same floor at the same camera distance, with relaxed arms and clear space between them. A wide frontal
+    view includes both complete bodies and ample headroom. The background is a plain warm-gray hall wall and a
+    level floor, with soft even lighting.
+  negative: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the right wearing
+    an opaque coral blouse, forest-green trousers, and cream flat shoes. The man stands on the left wearing an
+    opaque dark blue polo shirt, light gray trousers, and black shoes. He is 180 cm tall with an average adult
+    build. These are the only two people, both fully clothed adults. They stand upright on the same floor at the
+    same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain warm-gray hall wall and a level floor, with soft
+    even lighting.
+  neutral: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the right wearing
+    an opaque coral blouse, forest-green trousers, and cream flat shoes. The man stands on the left wearing an
+    opaque dark blue polo shirt, light gray trousers, and black shoes. He is 180 cm tall with an average adult
+    build. These are the only two people, both fully clothed adults. They stand upright on the same floor at the
+    same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain warm-gray hall wall and a level floor, with soft
+    even lighting.
+
+# 4: candidate 01 clothing, pale studio; woman left
+- target: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the left wearing
+    an opaque red jacket over a white shirt, black trousers, and brown shoes. The man stands on the right wearing
+    an opaque blue jacket over a gray shirt, beige trousers, and black shoes. He is 180 cm tall with an average
+    adult build. These are the only two people, both fully clothed adults. They stand upright on the same floor at
+    the same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain pale studio wall and a level floor, with soft
+    even lighting.
+  positive: >-
+    Clean 2D anime illustration with soft cel shading. A very tall adult woman stands beside an adult man. Her
+    full figure is approximately twice his height, with the top of his head roughly level with her waist. The
+    woman retains an average build and consistent adult proportions across her head, torso, arms, and legs. She
+    stands on the left wearing an opaque red jacket over a white shirt, black trousers, and brown shoes. The man
+    stands on the right wearing an opaque blue jacket over a gray shirt, beige trousers, and black shoes. He is
+    180 cm tall with an average adult build. These are the only two people, both fully clothed adults. They stand
+    upright on the same floor at the same camera distance, with relaxed arms and clear space between them. A wide
+    frontal view includes both complete bodies and ample headroom. The background is a plain pale studio wall and
+    a level floor, with soft even lighting.
+  negative: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the left wearing
+    an opaque red jacket over a white shirt, black trousers, and brown shoes. The man stands on the right wearing
+    an opaque blue jacket over a gray shirt, beige trousers, and black shoes. He is 180 cm tall with an average
+    adult build. These are the only two people, both fully clothed adults. They stand upright on the same floor at
+    the same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain pale studio wall and a level floor, with soft
+    even lighting.
+  neutral: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the left wearing
+    an opaque red jacket over a white shirt, black trousers, and brown shoes. The man stands on the right wearing
+    an opaque blue jacket over a gray shirt, beige trousers, and black shoes. He is 180 cm tall with an average
+    adult build. These are the only two people, both fully clothed adults. They stand upright on the same floor at
+    the same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain pale studio wall and a level floor, with soft
+    even lighting.
+
+# 5: candidate 01 clothing, pale studio; woman right
+- target: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the right wearing
+    an opaque red jacket over a white shirt, black trousers, and brown shoes. The man stands on the left wearing
+    an opaque blue jacket over a gray shirt, beige trousers, and black shoes. He is 180 cm tall with an average
+    adult build. These are the only two people, both fully clothed adults. They stand upright on the same floor at
+    the same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain pale studio wall and a level floor, with soft
+    even lighting.
+  positive: >-
+    Clean 2D anime illustration with soft cel shading. A very tall adult woman stands beside an adult man. Her
+    full figure is approximately twice his height, with the top of his head roughly level with her waist. The
+    woman retains an average build and consistent adult proportions across her head, torso, arms, and legs. She
+    stands on the right wearing an opaque red jacket over a white shirt, black trousers, and brown shoes. The man
+    stands on the left wearing an opaque blue jacket over a gray shirt, beige trousers, and black shoes. He is 180
+    cm tall with an average adult build. These are the only two people, both fully clothed adults. They stand
+    upright on the same floor at the same camera distance, with relaxed arms and clear space between them. A wide
+    frontal view includes both complete bodies and ample headroom. The background is a plain pale studio wall and
+    a level floor, with soft even lighting.
+  negative: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the right wearing
+    an opaque red jacket over a white shirt, black trousers, and brown shoes. The man stands on the left wearing
+    an opaque blue jacket over a gray shirt, beige trousers, and black shoes. He is 180 cm tall with an average
+    adult build. These are the only two people, both fully clothed adults. They stand upright on the same floor at
+    the same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain pale studio wall and a level floor, with soft
+    even lighting.
+  neutral: >-
+    Clean 2D anime illustration with soft cel shading. An adult woman of average stature stands beside an adult
+    man. She is approximately the same height as him, with their heads roughly level. The woman retains an average
+    build and consistent adult proportions across her head, torso, arms, and legs. She stands on the right wearing
+    an opaque red jacket over a white shirt, black trousers, and brown shoes. The man stands on the left wearing
+    an opaque blue jacket over a gray shirt, beige trousers, and black shoes. He is 180 cm tall with an average
+    adult build. These are the only two people, both fully clothed adults. They stand upright on the same floor at
+    the same camera distance, with relaxed arms and clear space between them. A wide frontal view includes both
+    complete bodies and ample headroom. The background is a plain pale studio wall and a level floor, with soft
+    even lighting.

@@ -14,12 +14,15 @@ Krea2公式の [`docs/prompting.md`](../参考/krea-2/docs/prompting.md) に従�
 | [clothing_fit_loosen_slider_v2.yaml](clothing_fit_loosen_slider_v2.yaml) | 密着した服との対比で、布と身体の隙間を大きくする（改訂版） | Krea2 clothing fit改訂版 |
 | [anime_deaging_slider_fullbody.yaml](anime_deaging_slider_fullbody.yaml) | アニメ調で着衣の成人女性から幼児へ、年齢・顔・頭身・手足の比率を変える | MageFlow deaging v2 |
 | [realistic_deaging_slider_fullbody.yaml](realistic_deaging_slider_fullbody.yaml) | 実写風で着衣の成人女性から幼児へ、年齢・顔・頭身・手足の比率を変える | anime deagingの写真調版 |
+| [realistic_deaging_slider_fullbody_v2.yaml](realistic_deaging_slider_fullbody_v2.yaml) | 幼児化の記述を保ち、ペア共通の服の色を6組に分散する | realistic deagingの配色改訂版 |
 | [female_size_increase_slider.yaml](female_size_increase_slider.yaml) | 通常サイズの成人男性との構図で、成人女性の全身を比例拡大する | Krea2用の新規プロンプト設計 |
+| [female_size_increase_slider_v2.yaml](female_size_increase_slider_v2.yaml) | 通常サイズを比較基準に、very tallで成人女性の比例拡大を狙う | 10候補の画像評価後の未生成改訂案 |
 | [female_size_decrease_slider.yaml](female_size_decrease_slider.yaml) | 通常サイズの成人男性との構図で、成人女性の全身を比例縮小する | Krea2用の新規プロンプト設計 |
+| [female_size_decrease_slider_v2.yaml](female_size_decrease_slider_v2.yaml) | 通常サイズを比較基準に、very shortで成人女性の比例縮小を狙う | 10候補の画像評価後の未生成改訂案 |
 
 各ファイルは**学習用6件**です。aging/deagingは全身4件＋腰上2件、breast初版は全身4件＋膝下まで2件、breast v2は頭から腰下まで4件＋全身2件です。clothing fitの既存版はAnimaの学習用0〜5を引き継ぎ、上半身2件＋腰上2件＋腿上2件です。clothing fit改訂版は同じ6種類の衣装・構図をもとに、頭から腰下まで5件＋膝下まで1件へ広げています。参照元の評価用6/7は収録していません。現在のKrea2ノードは渡された全件を学習に使用し、学習・評価indicesの指定を持たないためです。
 
-Female sizeの2セットも各6件で、すべて成人男女2人の全身構図です。女性が左の3件と右の3件、正面3件と斜め3件、3種類の衣装を組み合わせています。
+Female sizeの初版2セットも各6件で、すべて成人男女2人の全身構図です。女性が左の3件と右の3件、正面3件と斜め3件、3種類の衣装を組み合わせています。
 
 ## 読み込み方
 
@@ -27,7 +30,7 @@ Female sizeの2セットも各6件で、すべて成人男女2人の全身構図
 
 ファイルは通常のYAMLブロック形式で保存しています。`>-`による折り返しとYAMLアンカーも読み込めます。今回の形式変更でプロンプト本文は変えていません。JSON互換のYAMLも引き続き読み込めます。追加ファイルはこのフォルダー内の`.yaml`／`.yml`が一覧の対象です。
 
-フィールドは現行ノードに合わせた`target`、`positive`、`negative`、`neutral`だけです。MageFlow／Animaの`unconditional`をKrea2の`negative`へ対応づけています。移植した既存版は`target = negative = neutral`で、`positive`だけに学習したい差分があります。breast v2、clothing fit改訂版、female sizeは`target = neutral`を基準に、`positive`と`negative`を対極の概念にしています。breast v2は中程度の胸部ボリュームを基準に、大きめ／小さめを対比します。`negative`は比較対象の概念であり、生成時の除外語句リストではありません。
+フィールドは現行ノードに合わせた`target`、`positive`、`negative`、`neutral`だけです。MageFlow／Animaの`unconditional`をKrea2の`negative`へ対応づけています。移植した既存版は`target = negative = neutral`で、`positive`だけに学習したい差分があります。breast v2、clothing fit改訂版、female size初版は`target = neutral`を基準に、`positive`と`negative`を対極の概念にしています。breast v2は中程度の胸部ボリュームを基準に、大きめ／小さめを対比します。`negative`は比較対象の概念であり、生成時の除外語句リストではありません。
 
 Krea2の [`encoder.py`](../参考/krea-2/encoder.py) はsystem/userテンプレートを内部で付加します。ファイル内にはチャット用の特殊トークン、system指示、品質スコアタグを入れていません。
 
@@ -91,6 +94,22 @@ YAML・現行parserへの適合と差分の構造を検証対象にしていま�
 | female_size_decrease_slider.yaml | `krea2_female_size_decrease` | 女性だけを小さくする |
 
 プロンプト内の身長比は対比を明確にするための目安で、生成画像の比率を固定する値ではありません。実際の学習・画像生成は未実施です。同じseed・構図でLoRA強度を変え、女性／男性の身長比に加えて、男性自身の画面内サイズと背景の変化も比較してください。
+
+## Realistic deaging v2 と female size の実機評価候補
+
+`realistic_deaging_slider_fullbody_v2.yaml`は元の6件（全身4件＋腰上2件）の成人／幼児記述、衣服の形、姿勢、構図、背景を維持し、服の配色を変更した学習用ファイルです。各ペアの全roleで衣服と色は同一です。青＋ベージュ、緑＋テラコッタ、コーラル＋ティール、黒ジャケット＋青スカート、黄カーディガン＋アイボリー、ローズの6配色で、暗色の服への偏りを減らします。全roleにcolor photographとnatural, balanced colorsを共通に指定しています。
+
+`target = negative = neutral`、`positive`が幼児化です。前回のdeagingとの比較ではrank/alpha 16/16、400 steps、learning_rate=1e-4、768×768、trajectory_steps=8、eta=1、teacher_guidance_scale=1、teacher_norm_reference=none、training_direction=singleを維持し、配色改訂の影響を確認します。YAMLは学習設定を自動変更しません。白黒化の改善、実トークン数、再学習後の画質は実機で未検証です。
+
+女性サイズの10案は[実機評価用プロンプト集](../docs/female-size-prompt-candidates-v2.txt)にあります。各案に通常・縮小・拡大の全文を収録しています。まず対象Sliderとdarkbrushを外し、同じseedで人数・女性／男性の身長比・男性自身の画面内サイズ・構図を確認します。10案を一括で学習用に採用せず、良好な案を選んでから学習用ペアを作ります。
+
+## Female size v2：生成画像の評価を踏まえた改訂候補
+
+候補10案×3状態のPNG30枚を照合しました。候補02のSMALLで3人化し、ほかの29枚は2人でしたが、指定した半分／2倍を十分に実現した案はありません。06/08の拡大方向が比較的見えることを参考に、女性先行の文面とvery short／very tallによる直接指定を組み合わせたv2を追加しています。新しい組み合わせと英文は未生成で、最適性が確認できたプロンプトではありません。
+
+増加・減少用とも各6件で、3基本場面の左右拡張です。`target = negative = neutral`は通常サイズ、`positive`はそれぞれ拡大／縮小です。`single`、`eta=1`、`teacher_guidance_scale=1`、`teacher_norm_reference=none`を開始値とすると、式上positiveの予測を教師にします。初版の対極差分・guidance=1.5から教師構成も変わるため、文面単独の比較実験ではありません。ほかの設定は前回のrank/alpha 16/16、attention、400 steps、lr=1e-4、768×768、trajectory_steps=8を比較基準にできます。
+
+提供画像はdarkbrush=0.8併用・1 seedでした。学習前にRAWモデルだけでv2の人数、相対身長、男性自身の画面内寸法、成人の頭身、全身の欠けを複数seedで確認してください。検証記録とコピー用のNORMAL／SMALL／LARGE全18本文は[評価・v2プロンプト全文](../docs/female-size-slider-v2-validation.txt)に収録しています。
 
 ## 確認範囲と出典
 

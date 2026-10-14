@@ -1,0 +1,400 @@
+# Krea2 realistic deaging v2: diversify clothing colors while retaining the adult-to-toddler direction.
+# Six original records: four full-body views and two waist-up portraits.
+# Adult/toddler descriptions, garment construction, poses, framing and background are retained.
+# Clothing colors are identical across all roles within each record and vary between records.
+# A black jacket is retained in one record; the set no longer consists of dark outfits throughout.
+# All roles use color photography and natural, balanced colors; only age/proportions differ within a pair.
+# target == negative == neutral; positive is the original toddler description.
+# Use training_direction=single. negative is a teacher comparison, not a generation negative prompt.
+# To compare with the previous run, keep eta=1, teacher_guidance_scale=1 and teacher_norm_reference=none.
+# These are prompt candidates: no retraining or image-quality validation has been performed.
+
+# 0: cornflower blue blouse / warm beige skirt / tan shoes
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest cornflower blue blouse with a plain round neckline and straight short
+    sleeves ending halfway down her upper arms. The blouse has a straight hem fully tucked into the skirt. She
+    wears a plain ankle-length warm beige skirt with a flat waistband at her waist, straight side seams and a
+    straight hem. Her clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder
+    seams at her shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple
+    straight silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and
+    alone in a nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. She
+    wears plain matte tan flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are
+    clearly visible. A centered front view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts a toddler girl with a childlike face, round cheeks, a tiny nose, a small mouth, a head large relative
+    to her body, a short child-height figure, small shoulders, short arms and legs, and small hands. Her
+    proportions are natural toddler proportions. She has dark brown, shoulder-length straight hair and a natural,
+    balanced build for her age. She wears a modest cornflower blue blouse with a plain round neckline and straight
+    short sleeves ending halfway down her upper arms. The blouse has a straight hem fully tucked into the skirt.
+    She wears a plain ankle-length warm beige skirt with a flat waistband at her waist, straight side seams and a
+    straight hem. Her clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder
+    seams at her shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple
+    straight silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and
+    alone in a nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. She
+    wears plain matte tan flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are
+    clearly visible. A centered front view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest cornflower blue blouse with a plain round neckline and straight short
+    sleeves ending halfway down her upper arms. The blouse has a straight hem fully tucked into the skirt. She
+    wears a plain ankle-length warm beige skirt with a flat waistband at her waist, straight side seams and a
+    straight hem. Her clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder
+    seams at her shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple
+    straight silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and
+    alone in a nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. She
+    wears plain matte tan flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are
+    clearly visible. A centered front view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest cornflower blue blouse with a plain round neckline and straight short
+    sleeves ending halfway down her upper arms. The blouse has a straight hem fully tucked into the skirt. She
+    wears a plain ankle-length warm beige skirt with a flat waistband at her waist, straight side seams and a
+    straight hem. Her clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder
+    seams at her shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple
+    straight silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and
+    alone in a nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. She
+    wears plain matte tan flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are
+    clearly visible. A centered front view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+
+# 1: sage green knit top / muted terracotta skirt / cream shoes
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest sage green sleeveless knit top with a plain round neckline, neatly bound
+    armholes, straight side seams and a straight hem fully tucked into the skirt. She wears a plain ankle-length
+    muted terracotta skirt with a flat waistband at her waist, straight side seams and a straight hem. Her clothes
+    are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her shoulders
+    and a comfortable regular fit around her torso and arms. The clothing has a simple straight silhouette, clear
+    seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a nonsexual
+    composition, with a neutral expression, upright posture and level relaxed shoulders. She wears plain matte
+    cream flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are clearly visible. A
+    centered three-quarter view shows her entire body from head to toe, including both feet and the studio floor.
+    She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright
+    floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and natural skin
+    texture.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts a toddler girl with a childlike face, round cheeks, a tiny nose, a small mouth, a head large relative
+    to her body, a short child-height figure, small shoulders, short arms and legs, and small hands. Her
+    proportions are natural toddler proportions. She has dark brown, shoulder-length straight hair and a natural,
+    balanced build for her age. She wears a modest sage green sleeveless knit top with a plain round neckline,
+    neatly bound armholes, straight side seams and a straight hem fully tucked into the skirt. She wears a plain
+    ankle-length muted terracotta skirt with a flat waistband at her waist, straight side seams and a straight
+    hem. Her clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at
+    her shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple straight
+    silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a
+    nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. She wears plain
+    matte cream flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are clearly
+    visible. A centered three-quarter view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest sage green sleeveless knit top with a plain round neckline, neatly bound
+    armholes, straight side seams and a straight hem fully tucked into the skirt. She wears a plain ankle-length
+    muted terracotta skirt with a flat waistband at her waist, straight side seams and a straight hem. Her clothes
+    are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her shoulders
+    and a comfortable regular fit around her torso and arms. The clothing has a simple straight silhouette, clear
+    seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a nonsexual
+    composition, with a neutral expression, upright posture and level relaxed shoulders. She wears plain matte
+    cream flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are clearly visible. A
+    centered three-quarter view shows her entire body from head to toe, including both feet and the studio floor.
+    She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright
+    floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and natural skin
+    texture.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest sage green sleeveless knit top with a plain round neckline, neatly bound
+    armholes, straight side seams and a straight hem fully tucked into the skirt. She wears a plain ankle-length
+    muted terracotta skirt with a flat waistband at her waist, straight side seams and a straight hem. Her clothes
+    are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her shoulders
+    and a comfortable regular fit around her torso and arms. The clothing has a simple straight silhouette, clear
+    seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a nonsexual
+    composition, with a neutral expression, upright posture and level relaxed shoulders. She wears plain matte
+    cream flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are clearly visible. A
+    centered three-quarter view shows her entire body from head to toe, including both feet and the studio floor.
+    She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall and a bright
+    floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and natural skin
+    texture.
+
+# 2: muted coral shirt / soft teal skirt / tan shoes
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest muted coral shirt with a plain pointed collar, a short central button
+    placket, straight short sleeves ending halfway down her upper arms and a straight hem fully tucked into the
+    skirt. She wears a plain ankle-length soft teal skirt with a flat waistband at her waist, straight side seams
+    and a straight hem. Her clothes are made of opaque matte fabric and are sized to fit her own body, with the
+    shoulder seams at her shoulders and a comfortable regular fit around her torso and arms. The clothing has a
+    simple straight silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed
+    and alone in a nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders.
+    She wears plain matte tan flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are
+    clearly visible. A centered front view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts a toddler girl with a childlike face, round cheeks, a tiny nose, a small mouth, a head large relative
+    to her body, a short child-height figure, small shoulders, short arms and legs, and small hands. Her
+    proportions are natural toddler proportions. She has dark brown, shoulder-length straight hair and a natural,
+    balanced build for her age. She wears a modest muted coral shirt with a plain pointed collar, a short central
+    button placket, straight short sleeves ending halfway down her upper arms and a straight hem fully tucked into
+    the skirt. She wears a plain ankle-length soft teal skirt with a flat waistband at her waist, straight side
+    seams and a straight hem. Her clothes are made of opaque matte fabric and are sized to fit her own body, with
+    the shoulder seams at her shoulders and a comfortable regular fit around her torso and arms. The clothing has
+    a simple straight silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed
+    and alone in a nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders.
+    She wears plain matte tan flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are
+    clearly visible. A centered front view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest muted coral shirt with a plain pointed collar, a short central button
+    placket, straight short sleeves ending halfway down her upper arms and a straight hem fully tucked into the
+    skirt. She wears a plain ankle-length soft teal skirt with a flat waistband at her waist, straight side seams
+    and a straight hem. Her clothes are made of opaque matte fabric and are sized to fit her own body, with the
+    shoulder seams at her shoulders and a comfortable regular fit around her torso and arms. The clothing has a
+    simple straight silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed
+    and alone in a nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders.
+    She wears plain matte tan flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are
+    clearly visible. A centered front view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest muted coral shirt with a plain pointed collar, a short central button
+    placket, straight short sleeves ending halfway down her upper arms and a straight hem fully tucked into the
+    skirt. She wears a plain ankle-length soft teal skirt with a flat waistband at her waist, straight side seams
+    and a straight hem. Her clothes are made of opaque matte fabric and are sized to fit her own body, with the
+    shoulder seams at her shoulders and a comfortable regular fit around her torso and arms. The clothing has a
+    simple straight silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed
+    and alone in a nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders.
+    She wears plain matte tan flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are
+    clearly visible. A centered front view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+
+# 3: black jacket / muted blue skirt / cream shoes (one dark garment retained)
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest black tailored jacket with plain notched lapels, one central button,
+    straight sleeves ending at her wrists, plain cuffs and a straight hip-length hem. She wears a plain
+    ankle-length muted blue skirt with a flat waistband at her waist, straight side seams and a straight hem. Her
+    clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her
+    shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple straight
+    silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a
+    nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. She wears plain
+    matte cream flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are clearly
+    visible. A centered three-quarter view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts a toddler girl with a childlike face, round cheeks, a tiny nose, a small mouth, a head large relative
+    to her body, a short child-height figure, small shoulders, short arms and legs, and small hands. Her
+    proportions are natural toddler proportions. She has dark brown, shoulder-length straight hair and a natural,
+    balanced build for her age. She wears a modest black tailored jacket with plain notched lapels, one central
+    button, straight sleeves ending at her wrists, plain cuffs and a straight hip-length hem. She wears a plain
+    ankle-length muted blue skirt with a flat waistband at her waist, straight side seams and a straight hem. Her
+    clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her
+    shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple straight
+    silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a
+    nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. She wears plain
+    matte cream flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are clearly
+    visible. A centered three-quarter view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest black tailored jacket with plain notched lapels, one central button,
+    straight sleeves ending at her wrists, plain cuffs and a straight hip-length hem. She wears a plain
+    ankle-length muted blue skirt with a flat waistband at her waist, straight side seams and a straight hem. Her
+    clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her
+    shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple straight
+    silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a
+    nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. She wears plain
+    matte cream flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are clearly
+    visible. A centered three-quarter view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest black tailored jacket with plain notched lapels, one central button,
+    straight sleeves ending at her wrists, plain cuffs and a straight hip-length hem. She wears a plain
+    ankle-length muted blue skirt with a flat waistband at her waist, straight side seams and a straight hem. Her
+    clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her
+    shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple straight
+    silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a
+    nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. She wears plain
+    matte cream flat slip-on shoes fitted to her feet. Her arms rest at her sides and her hands are clearly
+    visible. A centered three-quarter view shows her entire body from head to toe, including both feet and the
+    studio floor. She looks toward the viewer. The setting is a bright neutral studio with a plain pale gray wall
+    and a bright floor. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+
+# 4: mustard yellow cardigan / ivory blouse
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest mustard yellow cardigan with a plain V-neck opening, a straight button
+    row, straight sleeves ending at her wrists, plain cuffs and a straight hip-length hem, over an ivory blouse
+    with a plain round neckline. The blouse is tucked neatly into a flat waistband at her waist. Her clothes are
+    made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her shoulders and a
+    comfortable regular fit around her torso and arms. The clothing has a simple straight silhouette, clear seam
+    lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a nonsexual composition,
+    with a neutral expression, upright posture and level relaxed shoulders. Her arms are relaxed and her hands are
+    visible near the lower edge of the portrait. The composition is a centered waist-up portrait from the front,
+    with her face clearly visible as she looks toward the viewer. The setting is a bright neutral studio with a
+    plain pale gray wall. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts a toddler girl with a childlike face, round cheeks, a tiny nose, a small mouth, a head large relative
+    to her body, a short child-height figure, small shoulders, short arms and legs, and small hands. Her
+    proportions are natural toddler proportions. She has dark brown, shoulder-length straight hair and a natural,
+    balanced build for her age. She wears a modest mustard yellow cardigan with a plain V-neck opening, a straight
+    button row, straight sleeves ending at her wrists, plain cuffs and a straight hip-length hem, over an ivory
+    blouse with a plain round neckline. The blouse is tucked neatly into a flat waistband at her waist. Her
+    clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her
+    shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple straight
+    silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a
+    nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. Her arms are
+    relaxed and her hands are visible near the lower edge of the portrait. The composition is a centered waist-up
+    portrait from the front, with her face clearly visible as she looks toward the viewer. The setting is a bright
+    neutral studio with a plain pale gray wall. The scene has natural, balanced colors, soft even lighting,
+    restrained highlights and natural skin texture.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest mustard yellow cardigan with a plain V-neck opening, a straight button
+    row, straight sleeves ending at her wrists, plain cuffs and a straight hip-length hem, over an ivory blouse
+    with a plain round neckline. The blouse is tucked neatly into a flat waistband at her waist. Her clothes are
+    made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her shoulders and a
+    comfortable regular fit around her torso and arms. The clothing has a simple straight silhouette, clear seam
+    lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a nonsexual composition,
+    with a neutral expression, upright posture and level relaxed shoulders. Her arms are relaxed and her hands are
+    visible near the lower edge of the portrait. The composition is a centered waist-up portrait from the front,
+    with her face clearly visible as she looks toward the viewer. The setting is a bright neutral studio with a
+    plain pale gray wall. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest mustard yellow cardigan with a plain V-neck opening, a straight button
+    row, straight sleeves ending at her wrists, plain cuffs and a straight hip-length hem, over an ivory blouse
+    with a plain round neckline. The blouse is tucked neatly into a flat waistband at her waist. Her clothes are
+    made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her shoulders and a
+    comfortable regular fit around her torso and arms. The clothing has a simple straight silhouette, clear seam
+    lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a nonsexual composition,
+    with a neutral expression, upright posture and level relaxed shoulders. Her arms are relaxed and her hands are
+    visible near the lower edge of the portrait. The composition is a centered waist-up portrait from the front,
+    with her face clearly visible as she looks toward the viewer. The setting is a bright neutral studio with a
+    plain pale gray wall. The scene has natural, balanced colors, soft even lighting, restrained highlights and
+    natural skin texture.
+
+# 5: dusty rose turtleneck sweater
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest dusty rose turtleneck sweater with a plain folded high neck, straight
+    sleeves ending at her wrists, plain cuffs and a straight hem tucked into a flat waistband at her waist. Her
+    clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her
+    shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple straight
+    silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a
+    nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. Her arms are
+    relaxed and her hands are visible near the lower edge of the portrait. The composition is a centered waist-up
+    portrait in a three-quarter view, with her face clearly visible as she looks toward the viewer. The setting is
+    a bright neutral studio with a plain pale gray wall. The scene has natural, balanced colors, soft even
+    lighting, restrained highlights and natural skin texture.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts a toddler girl with a childlike face, round cheeks, a tiny nose, a small mouth, a head large relative
+    to her body, a short child-height figure, small shoulders, short arms and legs, and small hands. Her
+    proportions are natural toddler proportions. She has dark brown, shoulder-length straight hair and a natural,
+    balanced build for her age. She wears a modest dusty rose turtleneck sweater with a plain folded high neck,
+    straight sleeves ending at her wrists, plain cuffs and a straight hem tucked into a flat waistband at her
+    waist. Her clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams
+    at her shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple straight
+    silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a
+    nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. Her arms are
+    relaxed and her hands are visible near the lower edge of the portrait. The composition is a centered waist-up
+    portrait in a three-quarter view, with her face clearly visible as she looks toward the viewer. The setting is
+    a bright neutral studio with a plain pale gray wall. The scene has natural, balanced colors, soft even
+    lighting, restrained highlights and natural skin texture.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest dusty rose turtleneck sweater with a plain folded high neck, straight
+    sleeves ending at her wrists, plain cuffs and a straight hem tucked into a flat waistband at her waist. Her
+    clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her
+    shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple straight
+    silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a
+    nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. Her arms are
+    relaxed and her hands are visible near the lower edge of the portrait. The composition is a centered waist-up
+    portrait in a three-quarter view, with her face clearly visible as she looks toward the viewer. The setting is
+    a bright neutral studio with a plain pale gray wall. The scene has natural, balanced colors, soft even
+    lighting, restrained highlights and natural skin texture.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts an adult woman with natural adult head-to-body proportions, adult-length arms and legs, fully grown
+    shoulders and adult-sized hands. She has dark brown, shoulder-length straight hair and a natural, balanced
+    build for her age. She wears a modest dusty rose turtleneck sweater with a plain folded high neck, straight
+    sleeves ending at her wrists, plain cuffs and a straight hem tucked into a flat waistband at her waist. Her
+    clothes are made of opaque matte fabric and are sized to fit her own body, with the shoulder seams at her
+    shoulders and a comfortable regular fit around her torso and arms. The clothing has a simple straight
+    silhouette, clear seam lines and correctly placed sleeve and hem edges. She is fully clothed and alone in a
+    nonsexual composition, with a neutral expression, upright posture and level relaxed shoulders. Her arms are
+    relaxed and her hands are visible near the lower edge of the portrait. The composition is a centered waist-up
+    portrait in a three-quarter view, with her face clearly visible as she looks toward the viewer. The setting is
+    a bright neutral studio with a plain pale gray wall. The scene has natural, balanced colors, soft even
+    lighting, restrained highlights and natural skin texture.
