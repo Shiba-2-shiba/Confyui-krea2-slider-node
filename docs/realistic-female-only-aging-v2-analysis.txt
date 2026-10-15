@@ -1,0 +1,141 @@
+女性限定aging v2：提供結果の評価と学習提案
+作成日: 2026-10-15
+状態: プロンプト候補と実験提案。v2の学習・画像生成は未実施。
+
+目的
+LoRA強度+3でも、女性の十分な加齢を保ち、男性の年齢・女性と男性の衣服の色と形・髪・体格への副作用を抑える。強度を下げることや、+3の効きを弱めるだけでは目的達成としない。以下の推奨値は比較の開始条件であり、1回の学習と2構図・1seedから最適値が確定したという意味ではない。
+
+1. 確認した証拠
+学習レポート: ../../生成例/krea2_femaleonly_aging_20261015T055804Z_fb726774.json
+画像: ../../生成例/Krea2_turbo_00001_.png ～ 00004_.png、00007_.png ～ 00010_.png
+レポート内の学習プロンプト6件は、現在のv1 YAMLを読み取った本文と全roleで一致。YAMLをLF改行に揃えたSHA256はレポートと一致したため、WindowsのCRLF差を内容差とは扱っていない。
+
+PNG metadata:
+・00001/00002/00003/00004 = 女性左・全身、Slider 0/1/2/3。
+・00007/00008/00009/00010 = 女性右・腰上、Slider 0/1/2/3。
+・全8枚でseed=594361197674106、1024x1024、8 steps、CFG=1、euler/simple。
+・全8枚でkrea2_darkbrush.safetensorsを0.8で併用。
+・生成モデル名はmoodyKrea2MixUncensoredV8SEGoes_v80_int8.safetensors。
+各系列内でseed・生成プロンプト・モデル等を固定し、対象Slider強度だけが変わることを確認した。
+
+目視所見:
+・+1で女性の加齢は明瞭。+2/+3では顔・首・手の加齢がさらに進む。
+・男性も+2/+3で額・目元・頬などが変わり、特に+3の男性加齢は無視できない。女性の方に強く作用しているが、男性を保護し切れてはいない。
+・腰上系列では女性のdark tealの服が、+2で青寄り、+3でかなり明るい水色寄りになる。
+・全身系列でも男性のtealのシャツが明るくなる。女性だけの色変化ではなく、青緑系の服に共通する変化の可能性がある。これは2系列に限った仮説であり、全色への一般化は未確認。
+・全身系列では+1から女性の裾が出る。腰上系列も+2以降で裾が出る。体型、顔立ち、髪の輪郭なども変わるため、色だけを評価して終わらない。
+・この2構図は学習プロンプトに含まれる。未学習の衣装や男性単独への一般化はまだ評価していない。
+
+実学習:
+steps=400, rank/alpha=16/16, target=attention, learning_rate=0.0001,
+768x768, trajectory_steps=8, eta=1, teacher_guidance_scale=1.5,
+teacher_norm_reference=none, training_direction=single,
+seed=42, vary_seed=true, gradient_checkpointing=true, max_grad_norm=1。
+ConvRot INT8 / BF16、blocks_to_swap=6、memory_budget_gib=14。
+RTX A4000 15.72 GiB、400 steps約3.31時間、peak allocated=12.365 GiB、peak reserved=12.951 GiB。
+最初の50 stepsの平均loss=0.014830、最後の50 steps=0.003586。seedとtimestepが変わる訓練損失であり、衣服保持や汎化、過学習の判定指標にはならない。grad_norm最大0.363815で、max_grad_norm=1によるクリップをさらに強める根拠はない。
+
+2. 学習モデルのRAW確認を優先する
+レポートのloading.source.native_loader_sourceは、生成と同名のMoodyファイルである。model_settings.source_kind=rawやteacher=same_quantized_RAW_lora_disabledは学習コード側の設定・ラベルで、非蒸留RAWの検証結果ではない。source_metadataも空である。
+現行model_io.pyはmetadata中にturboと明示される場合は拒否するが、情報のないモデルをRAWと証明するものではない。今回のファイルがRAWかTurbo由来かは、この資料だけでは確定できない。ファイル名のRAW風写真の意味と、非蒸留RAWモデルの意味を混同しない。
+公式Krea2はRAWで学習してTurboで使用することを推奨している。学習元は、公式RAWまたは由来を確認できるRAWへ揃える。モデルを切り替えた場合、同じRAW・同じ設定でv1も再学習しなければ、改善をv2だけの成果とは呼べない。現在のMoodyモデルは再現用・実使用時の評価先として残す。
+
+3. 現行実装から分かる原因候補
+training.pyとslider_loss.pyの教師は、T = v_base + eta * teacher_guidance_scale * (v_positive - v_negative)。
+v1/v2ともtarget=negativeなので、eta=1、guidance=1、norm=noneならT=v_positive。
+今回のguidance=1.5は、自然なpositive予測を超えて差分を1.5倍に外挿する。差分に男性や衣服の変化が含まれていれば、それも増幅し得る。これは生成CFGとは別の係数である。
+singleでは学習時のLoRA倍率が常に+1。+3の出力は直接監督されていない。倍率+3はネットワーク全体では単純な画素変化の3倍ではない。
+lossはlatent全体のMSEのみ。男性領域や衣服領域を凍結モデルに合わせる専用の保持lossはない。
+neutralはteacher_norm_reference=neutralの場合のノルム参照であり、保持用画像や男性保護lossではない。normをneutralへ変えても意味的な色保持にはならない。
+以上から、教師差分の混入、+3外挿、darkbrushとの相互作用が有力な検証候補。ただし、各寄与はまだ切り分けていない。
+
+4. 作成したv2
+ファイル: ../prompts/realistic_female_only_aging_slider_v2.yaml
+12件 = 3場面 x 男女の配色交換2通り x 左右2通り。全身4件、腰上8件。女性左/右は各6件。
+配色はorange/teal、navy blue/burgundy、medium gray/ivory。同じ色が女性にも男性にも割り当てられ、左右とも交差させた。
+全roleで髪型、体格、衣服の種類・色・裾、男性、ポーズ、照明を一致させ、positiveでは女性の皮膚の1文だけを変更する。
+老化差分は額、目尻、ほうれい線、顎の皮膚、首、手の皺で表現する。elderly womanやgrandmotherなど、服装まで連想しやすい人物役割の変更に依存しない。白髪や体格変化は学習差分に入れない。
+服の単色・マットな素材・裾とウエスト位置の記述を通常/老化側に共通で入れる。女性の髪型は場面ごとに変え、単一人物への依存も多少減らした。
+v1も既に非対象記述を揃えていた。v2の追加対策はその繰り返しだけではなく、色と性別と左右位置の交差、および具体的な皮膚描写である。
+ただし、文面の一致はモデル予測の一致や画素固定を保証しない。配色交換が教師差分の不要な成分を減らすかは、学習前の通常/老化生成でも確認する。
+Concept Slidersの「保持したい属性を両側で固定し、複数組を使う」という考え方を配色に適用した設計仮説であり、このKrea2実装での効果を実証したものではない。
+
+5. 推奨する学習条件と比較順
+最初の比較条件（現行ノードで指定可能）:
+  prompt_yaml: realistic_female_only_aging_slider_v2.yaml
+  model: RAWと由来を確認できるKrea2、他のLoRAやforward patchを付けない
+  training_direction: single
+  target: attention
+  rank / alpha: 16 / 16
+  learning_rate: 0.0001
+  steps: 400
+  width / height: 768 / 768
+  trajectory_steps: 8
+  eta: 1
+  teacher_guidance_scale: 1.0
+  teacher_norm_reference: none
+  seed: 42
+  vary_seed: true
+  gradient_checkpointing: true
+  quantization / compute_dtype: convrot_int8 / bf16
+  blocks_to_swap / memory_budget_gib: 6 / 14（今回のA4000条件を開始点にする）
+  output_name例: krea2_female_only_aging_v2_g1_r16_s400
+
+rank・学習率・stepsは今回の動作実績を比較の基準として維持する。400 stepsでは12件を33回または34回使用する。元の6件を約67回使う学習とは1レコードあたりの反復数が異なるが、総計算量を揃えた比較を先に行う。
+まず教師の1.5倍外挿を解消する。ただし、加齢自体も弱くなる可能性があるため、+3で女性の加齢量が保たれなければ成功扱いしない。
+
+因果を切り分ける場合の順番:
+A. 同一の確認済みRAWでv1とv2を比較。両方とも旧設定（g=1.5, r=16, lr=1e-4, 400 steps）に揃える。
+B. v2でgだけを1.5→1.0へ変更する。これが上記の初回推奨条件。
+C. Bを基準にrank/alphaだけを8/8へ変更して比較。低rankが不要な変化の容量を制限する可能性はあるが、性別選択性を保証しない。alpha/rank比は1のままにする。
+D. 良いrankを固定し、learning_rateだけを5e-5へ変更する。400 steps時点で女性の加齢が足りなければ、600 stepsを別実行で比較する。lrとstepsを同時に変えた結果から個別原因を断定しない。
+E. 必要なら同じ条件の240 / 400 / 600 stepsで比較。低lossや最大stepsを自動採用せず、+3での保持と加齢量で選ぶ。
+予算が限られる場合はAの完全比較を省いてBから試せるが、プロンプト単独の改善とは断定しない。
+現行ノードは途中checkpoint保存や再開を備えていない。上記step比較はそれぞれ独立した学習である。自動で中間LoRAが保存される前提にはしない。
+初回に1024px、target=all、高rank、bidirectionalへ一斉に広げる根拠はない。trajectory_steps=8は学習軌道の離散化で、推論の8 stepsと同義ではない。細部の不足が残る場合だけ16を別途比較する。
+YAMLには学習パラメータ、preserve、loss_weightなどを入れない。これらは現行スキーマで受け付けない。
+
+6. +3を合格条件とする評価
+評価用プロンプト: realistic-female-only-aging-v2-evaluation.json（学習YAMLには混ぜない）
+まず提供2構図 + 未学習6構図を、seed=594361197674106 / 1234 / 20261015、強度0/1/2/3で比較する。1モデル・1LoRAあたり8構図x3seedx4強度=96枚。基準の強度0は同じ条件間で共用できる。
+最初はdarkbrushなし。良好な候補を、実使用条件のdarkbrush=0.8でも同じ比較にかける。v1にも同じ条件を適用する。実際に併用するなら併用時の+3も合格が必要。
+各系列のモデル、prompt、seed、解像度、sampler、scheduler、推論stepsとCFGは固定する。Turbo評価はまず今回と同じ1024、8 steps、CFG=1、euler/simpleで再現する。RAWの通常/老化プロンプト確認にはRAW用の推論設定を使い、8 steps/CFG=1を無条件に流用しない。
+
+提案する目視採点（実測値ではない）:
+・女性の加齢: 額・目尻・ほうれい線・首・手それぞれ0～4。
+・男性への加齢、服の色、服の形/裾、髪/体型/構図: それぞれ0=見える変化なし、1=並べると分かる、2=明瞭、3=大きい。
+・主判定: +3の女性加齢がv1 +3と同等に達し、男性と衣服の副作用が0を目標。1以上が残れば「副作用なし」とは報告しない。
+・同じ+3の比較に加えて、女性の加齢量を揃えた比較も行う。単に弱いLoRAを作った場合はここで見分ける。
+・男性単独2例は+3でも年齢と服を保持できるかの重要な陰性対照。女性単独は男女ペア依存の確認。
+・同じtealを男女ともに着る評価例で、色に追従して変わるのか女性に追従して変わるのかを調べる。
+・候補を選んだ後は新しいseedと衣装を追加し、選定に使ったセットへの過適合を確認する。
+顔/衣服の領域を対応付けられる場合だけ局所色差も補助指標にできる。全画像の平均RGBやpixel差はポーズ変化と混ざるため、色保持の証明には使わない。ここでは定量色差や自動年齢推定は実行していない。
+
+7. +3で残る副作用に対する、本質的な次の学習改善
+現行YAMLとパラメータだけで副作用ゼロを保証することはできない。+3を直接含む学習と、非対象を保持する目的関数を追加することが次の実装候補になる。今回はプロンプト作成と提案の依頼なので、学習エンジンは変更していない。
+
+・学習時倍率に+1/+2/+3を含め、+3でも検証済みの女性の老化目標に向かわせる。
+・女性の皮膚の領域には老化loss、男性・衣服・髪・背景には凍結モデルとの差を抑える保持lossを置く。
+・男性単独など、変更不要の条件でLoRAあり/なしの予測一致を学習する。若い男性だけでなく、元から年齢の高い男性も保持する。
+・領域maskは実際のサンプル内の顔/首/手などに対応させる。テキストのleft/rightだけで固定矩形を皮膚maskと見なすと衣服まで対象になる。
+・現行parserはpositive==negativeのレコードを拒否するため、男性単独の完全no-op正則化をこのYAMLへ追加することはできない。neutralや未知のpreserveキーで代用しない。
+・単に学習倍率を3に置き換えたりalphaを小さくしたりするだけでは、強度の目盛りを変えるだけになり得る。
+・複数倍率の教師を一律にbase+s*(positive-negative)とするだけでも、教師側の衣服変化を増幅して学習し得る。保持lossと高強度の目標の検証が必要。
+これらの新lossにも重みの比較と画像評価が必要で、実装しただけで完全保証にはならない。
+
+既存の推論用Region Masks/LoRA Hooksは対象領域を絞る補助策として試せるが、女性全体の矩形では女性の服を保護できない。顔/首/手のmaskと、必要なら元画像への領域外合成がより直接的な制御になる。領域外の画素完全固定が要件なら元画像と最終合成が必要で、通常の全画面text-to-image LoRAの性質とは異なる。今回はこの推論方式の変更も行っていない。
+
+8. 出典と確認範囲
+ローカル根拠: krea2_slider_node/training.py、slider_loss.py、conditioning.py、config.py、model_io.py、native_model.py、nodes.py、および提供JSON/PNG。
+外部一次資料:
+・Krea2公式README（RAW学習、Turbo推論）: https://github.com/krea-ai/krea-2
+・Krea2公式prompting guide（自然文）: https://github.com/krea-ai/krea-2/blob/main/docs/prompting.md
+・Concept Sliders著者ページ（複数の保持属性付きpromptによる属性分離）: https://sliders.baulab.info/
+外部資料は設計方針の裏付けであり、今回のrank/stepsやv2の画質を保証する根拠ではない。
+
+今回のローカル検証結果:
+・既存のprompt_files/coreテスト: 4 passed。
+・YAML 12件の読込、baseline 3role一致、女性の皮膚文以外の完全一致、左右6/6、全身4/腰上8を確認。
+・ローカルComfyUIと同じQwen2TokenizerとKREA2_TEMPLATEで、テンプレート込み最大360 tokens（512以内）。CLIPの実forwardや学習は未実施。
+・推奨TrainConfig/ModelConfigのvalidate通過。評価用6件は学習本文と重複しない。
+・詳細: ../test-results/female-only-aging-v2-validation.json

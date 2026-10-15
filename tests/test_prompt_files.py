@@ -22,12 +22,14 @@ class PromptFileTests(unittest.TestCase):
                                  "female_size_increase_slider_v2.yaml", "realistic_aging_slider_fullbody.yaml",
                                  "realistic_deaging_slider_fullbody.yaml", "realistic_deaging_slider_fullbody_v2.yaml",
                                  "realistic_female_only_aging_slider_v1.yaml",
+                                 "realistic_female_only_aging_slider_v2.yaml",
                                  "realistic_female_only_deaging_slider_v1.yaml",
                                  "realistic_male_only_aging_slider_v1.yaml",
                                  "realistic_male_only_deaging_slider_v1.yaml"])
         for name in names:
             records = api.load_prompt_file(root, name)
-            self.assertEqual(len(records), 6)
+            expected_count = 12 if name == "realistic_female_only_aging_slider_v2.yaml" else 6
+            self.assertEqual(len(records), expected_count)
             self.assertTrue(all(r["positive"] != r["negative"] for r in records))
 
     def test_yaml_blocks_anchors_and_changed_content_are_supported(self):

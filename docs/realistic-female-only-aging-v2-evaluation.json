@@ -1,0 +1,58 @@
+{
+  "status": "proposed_not_run",
+  "purpose": "Evaluate female-only aging at LoRA +3 without trading away female aging magnitude.",
+  "training_yaml": "prompts/realistic_female_only_aging_slider_v2.yaml",
+  "strengths": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "seeds": [
+    594361197674106,
+    1234,
+    20261015
+  ],
+  "primary_auxiliary_loras": [],
+  "secondary_darkbrush_strength": 0.8,
+  "requirements": [
+    "Keep seed, generation prompt, model, sampler, scheduler, resolution and steps fixed within each strength sweep.",
+    "Compare v1 and v2 on the same evaluation model, including the supplied Moody model for reproduction.",
+    "Match female aging magnitude as well as comparing strength +3; weaker aging alone is not a pass.",
+    "Inspect male face, neck and hands; both garments, hairstyle, body shape, framing and background.",
+    "A +3 failure on any holdout is a failed screening case; investigate before expanding evaluation.",
+    "Evaluate a later fresh seed set after selection; do not repeatedly tune to this set."
+  ],
+  "cases": [
+    {
+      "id": "pair_left_fullbody",
+      "type": "pair",
+      "prompt": "A photorealistic color photograph shows exactly two fully clothed adults, an adult woman on the left and a man in his thirties on the right. The woman has smooth facial, neck and hand skin, an average build and long dark hair tied in a ponytail. She wears a solid olive-green cotton blouse tucked into black trousers and white trainers. The man has short brown hair, a clean-shaven face and smooth skin. He wears a solid lilac shirt, beige trousers and brown shoes. Both stand upright at the same distance from the camera with a clear gap between them and relaxed arms. A frontal full-body view includes their heads, hands and shoes. A plain light gray studio wall and floor, soft neutral lighting and natural fabric colors are visible."
+    },
+    {
+      "id": "pair_right_fullbody",
+      "type": "pair",
+      "prompt": "A photorealistic color photograph shows exactly two fully clothed adults, an adult woman on the right and a man in his thirties on the left. The woman has smooth facial, neck and hand skin, an average build and long dark hair tied in a ponytail. She wears a solid lilac cotton blouse tucked into black trousers and white trainers. The man has short brown hair, a clean-shaven face and smooth skin. He wears a solid olive-green shirt, beige trousers and brown shoes. Both stand upright at the same distance from the camera with a clear gap between them and relaxed arms. A frontal full-body view includes their heads, hands and shoes. A plain light gray studio wall and floor, soft neutral lighting and natural fabric colors are visible."
+    },
+    {
+      "id": "pair_same_teal",
+      "type": "pair",
+      "prompt": "A photorealistic color waist-up studio portrait shows an adult woman on the right and a man in his thirties on the left. Both wear plain solid dark teal short-sleeved cotton shirts tucked into black trousers, with visible waistbands. The woman has smooth facial, neck and hand skin, an average build and shoulder-length wavy brown hair. The man has a clean-shaven face, short dark hair and smooth skin. They stand upright with neutral expressions and a clear gap between them. Both heads, necks and hands resting in front of their lower abdomens are visible. The background is a pale beige studio wall under soft neutral lighting with natural colors."
+    },
+    {
+      "id": "male_solo_thirties",
+      "type": "protected_male",
+      "prompt": "A photorealistic color waist-up studio portrait of one fully clothed man in his thirties with short dark hair, a clean-shaven face and smooth skin on his face, neck and hands. He wears a solid dark teal cotton shirt tucked into beige trousers. He stands upright with a neutral expression, both hands visible in front of his lower abdomen. A plain gray studio wall and soft neutral lighting show natural skin and fabric colors."
+    },
+    {
+      "id": "male_solo_fifties",
+      "type": "protected_male",
+      "prompt": "A photorealistic color waist-up studio portrait of one fully clothed man in his fifties with short brown hair, a clean-shaven face and light natural facial lines. He wears a solid olive-green cotton shirt tucked into black trousers. He stands upright with a neutral expression, both hands visible in front of his lower abdomen. A plain beige studio wall and soft neutral lighting show natural skin and fabric colors."
+    },
+    {
+      "id": "female_solo",
+      "type": "female_generalization",
+      "prompt": "A photorealistic color waist-up studio portrait of one fully clothed adult woman with smooth skin on her face, neck and hands, an average adult build and dark brown wavy hair. She wears a solid lilac blouse tucked into black trousers. She stands upright with a neutral expression, both hands visible in front of her lower abdomen. A plain gray studio wall and soft neutral lighting show natural skin and fabric colors."
+    }
+  ]
+}
