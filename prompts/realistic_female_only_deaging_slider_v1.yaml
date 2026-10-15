@@ -1,0 +1,400 @@
+# Krea2 female-only deaging v1: adult-to-toddler transformation in a two-person scene.
+# Age/proportion cues follow realistic_deaging_slider_fullbody_v2.yaml.
+# Positive weights aim to transform only the woman into a toddler girl.
+# The other person remains an adult in their thirties in all prompt roles.
+# Six full-body records: three clothing/background scenes with left/right variants.
+# Full-body framing keeps the child-height figure and the companion visible together.
+# Within each record, only the target age/proportion block changes.
+# Hair, clothing design, body-fitting clothes, pose, camera and background are shared.
+# target == negative == neutral; positive is deaging, not an elderly-skin reversal.
+# Use single, eta=1, teacher_guidance_scale=1, teacher_norm_reference=none as starting values.
+# These controls are node settings; the YAML does not apply them automatically.
+# Negative is a teacher comparison prompt, not a generation exclusion list.
+# New prompt candidates: neither generation nor training/selectivity has been validated.
+# Female-only aging image results do not validate either deaging direction.
+
+# 0: scene 01, cream studio, full-body; woman left, adult man right
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the left beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white trainers. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the right. He is in his thirties, with
+    short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque teal short-sleeved shirt, khaki trousers, and
+    brown shoes. Both stand upright on the same level floor at the same distance from the camera, with relaxed
+    arms at their sides, clearly visible hands, neutral expressions, and a clear gap between them. Both look
+    toward the camera. A wide frontal view includes both complete bodies from head to toe, including both
+    pairs of shoes, the studio floor, and ample headroom. The background is a plain cream studio wall and a
+    light floor. The scene has natural, balanced colors and soft, even lighting.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. A toddler girl stands on the left beside an adult man. She has a
+    childlike face, round cheeks, a tiny nose, a small mouth, a head large relative to her body, a short
+    child-height figure, small shoulders, short arms and legs, and small hands. Her proportions are natural
+    toddler proportions. She has dark brown, shoulder-length straight hair and a natural, balanced build for
+    her age. She wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white
+    trainers. Her clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a
+    comfortable regular fit around her torso and arms. The adult man stands on the right. He is in his
+    thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average
+    adult build, and natural adult head-to-body proportions. He wears an opaque teal short-sleeved shirt,
+    khaki trousers, and brown shoes. Both stand upright on the same level floor at the same distance from the
+    camera, with relaxed arms at their sides, clearly visible hands, neutral expressions, and a clear gap
+    between them. Both look toward the camera. A wide frontal view includes both complete bodies from head to
+    toe, including both pairs of shoes, the studio floor, and ample headroom. The background is a plain cream
+    studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the left beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white trainers. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the right. He is in his thirties, with
+    short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque teal short-sleeved shirt, khaki trousers, and
+    brown shoes. Both stand upright on the same level floor at the same distance from the camera, with relaxed
+    arms at their sides, clearly visible hands, neutral expressions, and a clear gap between them. Both look
+    toward the camera. A wide frontal view includes both complete bodies from head to toe, including both
+    pairs of shoes, the studio floor, and ample headroom. The background is a plain cream studio wall and a
+    light floor. The scene has natural, balanced colors and soft, even lighting.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the left beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white trainers. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the right. He is in his thirties, with
+    short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque teal short-sleeved shirt, khaki trousers, and
+    brown shoes. Both stand upright on the same level floor at the same distance from the camera, with relaxed
+    arms at their sides, clearly visible hands, neutral expressions, and a clear gap between them. Both look
+    toward the camera. A wide frontal view includes both complete bodies from head to toe, including both
+    pairs of shoes, the studio floor, and ample headroom. The background is a plain cream studio wall and a
+    light floor. The scene has natural, balanced colors and soft, even lighting.
+
+# 1: scene 01, cream studio, full-body; woman right, adult man left
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the right beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white trainers. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the left. He is in his thirties, with short
+    dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque teal short-sleeved shirt, khaki trousers, and
+    brown shoes. Both stand upright on the same level floor at the same distance from the camera, with relaxed
+    arms at their sides, clearly visible hands, neutral expressions, and a clear gap between them. Both look
+    toward the camera. A wide frontal view includes both complete bodies from head to toe, including both
+    pairs of shoes, the studio floor, and ample headroom. The background is a plain cream studio wall and a
+    light floor. The scene has natural, balanced colors and soft, even lighting.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. A toddler girl stands on the right beside an adult man. She has
+    a childlike face, round cheeks, a tiny nose, a small mouth, a head large relative to her body, a short
+    child-height figure, small shoulders, short arms and legs, and small hands. Her proportions are natural
+    toddler proportions. She has dark brown, shoulder-length straight hair and a natural, balanced build for
+    her age. She wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white
+    trainers. Her clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a
+    comfortable regular fit around her torso and arms. The adult man stands on the left. He is in his
+    thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average
+    adult build, and natural adult head-to-body proportions. He wears an opaque teal short-sleeved shirt,
+    khaki trousers, and brown shoes. Both stand upright on the same level floor at the same distance from the
+    camera, with relaxed arms at their sides, clearly visible hands, neutral expressions, and a clear gap
+    between them. Both look toward the camera. A wide frontal view includes both complete bodies from head to
+    toe, including both pairs of shoes, the studio floor, and ample headroom. The background is a plain cream
+    studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the right beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white trainers. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the left. He is in his thirties, with short
+    dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque teal short-sleeved shirt, khaki trousers, and
+    brown shoes. Both stand upright on the same level floor at the same distance from the camera, with relaxed
+    arms at their sides, clearly visible hands, neutral expressions, and a clear gap between them. Both look
+    toward the camera. A wide frontal view includes both complete bodies from head to toe, including both
+    pairs of shoes, the studio floor, and ample headroom. The background is a plain cream studio wall and a
+    light floor. The scene has natural, balanced colors and soft, even lighting.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the right beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white trainers. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the left. He is in his thirties, with short
+    dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque teal short-sleeved shirt, khaki trousers, and
+    brown shoes. Both stand upright on the same level floor at the same distance from the camera, with relaxed
+    arms at their sides, clearly visible hands, neutral expressions, and a clear gap between them. Both look
+    toward the camera. A wide frontal view includes both complete bodies from head to toe, including both
+    pairs of shoes, the studio floor, and ample headroom. The background is a plain cream studio wall and a
+    light floor. The scene has natural, balanced colors and soft, even lighting.
+
+# 2: scene 02, pale gray studio, full-body; woman left, adult man right
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the left beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque teal short-sleeved blouse tucked into charcoal trousers, with cream flat shoes. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the right. He is in his thirties, with
+    short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque rust-orange short-sleeved shirt, beige
+    trousers, and brown shoes. Both stand upright on the same level floor at the same distance from the
+    camera, with relaxed arms at their sides, clearly visible hands, neutral expressions, and a clear gap
+    between them. Both look toward the camera. A wide frontal view includes both complete bodies from head to
+    toe, including both pairs of shoes, the studio floor, and ample headroom. The background is a plain pale
+    gray studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. A toddler girl stands on the left beside an adult man. She has a
+    childlike face, round cheeks, a tiny nose, a small mouth, a head large relative to her body, a short
+    child-height figure, small shoulders, short arms and legs, and small hands. Her proportions are natural
+    toddler proportions. She has dark brown, shoulder-length straight hair and a natural, balanced build for
+    her age. She wears an opaque teal short-sleeved blouse tucked into charcoal trousers, with cream flat
+    shoes. Her clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a
+    comfortable regular fit around her torso and arms. The adult man stands on the right. He is in his
+    thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average
+    adult build, and natural adult head-to-body proportions. He wears an opaque rust-orange short-sleeved
+    shirt, beige trousers, and brown shoes. Both stand upright on the same level floor at the same distance
+    from the camera, with relaxed arms at their sides, clearly visible hands, neutral expressions, and a clear
+    gap between them. Both look toward the camera. A wide frontal view includes both complete bodies from head
+    to toe, including both pairs of shoes, the studio floor, and ample headroom. The background is a plain
+    pale gray studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the left beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque teal short-sleeved blouse tucked into charcoal trousers, with cream flat shoes. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the right. He is in his thirties, with
+    short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque rust-orange short-sleeved shirt, beige
+    trousers, and brown shoes. Both stand upright on the same level floor at the same distance from the
+    camera, with relaxed arms at their sides, clearly visible hands, neutral expressions, and a clear gap
+    between them. Both look toward the camera. A wide frontal view includes both complete bodies from head to
+    toe, including both pairs of shoes, the studio floor, and ample headroom. The background is a plain pale
+    gray studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the left beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque teal short-sleeved blouse tucked into charcoal trousers, with cream flat shoes. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the right. He is in his thirties, with
+    short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque rust-orange short-sleeved shirt, beige
+    trousers, and brown shoes. Both stand upright on the same level floor at the same distance from the
+    camera, with relaxed arms at their sides, clearly visible hands, neutral expressions, and a clear gap
+    between them. Both look toward the camera. A wide frontal view includes both complete bodies from head to
+    toe, including both pairs of shoes, the studio floor, and ample headroom. The background is a plain pale
+    gray studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+
+# 3: scene 02, pale gray studio, full-body; woman right, adult man left
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the right beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque teal short-sleeved blouse tucked into charcoal trousers, with cream flat shoes. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the left. He is in his thirties, with short
+    dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque rust-orange short-sleeved shirt, beige
+    trousers, and brown shoes. Both stand upright on the same level floor at the same distance from the
+    camera, with relaxed arms at their sides, clearly visible hands, neutral expressions, and a clear gap
+    between them. Both look toward the camera. A wide frontal view includes both complete bodies from head to
+    toe, including both pairs of shoes, the studio floor, and ample headroom. The background is a plain pale
+    gray studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. A toddler girl stands on the right beside an adult man. She has
+    a childlike face, round cheeks, a tiny nose, a small mouth, a head large relative to her body, a short
+    child-height figure, small shoulders, short arms and legs, and small hands. Her proportions are natural
+    toddler proportions. She has dark brown, shoulder-length straight hair and a natural, balanced build for
+    her age. She wears an opaque teal short-sleeved blouse tucked into charcoal trousers, with cream flat
+    shoes. Her clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a
+    comfortable regular fit around her torso and arms. The adult man stands on the left. He is in his
+    thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average
+    adult build, and natural adult head-to-body proportions. He wears an opaque rust-orange short-sleeved
+    shirt, beige trousers, and brown shoes. Both stand upright on the same level floor at the same distance
+    from the camera, with relaxed arms at their sides, clearly visible hands, neutral expressions, and a clear
+    gap between them. Both look toward the camera. A wide frontal view includes both complete bodies from head
+    to toe, including both pairs of shoes, the studio floor, and ample headroom. The background is a plain
+    pale gray studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the right beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque teal short-sleeved blouse tucked into charcoal trousers, with cream flat shoes. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the left. He is in his thirties, with short
+    dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque rust-orange short-sleeved shirt, beige
+    trousers, and brown shoes. Both stand upright on the same level floor at the same distance from the
+    camera, with relaxed arms at their sides, clearly visible hands, neutral expressions, and a clear gap
+    between them. Both look toward the camera. A wide frontal view includes both complete bodies from head to
+    toe, including both pairs of shoes, the studio floor, and ample headroom. The background is a plain pale
+    gray studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the right beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an opaque teal short-sleeved blouse tucked into charcoal trousers, with cream flat shoes. Her
+    clothes and shoes are sized to fit her own body, with shoulder seams at her shoulders and a comfortable
+    regular fit around her torso and arms. The adult man stands on the left. He is in his thirties, with short
+    dark hair, a clean-shaven face, smooth skin on his face, neck and hands, an average adult build, and
+    natural adult head-to-body proportions. He wears an opaque rust-orange short-sleeved shirt, beige
+    trousers, and brown shoes. Both stand upright on the same level floor at the same distance from the
+    camera, with relaxed arms at their sides, clearly visible hands, neutral expressions, and a clear gap
+    between them. Both look toward the camera. A wide frontal view includes both complete bodies from head to
+    toe, including both pairs of shoes, the studio floor, and ample headroom. The background is a plain pale
+    gray studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+
+# 4: scene 03, warm-gray studio, full-body; woman left, adult man right
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the left beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked into dark
+    trousers, with black flat shoes. Her clothes and shoes are sized to fit her own body, with shoulder seams
+    at her shoulders and a comfortable regular fit around her torso and arms. The adult man stands on the
+    right. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and
+    hands, an average adult build, and natural adult head-to-body proportions. He wears an opaque
+    mustard-yellow short-sleeved polo shirt, gray trousers, and black shoes. Both stand upright on the same
+    level floor at the same distance from the camera, with relaxed arms at their sides, clearly visible hands,
+    neutral expressions, and a clear gap between them. Both look toward the camera. A wide frontal view
+    includes both complete bodies from head to toe, including both pairs of shoes, the studio floor, and ample
+    headroom. The background is a plain warm-gray studio wall and a light floor. The scene has natural,
+    balanced colors and soft, even lighting.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. A toddler girl stands on the left beside an adult man. She has a
+    childlike face, round cheeks, a tiny nose, a small mouth, a head large relative to her body, a short
+    child-height figure, small shoulders, short arms and legs, and small hands. Her proportions are natural
+    toddler proportions. She has dark brown, shoulder-length straight hair and a natural, balanced build for
+    her age. She wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked
+    into dark trousers, with black flat shoes. Her clothes and shoes are sized to fit her own body, with
+    shoulder seams at her shoulders and a comfortable regular fit around her torso and arms. The adult man
+    stands on the right. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his
+    face, neck and hands, an average adult build, and natural adult head-to-body proportions. He wears an
+    opaque mustard-yellow short-sleeved polo shirt, gray trousers, and black shoes. Both stand upright on the
+    same level floor at the same distance from the camera, with relaxed arms at their sides, clearly visible
+    hands, neutral expressions, and a clear gap between them. Both look toward the camera. A wide frontal view
+    includes both complete bodies from head to toe, including both pairs of shoes, the studio floor, and ample
+    headroom. The background is a plain warm-gray studio wall and a light floor. The scene has natural,
+    balanced colors and soft, even lighting.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the left beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked into dark
+    trousers, with black flat shoes. Her clothes and shoes are sized to fit her own body, with shoulder seams
+    at her shoulders and a comfortable regular fit around her torso and arms. The adult man stands on the
+    right. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and
+    hands, an average adult build, and natural adult head-to-body proportions. He wears an opaque
+    mustard-yellow short-sleeved polo shirt, gray trousers, and black shoes. Both stand upright on the same
+    level floor at the same distance from the camera, with relaxed arms at their sides, clearly visible hands,
+    neutral expressions, and a clear gap between them. Both look toward the camera. A wide frontal view
+    includes both complete bodies from head to toe, including both pairs of shoes, the studio floor, and ample
+    headroom. The background is a plain warm-gray studio wall and a light floor. The scene has natural,
+    balanced colors and soft, even lighting.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the left beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked into dark
+    trousers, with black flat shoes. Her clothes and shoes are sized to fit her own body, with shoulder seams
+    at her shoulders and a comfortable regular fit around her torso and arms. The adult man stands on the
+    right. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and
+    hands, an average adult build, and natural adult head-to-body proportions. He wears an opaque
+    mustard-yellow short-sleeved polo shirt, gray trousers, and black shoes. Both stand upright on the same
+    level floor at the same distance from the camera, with relaxed arms at their sides, clearly visible hands,
+    neutral expressions, and a clear gap between them. Both look toward the camera. A wide frontal view
+    includes both complete bodies from head to toe, including both pairs of shoes, the studio floor, and ample
+    headroom. The background is a plain warm-gray studio wall and a light floor. The scene has natural,
+    balanced colors and soft, even lighting.
+
+# 5: scene 03, warm-gray studio, full-body; woman right, adult man left
+- target: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the right beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked into dark
+    trousers, with black flat shoes. Her clothes and shoes are sized to fit her own body, with shoulder seams
+    at her shoulders and a comfortable regular fit around her torso and arms. The adult man stands on the
+    left. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and
+    hands, an average adult build, and natural adult head-to-body proportions. He wears an opaque
+    mustard-yellow short-sleeved polo shirt, gray trousers, and black shoes. Both stand upright on the same
+    level floor at the same distance from the camera, with relaxed arms at their sides, clearly visible hands,
+    neutral expressions, and a clear gap between them. Both look toward the camera. A wide frontal view
+    includes both complete bodies from head to toe, including both pairs of shoes, the studio floor, and ample
+    headroom. The background is a plain warm-gray studio wall and a light floor. The scene has natural,
+    balanced colors and soft, even lighting.
+  positive: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. A toddler girl stands on the right beside an adult man. She has
+    a childlike face, round cheeks, a tiny nose, a small mouth, a head large relative to her body, a short
+    child-height figure, small shoulders, short arms and legs, and small hands. Her proportions are natural
+    toddler proportions. She has dark brown, shoulder-length straight hair and a natural, balanced build for
+    her age. She wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked
+    into dark trousers, with black flat shoes. Her clothes and shoes are sized to fit her own body, with
+    shoulder seams at her shoulders and a comfortable regular fit around her torso and arms. The adult man
+    stands on the left. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his
+    face, neck and hands, an average adult build, and natural adult head-to-body proportions. He wears an
+    opaque mustard-yellow short-sleeved polo shirt, gray trousers, and black shoes. Both stand upright on the
+    same level floor at the same distance from the camera, with relaxed arms at their sides, clearly visible
+    hands, neutral expressions, and a clear gap between them. Both look toward the camera. A wide frontal view
+    includes both complete bodies from head to toe, including both pairs of shoes, the studio floor, and ample
+    headroom. The background is a plain warm-gray studio wall and a light floor. The scene has natural,
+    balanced colors and soft, even lighting.
+  negative: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the right beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked into dark
+    trousers, with black flat shoes. Her clothes and shoes are sized to fit her own body, with shoulder seams
+    at her shoulders and a comfortable regular fit around her torso and arms. The adult man stands on the
+    left. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and
+    hands, an average adult build, and natural adult head-to-body proportions. He wears an opaque
+    mustard-yellow short-sleeved polo shirt, gray trousers, and black shoes. Both stand upright on the same
+    level floor at the same distance from the camera, with relaxed arms at their sides, clearly visible hands,
+    neutral expressions, and a clear gap between them. Both look toward the camera. A wide frontal view
+    includes both complete bodies from head to toe, including both pairs of shoes, the studio floor, and ample
+    headroom. The background is a plain warm-gray studio wall and a light floor. The scene has natural,
+    balanced colors and soft, even lighting.
+  neutral: >-
+    A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail
+    depicts exactly two fully clothed people. An adult woman stands on the right beside an adult man. She has
+    natural adult head-to-body proportions, adult-length arms and legs, fully grown shoulders, and adult-sized
+    hands. She has dark brown, shoulder-length straight hair and a natural, balanced build for her age. She
+    wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked into dark
+    trousers, with black flat shoes. Her clothes and shoes are sized to fit her own body, with shoulder seams
+    at her shoulders and a comfortable regular fit around her torso and arms. The adult man stands on the
+    left. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and
+    hands, an average adult build, and natural adult head-to-body proportions. He wears an opaque
+    mustard-yellow short-sleeved polo shirt, gray trousers, and black shoes. Both stand upright on the same
+    level floor at the same distance from the camera, with relaxed arms at their sides, clearly visible hands,
+    neutral expressions, and a clear gap between them. Both look toward the camera. A wide frontal view
+    includes both complete bodies from head to toe, including both pairs of shoes, the studio floor, and ample
+    headroom. The background is a plain warm-gray studio wall and a light floor. The scene has natural,
+    balanced colors and soft, even lighting.

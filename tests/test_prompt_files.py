@@ -20,7 +20,11 @@ class PromptFileTests(unittest.TestCase):
                                  "clothing_fit_tighten_slider_v2.yaml", "female_size_decrease_slider.yaml",
                                  "female_size_decrease_slider_v2.yaml", "female_size_increase_slider.yaml",
                                  "female_size_increase_slider_v2.yaml", "realistic_aging_slider_fullbody.yaml",
-                                 "realistic_deaging_slider_fullbody.yaml", "realistic_deaging_slider_fullbody_v2.yaml"])
+                                 "realistic_deaging_slider_fullbody.yaml", "realistic_deaging_slider_fullbody_v2.yaml",
+                                 "realistic_female_only_aging_slider_v1.yaml",
+                                 "realistic_female_only_deaging_slider_v1.yaml",
+                                 "realistic_male_only_aging_slider_v1.yaml",
+                                 "realistic_male_only_deaging_slider_v1.yaml"])
         for name in names:
             records = api.load_prompt_file(root, name)
             self.assertEqual(len(records), 6)

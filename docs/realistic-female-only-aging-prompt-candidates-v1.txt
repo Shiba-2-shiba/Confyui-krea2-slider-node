@@ -1,0 +1,182 @@
+女性だけの加齢 Slider：学習前の生成確認用プロンプト v1
+作成日: 2026-10-15
+
+目的
+  使用するベースモデルが、男女2人の構図で女性の肌の加齢を描き分け、男性の肌・年齢感を維持できるか確認する。
+  本文は realistic_aging_slider_fullbody.yaml の肌の加齢差分と、female_size_decrease_slider_v2.yaml の男女ペア・左右反転の構成を参考にした新規候補。
+  画像生成用のプロンプト集。まだ画像生成・学習を実施しておらず、女性だけへの作用は未検証。
+
+セット構成
+  01-L / 01-R: クリーム色のスタジオ、全身。女性オレンジ、男性ティール。
+  02-L / 02-R: 淡いグレーのスタジオ、腰上。女性ティール、男性ラストオレンジ。
+  03-L / 03-R: 暖かいグレーのスタジオ、腰上。女性ブルー＋アイボリー、男性マスタードイエロー。
+  L/Rは画面内の女性の位置。男性はその反対側。
+  3基本場面×左右2配置=6条件。各条件にNORMAL / FEMALE_AGEDの2本文、合計12本文。
+  全身2条件、腰上4条件。左右版は独立した場面ではなく、同じ場面の配置違い。
+  各場面の左右版で変えるのは男女の位置だけ。各NORMAL/FEMALE_AGEDで変えるのは女性の肌の1文だけ。
+  女性の髪色・髪型・体格・衣装・姿勢は両状態で共通。男性は全条件で30代を基準にする。
+
+生成条件
+  ベースモデル: 学習に使用する予定のcheckpointそのものを選ぶ。RAW/Turboや別checkpointを途中で切り替えない。
+  前回レポートのモデル名: moodyKrea2MixUncensoredV8SEGoes_v80_int8.safetensors
+  今回別のモデルを使う場合は、その名前で全比較を統一して記録する。
+  追加LoRA: size/aging Slider、darkbrushなどをすべて外したベースモデル単体。
+  領域別プロンプト・マスク・Hook: この比較では使用せず、1つのpositive条件で生成する。
+  解像度: まず768×768で全比較を統一する。これは前回の学習レポートの解像度。
+  sampler / scheduler / steps / CFG: そのcheckpoint用に画質を確認済みの設定を全画像で固定し、下の記録欄に残す。
+  前回レポートのteacher_guidance_scale=1.5は学習用係数であり、生成時のCFGへそのまま転記する値ではない。
+  text encoder / VAE / その他の生成条件も固定する。
+  生成用negative prompt: 全画像で空欄に揃える。
+  NORMALもFEMALE_AGEDも、各本文を生成用のpositive prompt欄へ貼り付ける。FEMALE_AGEDをnegative欄へ入れない。
+  見出し・ID・日本語説明はプロンプトに含めない。BEGIN PROMPTとEND PROMPTの間の英文だけをコピーする。
+  比較用の原画像は顔修復・アップスケールなしで保存する。顔を観察するときは同じ倍率で拡大表示する。
+
+seedと生成順
+  seed: 42 / 1234 / 20261015（比較のために選んだ固定値であり、良い結果を選別したseedではない）
+  seedの生成後動作はfixedにし、自動increment/decrement/randomizeを止める。
+  各seedで01-L NORMAL→01-L FEMALE_AGED→01-R NORMAL→01-R FEMALE_AGEDの順に生成し、02と03も同様に行う。
+  同じ条件のNORMAL/FEMALE_AGEDは必ず同じseed。左右版にも同じseedを使う。
+  まずseed=42で12枚を揃え、残り2seedを追加すると計36枚になる。
+  同じseedでもプロンプト変更で顔や構図が変わる場合がある。その変化も副作用として記録する。
+  左右反転同士の画素一致は求めず、それぞれの配置内のNORMAL/FEMALE_AGEDを比較する。
+
+保存名の例
+  female_aging_v1_01-L_NORMAL_seed42.png
+  female_aging_v1_01-L_FEMALE_AGED_seed42.png
+  各画像に使用プロンプトと生成条件のメタデータを残す。
+
+実行条件の記録欄
+  checkpoint:
+  text encoder:
+  VAE:
+  width / height:
+  sampler / scheduler:
+  steps / CFG:
+  その他の設定:
+
+確認する点
+  1. 両状態とも女性1人・男性1人の計2人か。指定どおりの左右にいるか。
+  2. 女性の顔・首・手に、NORMALより明確な加齢が現れるか。全身では顔が小さいため腰上の結果も併せて見る。
+  3. 男性のしわ・たるみ・髪色・年齢感が変わっていないか。女性だけでなく男性の顔も同倍率で比較する。
+  4. 女性の加齢が、単に眉を寄せた表情・暗い照明・画質劣化になっていないか。
+  5. 双方の髪型・顔立ち・体格・姿勢・服・画角・背景にも目立つ差がないか。女性の縮小や白髪化は今回の狙いに含めない。
+  6. 左右を入れ替えても、女性に加齢が現れ、男性は維持されるか。
+  7. 3seedすべてを記録する。成功例だけで判断せず、男性への波及や人数崩れも残す。
+
+採否の考え方
+  女性への明確な加齢と男性の維持が、左右と複数seedで繰り返し見える場面を学習候補にする。
+  男性も加齢する、女性が縮む、別人化が大きい場面は、文面の再検討対象とする。
+  女性の変化がほぼ見えない場合も成功扱いにせず、弱い差分として記録する。
+  男性の文章が一致していても、生成画像内の男性の完全一致は保証されない。
+  これはテキスト条件の描き分け確認であり、学習中の教師予測そのものや、学習後LoRAの選択性の証明ではない。
+  男性30代での確認なので、年配男性・別の服装・別構図などへの一般化は追加検証が必要。
+
+============================================================
+コピー用プロンプト全文
+============================================================
+
+【01-L / クリーム色のスタジオ・全身 / 女性左・男性右】
+
+[01-L NORMAL]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the left beside an adult man. The skin on the woman's face, neck and hands is smooth. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white trainers. The man stands on the right. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque teal short-sleeved shirt, khaki trousers, and brown shoes. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. Their arms rest at their sides, with their hands clearly visible. A frontal view shows both complete bodies from head to toe, including both pairs of shoes and the level studio floor. There is a little space above their heads. The background is a plain cream studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+[01-L FEMALE_AGED]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the left beside an adult man. The skin on the woman's face, neck and hands shows advanced age, with natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin, and fine skin creases on her neck and hands. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white trainers. The man stands on the right. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque teal short-sleeved shirt, khaki trousers, and brown shoes. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. Their arms rest at their sides, with their hands clearly visible. A frontal view shows both complete bodies from head to toe, including both pairs of shoes and the level studio floor. There is a little space above their heads. The background is a plain cream studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+
+【01-R / クリーム色のスタジオ・全身 / 女性右・男性左】
+
+[01-R NORMAL]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the right beside an adult man. The skin on the woman's face, neck and hands is smooth. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white trainers. The man stands on the left. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque teal short-sleeved shirt, khaki trousers, and brown shoes. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. Their arms rest at their sides, with their hands clearly visible. A frontal view shows both complete bodies from head to toe, including both pairs of shoes and the level studio floor. There is a little space above their heads. The background is a plain cream studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+[01-R FEMALE_AGED]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the right beside an adult man. The skin on the woman's face, neck and hands shows advanced age, with natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin, and fine skin creases on her neck and hands. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an opaque orange short-sleeved blouse tucked into dark denim trousers, with white trainers. The man stands on the left. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque teal short-sleeved shirt, khaki trousers, and brown shoes. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. Their arms rest at their sides, with their hands clearly visible. A frontal view shows both complete bodies from head to toe, including both pairs of shoes and the level studio floor. There is a little space above their heads. The background is a plain cream studio wall and a light floor. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+
+【02-L / 淡いグレーのスタジオ・腰上 / 女性左・男性右】
+
+[02-L NORMAL]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the left beside an adult man. The skin on the woman's face, neck and hands is smooth. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an opaque teal short-sleeved blouse tucked into charcoal trousers. The man stands on the right. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque rust-orange short-sleeved shirt and beige trousers. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. A frontal waist-up portrait shows both people from the tops of their heads to just below their waists. Both faces and necks are clearly visible, and both pairs of hands rest loosely in front of their lower abdomens within the frame. The background is a plain pale gray studio wall. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+[02-L FEMALE_AGED]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the left beside an adult man. The skin on the woman's face, neck and hands shows advanced age, with natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin, and fine skin creases on her neck and hands. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an opaque teal short-sleeved blouse tucked into charcoal trousers. The man stands on the right. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque rust-orange short-sleeved shirt and beige trousers. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. A frontal waist-up portrait shows both people from the tops of their heads to just below their waists. Both faces and necks are clearly visible, and both pairs of hands rest loosely in front of their lower abdomens within the frame. The background is a plain pale gray studio wall. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+
+【02-R / 淡いグレーのスタジオ・腰上 / 女性右・男性左】
+
+[02-R NORMAL]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the right beside an adult man. The skin on the woman's face, neck and hands is smooth. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an opaque teal short-sleeved blouse tucked into charcoal trousers. The man stands on the left. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque rust-orange short-sleeved shirt and beige trousers. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. A frontal waist-up portrait shows both people from the tops of their heads to just below their waists. Both faces and necks are clearly visible, and both pairs of hands rest loosely in front of their lower abdomens within the frame. The background is a plain pale gray studio wall. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+[02-R FEMALE_AGED]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the right beside an adult man. The skin on the woman's face, neck and hands shows advanced age, with natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin, and fine skin creases on her neck and hands. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an opaque teal short-sleeved blouse tucked into charcoal trousers. The man stands on the left. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque rust-orange short-sleeved shirt and beige trousers. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. A frontal waist-up portrait shows both people from the tops of their heads to just below their waists. Both faces and necks are clearly visible, and both pairs of hands rest loosely in front of their lower abdomens within the frame. The background is a plain pale gray studio wall. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+
+【03-L / 暖かいグレーのスタジオ・腰上 / 女性左・男性右】
+
+[03-L NORMAL]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the left beside an adult man. The skin on the woman's face, neck and hands is smooth. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked into dark trousers. The man stands on the right. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque mustard-yellow short-sleeved polo shirt and gray trousers. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. A frontal waist-up portrait shows both people from the tops of their heads to just below their waists. Both faces and necks are clearly visible, and both pairs of hands rest loosely in front of their lower abdomens within the frame. The background is a plain warm-gray studio wall. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+[03-L FEMALE_AGED]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the left beside an adult man. The skin on the woman's face, neck and hands shows advanced age, with natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin, and fine skin creases on her neck and hands. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked into dark trousers. The man stands on the right. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque mustard-yellow short-sleeved polo shirt and gray trousers. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. A frontal waist-up portrait shows both people from the tops of their heads to just below their waists. Both faces and necks are clearly visible, and both pairs of hands rest loosely in front of their lower abdomens within the frame. The background is a plain warm-gray studio wall. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+
+【03-R / 暖かいグレーのスタジオ・腰上 / 女性右・男性左】
+
+[03-R NORMAL]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the right beside an adult man. The skin on the woman's face, neck and hands is smooth. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked into dark trousers. The man stands on the left. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque mustard-yellow short-sleeved polo shirt and gray trousers. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. A frontal waist-up portrait shows both people from the tops of their heads to just below their waists. Both faces and necks are clearly visible, and both pairs of hands rest loosely in front of their lower abdomens within the frame. The background is a plain warm-gray studio wall. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+[03-R FEMALE_AGED]
+BEGIN PROMPT
+A detailed, photorealistic color studio photograph with natural skin texture and realistic fabric detail depicts exactly two fully clothed adults. An adult woman stands on the right beside an adult man. The skin on the woman's face, neck and hands shows advanced age, with natural facial wrinkles, fine lines around her eyes, nasolabial folds, gently sagging facial skin, and fine skin creases on her neck and hands. The woman has an average adult build, natural adult head-to-body proportions, an oval face, and dark brown, shoulder-length straight hair. She wears an open blue cardigan over an opaque ivory blouse with a small pointed collar, tucked into dark trousers. The man stands on the left. He is in his thirties, with short dark hair, a clean-shaven face, smooth skin on his face, neck and hands, and an average adult build. He wears an opaque mustard-yellow short-sleeved polo shirt and gray trousers. Both stand upright at the same distance from the camera, with level relaxed shoulders, neutral expressions, and a clear gap between them. Both look toward the camera. A frontal waist-up portrait shows both people from the tops of their heads to just below their waists. Both faces and necks are clearly visible, and both pairs of hands rest loosely in front of their lower abdomens within the frame. The background is a plain warm-gray studio wall. The scene has natural, balanced colors and soft, even lighting.
+END PROMPT
+
+============================================================
+比較記録（各行は同じseedのNORMAL/FEMALE_AGEDの1ペア）
+============================================================
+
+女性の加齢: なし / 弱い / 明確
+男性への加齢波及: なし / 判定困難 / あり
+人数・配置: 正常 / 不正
+その他の変化: 髪・顔立ち・体格・服・表情・背景などを自由記載
+この段階では目視評価。数値の年齢推定や統計的な合格率は算出していない。
+
+01-L | seed=42 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+01-R | seed=42 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+02-L | seed=42 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+02-R | seed=42 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+03-L | seed=42 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+03-R | seed=42 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+01-L | seed=1234 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+01-R | seed=1234 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+02-L | seed=1234 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+02-R | seed=1234 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+03-L | seed=1234 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+03-R | seed=1234 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+01-L | seed=20261015 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+01-R | seed=20261015 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+02-L | seed=20261015 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+02-R | seed=20261015 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+03-L | seed=20261015 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
+03-R | seed=20261015 | 女性の加齢: ____ | 男性への波及: ____ | 人数・配置: ____ | その他: ____
