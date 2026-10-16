@@ -7,8 +7,9 @@ Krea2公式の [`docs/prompting.md`](../参考/krea-2/docs/prompting.md) に従�
 | [anime_aging_slider_fullbody.yaml](anime_aging_slider_fullbody.yaml) | アニメ調で成人女性の顔・首・手の皮膚を加齢させる | MageFlow aging v2 |
 | [realistic_aging_slider_fullbody.yaml](realistic_aging_slider_fullbody.yaml) | 実写風で成人女性の顔・首・手の皮膚を加齢させる | anime agingの写真調版 |
 | [realistic_female_only_aging_slider_v1.yaml](realistic_female_only_aging_slider_v1.yaml) | 男女ペアで女性の顔・首・手の皮膚だけの加齢を狙う | 生成画像35枚を評価した女性限定候補 |
-| [realistic_female_only_aging_slider_v2.yaml](realistic_female_only_aging_slider_v2.yaml) | 女性の皮膚の加齢を、配色・左右を交差した12件で学習する | v1学習結果8枚を踏まえた未学習候補。+3での保持を評価目標とする |
+| [realistic_female_only_aging_slider_v2.yaml](realistic_female_only_aging_slider_v2.yaml) | 女性の皮膚の加齢を、配色・左右を交差した12件で学習する | 学習後の2構図・1seedで加齢と服の色保持を確認。裾・ポーズ等の変化は残る |
 | [realistic_male_only_aging_slider_v1.yaml](realistic_male_only_aging_slider_v1.yaml) | 男女ペアで男性の顔・首・手の皮膚だけの加齢を狙う | 女性限定候補を基にした未生成の男性版 |
+| [realistic_male_only_aging_slider_v2.yaml](realistic_male_only_aging_slider_v2.yaml) | 男性の皮膚の加齢を、配色・左右を交差した12件で学習する | 女性aging v2の方法を展開した未学習候補 |
 | [breast_size_slider.yaml](breast_size_slider.yaml) | 着衣の成人女性の胸部ボリュームを中程度から大きめへ | MageFlow breast v5 |
 | [breast_size_slider_v2.yaml](breast_size_slider_v2.yaml) | 胸部ボリュームの大小を服の輪郭で明示する改訂版 | Krea2 breast size改訂版 |
 | [clothing_fit_tighten_slider.yaml](clothing_fit_tighten_slider.yaml) | 標準的な服から、体に沿う仕立て・滑らかな輪郭へ（既存版） | Anima clothing fit v2 |
@@ -19,13 +20,15 @@ Krea2公式の [`docs/prompting.md`](../参考/krea-2/docs/prompting.md) に従�
 | [realistic_deaging_slider_fullbody.yaml](realistic_deaging_slider_fullbody.yaml) | 実写風で着衣の成人女性から幼児へ、年齢・顔・頭身・手足の比率を変える | anime deagingの写真調版 |
 | [realistic_deaging_slider_fullbody_v2.yaml](realistic_deaging_slider_fullbody_v2.yaml) | 幼児化の記述を保ち、ペア共通の服の色を6組に分散する | realistic deagingの配色改訂版 |
 | [realistic_female_only_deaging_slider_v1.yaml](realistic_female_only_deaging_slider_v1.yaml) | 男女ペアで成人女性だけを幼児の女の子へ変える | 既存deagingの年齢・頭身表現を用いた未生成候補 |
+| [realistic_female_only_deaging_slider_v2.yaml](realistic_female_only_deaging_slider_v2.yaml) | 成人女性だけの幼児化を、配色・左右を交差した全身12件で学習する | v1の幼児化を維持し、女性aging v2の配色と保持記述を展開した未学習候補 |
 | [realistic_male_only_deaging_slider_v1.yaml](realistic_male_only_deaging_slider_v1.yaml) | 男女ペアで成人男性だけを幼児の男の子へ変える | 既存deagingの年齢・頭身表現を用いた未生成候補 |
+| [realistic_male_only_deaging_slider_v2.yaml](realistic_male_only_deaging_slider_v2.yaml) | 成人男性だけの幼児化を、配色・左右を交差した全身12件で学習する | v1の幼児化を維持し、女性aging v2の配色と保持記述を展開した未学習候補 |
 | [female_size_increase_slider.yaml](female_size_increase_slider.yaml) | 通常サイズの成人男性との構図で、成人女性の全身を比例拡大する | Krea2用の新規プロンプト設計 |
 | [female_size_increase_slider_v2.yaml](female_size_increase_slider_v2.yaml) | 通常サイズを比較基準に、very tallで成人女性の比例拡大を狙う | 10候補の画像評価後の未生成改訂案 |
 | [female_size_decrease_slider.yaml](female_size_decrease_slider.yaml) | 通常サイズの成人男性との構図で、成人女性の全身を比例縮小する | Krea2用の新規プロンプト設計 |
 | [female_size_decrease_slider_v2.yaml](female_size_decrease_slider_v2.yaml) | 通常サイズを比較基準に、very shortで成人女性の比例縮小を狙う | 10候補の画像評価後の未生成改訂案 |
 
-女性限定aging v2は**学習用12件（全身4件＋腰上8件）**、その他の各ファイルは**学習用6件**です。単独人物のaging/deagingは全身4件＋腰上2件、female/male-only aging v1は全身2件＋腰上4件、female/male-only deagingは全身6件、breast初版は全身4件＋膝下まで2件、breast v2は頭から腰下まで4件＋全身2件です。clothing fitの既存版はAnimaの学習用0〜5を引き継ぎ、上半身2件＋腰上2件＋腿上2件です。clothing fit改訂版は同じ6種類の衣装・構図をもとに、頭から腰下まで5件＋膝下まで1件へ広げています。参照元の評価用6/7は収録していません。現在のKrea2ノードは渡された全件を学習に使用し、学習・評価indicesの指定を持たないためです。
+female/male-only aging v2は各**学習用12件（全身4件＋腰上8件）**、female/male-only deaging v2は各**全身12件**、その他の各ファイルは**学習用6件**です。単独人物のaging/deagingは全身4件＋腰上2件、female/male-only aging v1は全身2件＋腰上4件、female/male-only deaging v1は全身6件、breast初版は全身4件＋膝下まで2件、breast v2は頭から腰下まで4件＋全身2件です。clothing fitの既存版はAnimaの学習用0〜5を引き継ぎ、上半身2件＋腰上2件＋腿上2件です。clothing fit改訂版は同じ6種類の衣装・構図をもとに、頭から腰下まで5件＋膝下まで1件へ広げています。参照元の評価用6/7は収録していません。現在のKrea2ノードは渡された全件を学習に使用し、学習・評価indicesの指定を持たないためです。
 
 Female sizeの初版2セットも各6件で、すべて成人男女2人の全身構図です。女性が左の3件と右の3件、正面3件と斜め3件、3種類の衣装を組み合わせています。
 
@@ -85,9 +88,23 @@ agingは成人の顔・首・手の皮膚の加齢、deagingは成人から幼�
 
 `realistic_female_only_aging_slider_v2.yaml`は12件です。orange/teal、navy blue/burgundy、medium gray/ivoryの3配色を男女で交換し、各組を左右反転しています。各ペアでは女性の皮膚の1文だけを変え、男性・衣服の色と裾・髪・体格・照明は全roleで共通です。`target = negative = neutral`です。
 
-初回の比較条件は、確認済みRAW、`single`、`attention`、rank/alpha=16/16、lr=1e-4、400 steps、768×768、trajectory_steps=8、eta=1、**teacher_guidance_scale=1**、norm=none、seed=42、vary_seed=trueです。設定はノード側で入力します。これは最適性が確認済みの値ではありません。v2のYAML・設定案の作成のみで、学習・生成は未実施です。
+初回の比較条件は、確認済みRAW、`single`、`attention`、rank/alpha=16/16、lr=1e-4、400 steps、768×768、trajectory_steps=8、eta=1、**teacher_guidance_scale=1**、norm=none、seed=42、vary_seed=trueです。設定はノード側で入力します。これは最適性が確認済みの値ではありません。
 
-目標は**+3で女性の加齢量を保ち、男性・衣服への副作用を抑えること**です。弱く効くLoRAに変えるだけでは合格にしません。現行学習は+1のみの全体MSEで、男性・衣服の保持lossはありません。プロンプトだけで+3の無副作用を保証せず、[分析・比較手順](../docs/realistic-female-only-aging-v2-analysis.txt)に従い評価します。[評価専用6プロンプト](../docs/realistic-female-only-aging-v2-evaluation.json)は学習YAMLに混ぜません。
+2026-10-16の学習レポートでは、Moody系モデルで上記の数値設定による400-step学習が完了しています。提供画像9枚（全身0/1/2/3、腰上0/1/2/3/4、各seed=42、darkbrush=0.8）では、女性の加齢と服の色保持を確認しました。+2以降の裾・服の前立て・ポーズ・髪型の変化や、高強度での男性への加齢作用は残っています。評価した2構図は学習プロンプトに含まれ、v1との同条件比較や未学習構図での一般化は未確認です。学習元のRAW由来も、空のsource_metadataからは確定できません。
+
+目標は**+3で女性の加齢量を保ち、男性・衣服への副作用を抑えること**です。弱く効くLoRAに変えるだけでは合格にしません。現行学習は+1のみの全体MSEで、男性・衣服の保持lossはありません。プロンプトだけで+3の無副作用を保証せず、[学習前に作成した分析・比較手順](../docs/realistic-female-only-aging-v2-analysis.txt)に従い評価します。[評価専用6プロンプト](../docs/realistic-female-only-aging-v2-evaluation.json)は学習YAMLに混ぜません。
+
+## 男性aging・男女deaging v2への展開
+
+`realistic_male_only_aging_slider_v2.yaml`、`realistic_female_only_deaging_slider_v2.yaml`、`realistic_male_only_deaging_slider_v2.yaml`は、女性aging v2の方法を展開した各12件の候補です。orange/teal、navy blue/burgundy、medium gray/ivoryの3配色について、男女の色を交換し、左右も反転します。各対象人物は左6件・右6件です。衣服の単色・マットな素材・裾とウエストの記述を対で揃え、`target = negative = neutral`とします。
+
+男性agingは全身4件＋腰上8件です。男性を先に記述し、positiveでは男性の顔・首・手の皮膚の1文だけを加齢表現へ変更します。対象男性の年齢を数値で固定せず、同席する女性を30代の成人として全roleで共通にします。
+
+deagingの2種類は、v1と同じ**成人から幼児への変換**を維持します。対象人物の年齢・顔・頭身・手足の比率のブロックだけを変更し、全12件を同じ床・奥行きの全身構図にします。人数指定は「着衣の2人」とし、対象人物の服と靴は本人の身体に合うサイズとします。同席する成人の年齢・肌・体格、髪、衣服の種類と色、ポーズ、カメラ、背景、照明は各対で固定します。
+
+3種類とも別々のLoRAとして学習します。比較開始条件は女性aging v2に合わせ、`single`、`attention`、rank/alpha=16/16、lr=1e-4、400 steps、768×768、trajectory_steps=8、eta=1、`teacher_guidance_scale=1`、norm=none、seed=42、vary_seed=trueです。`output_name`の例は `krea2_male_only_aging_v2` / `krea2_female_only_deaging_v2` / `krea2_male_only_deaging_v2` です。これらの設定はノード側で入力し、YAMLからは自動適用されません。
+
+この3種類の学習・画像評価は未実施です。女性agingでの改善を他の方向の実証とはせず、強度0/1/2/3・同一seedで、対象の変化量と同席者・衣服の保持を比較します。特にdeagingでは、幼児らしい顔と身体比率、服の適切なサイズ、同席する成人の年齢と画面内サイズが両立するかを確認します。
 
 ## 男女ペアの女性限定・男性限定deaging v1
 

@@ -1,0 +1,476 @@
+# Male-only skin aging v2: experimental male adaptation, untrained and not image-validated.
+# Adapted from the female-only aging v2 prompt method; female results do not validate male behavior.
+# 12 records: full-body x4, waist-up x8; man left/right x6 each.
+# Three palettes are crossed with gender assignment and left/right position.
+# Only the male skin sentence differs within a record.
+# target == negative == neutral; negative is a teacher comparison, not a negative prompt.
+# No preservation loss or region mask is created by this YAML.
+# Recommended node settings, entered separately: training_direction=single, eta=1,
+# teacher_guidance_scale=1, teacher_norm_reference=none.
+# Node settings are not configured by this YAML.
+
+# 00: full-body; man left orange; woman right teal
+- target: &base0 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid orange
+    short-sleeved crew-neck shirt tucked into dark denim trousers, with the waistband visible.
+    The fabric is matte and uniformly orange across the front and sleeves. The woman stands on
+    the right. She is in her thirties, with an oval face, dark brown shoulder-length straight
+    hair, smooth skin on her face, neck and hands, a firm jawline, an average adult build and
+    natural adult proportions. She wears an opaque, solid teal short-sleeved crew-neck top and
+    khaki trousers. Her top is matte and uniformly teal. The man wears brown shoes and the woman
+    wears white trainers. Both stand upright at the same distance from the camera, with relaxed
+    level shoulders, neutral expressions and a clear gap between them. They look at the camera.
+    A frontal full-body view includes both complete bodies, both pairs of shoes and a little
+    space above their heads. Their arms rest at their sides and their hands are visible. The
+    background is a plain cream studio wall and a light gray floor. Soft neutral studio lighting
+    shows natural skin texture and realistic fabric, with balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid orange short-sleeved crew-neck shirt tucked into dark
+    denim trousers, with the waistband visible. The fabric is matte and uniformly orange across
+    the front and sleeves. The woman stands on the right. She is in her thirties, with an oval
+    face, dark brown shoulder-length straight hair, smooth skin on her face, neck and hands, a
+    firm jawline, an average adult build and natural adult proportions. She wears an opaque,
+    solid teal short-sleeved crew-neck top and khaki trousers. Her top is matte and uniformly
+    teal. The man wears brown shoes and the woman wears white trainers. Both stand upright at
+    the same distance from the camera, with relaxed level shoulders, neutral expressions and a
+    clear gap between them. They look at the camera. A frontal full-body view includes both
+    complete bodies, both pairs of shoes and a little space above their heads. Their arms rest
+    at their sides and their hands are visible. The background is a plain cream studio wall and
+    a light gray floor. Soft neutral studio lighting shows natural skin texture and realistic
+    fabric, with balanced colors.
+  negative: *base0
+  neutral: *base0
+
+# 01: full-body; man right orange; woman left teal
+- target: &base1 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid orange
+    short-sleeved crew-neck shirt tucked into dark denim trousers, with the waistband visible.
+    The fabric is matte and uniformly orange across the front and sleeves. The woman stands on
+    the left. She is in her thirties, with an oval face, dark brown shoulder-length straight
+    hair, smooth skin on her face, neck and hands, a firm jawline, an average adult build and
+    natural adult proportions. She wears an opaque, solid teal short-sleeved crew-neck top and
+    khaki trousers. Her top is matte and uniformly teal. The man wears brown shoes and the woman
+    wears white trainers. Both stand upright at the same distance from the camera, with relaxed
+    level shoulders, neutral expressions and a clear gap between them. They look at the camera.
+    A frontal full-body view includes both complete bodies, both pairs of shoes and a little
+    space above their heads. Their arms rest at their sides and their hands are visible. The
+    background is a plain cream studio wall and a light gray floor. Soft neutral studio lighting
+    shows natural skin texture and realistic fabric, with balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid orange short-sleeved crew-neck shirt tucked into dark
+    denim trousers, with the waistband visible. The fabric is matte and uniformly orange across
+    the front and sleeves. The woman stands on the left. She is in her thirties, with an oval
+    face, dark brown shoulder-length straight hair, smooth skin on her face, neck and hands, a
+    firm jawline, an average adult build and natural adult proportions. She wears an opaque,
+    solid teal short-sleeved crew-neck top and khaki trousers. Her top is matte and uniformly
+    teal. The man wears brown shoes and the woman wears white trainers. Both stand upright at
+    the same distance from the camera, with relaxed level shoulders, neutral expressions and a
+    clear gap between them. They look at the camera. A frontal full-body view includes both
+    complete bodies, both pairs of shoes and a little space above their heads. Their arms rest
+    at their sides and their hands are visible. The background is a plain cream studio wall and
+    a light gray floor. Soft neutral studio lighting shows natural skin texture and realistic
+    fabric, with balanced colors.
+  negative: *base1
+  neutral: *base1
+
+# 02: full-body; man left teal; woman right orange
+- target: &base2 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid teal
+    short-sleeved crew-neck shirt tucked into dark denim trousers, with the waistband visible.
+    The fabric is matte and uniformly teal across the front and sleeves. The woman stands on the
+    right. She is in her thirties, with an oval face, dark brown shoulder-length straight hair,
+    smooth skin on her face, neck and hands, a firm jawline, an average adult build and natural
+    adult proportions. She wears an opaque, solid orange short-sleeved crew-neck top and khaki
+    trousers. Her top is matte and uniformly orange. The man wears brown shoes and the woman
+    wears white trainers. Both stand upright at the same distance from the camera, with relaxed
+    level shoulders, neutral expressions and a clear gap between them. They look at the camera.
+    A frontal full-body view includes both complete bodies, both pairs of shoes and a little
+    space above their heads. Their arms rest at their sides and their hands are visible. The
+    background is a plain cream studio wall and a light gray floor. Soft neutral studio lighting
+    shows natural skin texture and realistic fabric, with balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid teal short-sleeved crew-neck shirt tucked into dark
+    denim trousers, with the waistband visible. The fabric is matte and uniformly teal across
+    the front and sleeves. The woman stands on the right. She is in her thirties, with an oval
+    face, dark brown shoulder-length straight hair, smooth skin on her face, neck and hands, a
+    firm jawline, an average adult build and natural adult proportions. She wears an opaque,
+    solid orange short-sleeved crew-neck top and khaki trousers. Her top is matte and uniformly
+    orange. The man wears brown shoes and the woman wears white trainers. Both stand upright at
+    the same distance from the camera, with relaxed level shoulders, neutral expressions and a
+    clear gap between them. They look at the camera. A frontal full-body view includes both
+    complete bodies, both pairs of shoes and a little space above their heads. Their arms rest
+    at their sides and their hands are visible. The background is a plain cream studio wall and
+    a light gray floor. Soft neutral studio lighting shows natural skin texture and realistic
+    fabric, with balanced colors.
+  negative: *base2
+  neutral: *base2
+
+# 03: full-body; man right teal; woman left orange
+- target: &base3 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid teal
+    short-sleeved crew-neck shirt tucked into dark denim trousers, with the waistband visible.
+    The fabric is matte and uniformly teal across the front and sleeves. The woman stands on the
+    left. She is in her thirties, with an oval face, dark brown shoulder-length straight hair,
+    smooth skin on her face, neck and hands, a firm jawline, an average adult build and natural
+    adult proportions. She wears an opaque, solid orange short-sleeved crew-neck top and khaki
+    trousers. Her top is matte and uniformly orange. The man wears brown shoes and the woman
+    wears white trainers. Both stand upright at the same distance from the camera, with relaxed
+    level shoulders, neutral expressions and a clear gap between them. They look at the camera.
+    A frontal full-body view includes both complete bodies, both pairs of shoes and a little
+    space above their heads. Their arms rest at their sides and their hands are visible. The
+    background is a plain cream studio wall and a light gray floor. Soft neutral studio lighting
+    shows natural skin texture and realistic fabric, with balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid teal short-sleeved crew-neck shirt tucked into dark
+    denim trousers, with the waistband visible. The fabric is matte and uniformly teal across
+    the front and sleeves. The woman stands on the left. She is in her thirties, with an oval
+    face, dark brown shoulder-length straight hair, smooth skin on her face, neck and hands, a
+    firm jawline, an average adult build and natural adult proportions. She wears an opaque,
+    solid orange short-sleeved crew-neck top and khaki trousers. Her top is matte and uniformly
+    orange. The man wears brown shoes and the woman wears white trainers. Both stand upright at
+    the same distance from the camera, with relaxed level shoulders, neutral expressions and a
+    clear gap between them. They look at the camera. A frontal full-body view includes both
+    complete bodies, both pairs of shoes and a little space above their heads. Their arms rest
+    at their sides and their hands are visible. The background is a plain cream studio wall and
+    a light gray floor. Soft neutral studio lighting shows natural skin texture and realistic
+    fabric, with balanced colors.
+  negative: *base3
+  neutral: *base3
+
+# 04: waist-up; man left navy blue; woman right burgundy
+- target: &base4 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid navy
+    blue short-sleeved shirt with a small pointed collar tucked into charcoal trousers, with the
+    waistband visible. The fabric is matte and uniformly navy blue across the front and sleeves.
+    The woman stands on the right. She is in her thirties, with an oval face, a chin-length dark
+    brown bob, smooth skin on her face, neck and hands, a firm jawline, an average adult build
+    and natural adult proportions. She wears an opaque, solid burgundy short-sleeved collared
+    blouse and beige trousers. Her blouse is matte and uniformly burgundy. Both stand upright at
+    the same distance from the camera, with relaxed level shoulders, neutral expressions and a
+    clear gap between them. They look at the camera. A frontal waist-up portrait includes both
+    heads, necks and waists. Their hands rest loosely in front of their lower abdomens, fully
+    inside the frame. The background is a plain pale gray studio wall. Soft neutral studio
+    lighting shows natural skin texture and realistic fabric, with balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid navy blue short-sleeved shirt with a small pointed
+    collar tucked into charcoal trousers, with the waistband visible. The fabric is matte and
+    uniformly navy blue across the front and sleeves. The woman stands on the right. She is in
+    her thirties, with an oval face, a chin-length dark brown bob, smooth skin on her face, neck
+    and hands, a firm jawline, an average adult build and natural adult proportions. She wears
+    an opaque, solid burgundy short-sleeved collared blouse and beige trousers. Her blouse is
+    matte and uniformly burgundy. Both stand upright at the same distance from the camera, with
+    relaxed level shoulders, neutral expressions and a clear gap between them. They look at the
+    camera. A frontal waist-up portrait includes both heads, necks and waists. Their hands rest
+    loosely in front of their lower abdomens, fully inside the frame. The background is a plain
+    pale gray studio wall. Soft neutral studio lighting shows natural skin texture and realistic
+    fabric, with balanced colors.
+  negative: *base4
+  neutral: *base4
+
+# 05: waist-up; man right navy blue; woman left burgundy
+- target: &base5 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid navy
+    blue short-sleeved shirt with a small pointed collar tucked into charcoal trousers, with the
+    waistband visible. The fabric is matte and uniformly navy blue across the front and sleeves.
+    The woman stands on the left. She is in her thirties, with an oval face, a chin-length dark
+    brown bob, smooth skin on her face, neck and hands, a firm jawline, an average adult build
+    and natural adult proportions. She wears an opaque, solid burgundy short-sleeved collared
+    blouse and beige trousers. Her blouse is matte and uniformly burgundy. Both stand upright at
+    the same distance from the camera, with relaxed level shoulders, neutral expressions and a
+    clear gap between them. They look at the camera. A frontal waist-up portrait includes both
+    heads, necks and waists. Their hands rest loosely in front of their lower abdomens, fully
+    inside the frame. The background is a plain pale gray studio wall. Soft neutral studio
+    lighting shows natural skin texture and realistic fabric, with balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid navy blue short-sleeved shirt with a small pointed
+    collar tucked into charcoal trousers, with the waistband visible. The fabric is matte and
+    uniformly navy blue across the front and sleeves. The woman stands on the left. She is in
+    her thirties, with an oval face, a chin-length dark brown bob, smooth skin on her face, neck
+    and hands, a firm jawline, an average adult build and natural adult proportions. She wears
+    an opaque, solid burgundy short-sleeved collared blouse and beige trousers. Her blouse is
+    matte and uniformly burgundy. Both stand upright at the same distance from the camera, with
+    relaxed level shoulders, neutral expressions and a clear gap between them. They look at the
+    camera. A frontal waist-up portrait includes both heads, necks and waists. Their hands rest
+    loosely in front of their lower abdomens, fully inside the frame. The background is a plain
+    pale gray studio wall. Soft neutral studio lighting shows natural skin texture and realistic
+    fabric, with balanced colors.
+  negative: *base5
+  neutral: *base5
+
+# 06: waist-up; man left burgundy; woman right navy blue
+- target: &base6 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid
+    burgundy short-sleeved shirt with a small pointed collar tucked into charcoal trousers, with
+    the waistband visible. The fabric is matte and uniformly burgundy across the front and
+    sleeves. The woman stands on the right. She is in her thirties, with an oval face, a
+    chin-length dark brown bob, smooth skin on her face, neck and hands, a firm jawline, an
+    average adult build and natural adult proportions. She wears an opaque, solid navy blue
+    short-sleeved collared blouse and beige trousers. Her blouse is matte and uniformly navy
+    blue. Both stand upright at the same distance from the camera, with relaxed level shoulders,
+    neutral expressions and a clear gap between them. They look at the camera. A frontal
+    waist-up portrait includes both heads, necks and waists. Their hands rest loosely in front
+    of their lower abdomens, fully inside the frame. The background is a plain pale gray studio
+    wall. Soft neutral studio lighting shows natural skin texture and realistic fabric, with
+    balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid burgundy short-sleeved shirt with a small pointed
+    collar tucked into charcoal trousers, with the waistband visible. The fabric is matte and
+    uniformly burgundy across the front and sleeves. The woman stands on the right. She is in
+    her thirties, with an oval face, a chin-length dark brown bob, smooth skin on her face, neck
+    and hands, a firm jawline, an average adult build and natural adult proportions. She wears
+    an opaque, solid navy blue short-sleeved collared blouse and beige trousers. Her blouse is
+    matte and uniformly navy blue. Both stand upright at the same distance from the camera, with
+    relaxed level shoulders, neutral expressions and a clear gap between them. They look at the
+    camera. A frontal waist-up portrait includes both heads, necks and waists. Their hands rest
+    loosely in front of their lower abdomens, fully inside the frame. The background is a plain
+    pale gray studio wall. Soft neutral studio lighting shows natural skin texture and realistic
+    fabric, with balanced colors.
+  negative: *base6
+  neutral: *base6
+
+# 07: waist-up; man right burgundy; woman left navy blue
+- target: &base7 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid
+    burgundy short-sleeved shirt with a small pointed collar tucked into charcoal trousers, with
+    the waistband visible. The fabric is matte and uniformly burgundy across the front and
+    sleeves. The woman stands on the left. She is in her thirties, with an oval face, a
+    chin-length dark brown bob, smooth skin on her face, neck and hands, a firm jawline, an
+    average adult build and natural adult proportions. She wears an opaque, solid navy blue
+    short-sleeved collared blouse and beige trousers. Her blouse is matte and uniformly navy
+    blue. Both stand upright at the same distance from the camera, with relaxed level shoulders,
+    neutral expressions and a clear gap between them. They look at the camera. A frontal
+    waist-up portrait includes both heads, necks and waists. Their hands rest loosely in front
+    of their lower abdomens, fully inside the frame. The background is a plain pale gray studio
+    wall. Soft neutral studio lighting shows natural skin texture and realistic fabric, with
+    balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid burgundy short-sleeved shirt with a small pointed
+    collar tucked into charcoal trousers, with the waistband visible. The fabric is matte and
+    uniformly burgundy across the front and sleeves. The woman stands on the left. She is in her
+    thirties, with an oval face, a chin-length dark brown bob, smooth skin on her face, neck and
+    hands, a firm jawline, an average adult build and natural adult proportions. She wears an
+    opaque, solid navy blue short-sleeved collared blouse and beige trousers. Her blouse is
+    matte and uniformly navy blue. Both stand upright at the same distance from the camera, with
+    relaxed level shoulders, neutral expressions and a clear gap between them. They look at the
+    camera. A frontal waist-up portrait includes both heads, necks and waists. Their hands rest
+    loosely in front of their lower abdomens, fully inside the frame. The background is a plain
+    pale gray studio wall. Soft neutral studio lighting shows natural skin texture and realistic
+    fabric, with balanced colors.
+  negative: *base7
+  neutral: *base7
+
+# 08: waist-up; man left medium gray; woman right ivory
+- target: &base8 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid medium
+    gray short-sleeved round-neck shirt tucked into navy trousers, with the waistband visible.
+    The fabric is matte and uniformly medium gray across the front and sleeves. The woman stands
+    on the right. She is in her thirties, with an oval face, black hair tied in a low bun,
+    smooth skin on her face, neck and hands, a firm jawline, an average adult build and natural
+    adult proportions. She wears an opaque, solid ivory short-sleeved polo shirt and dark brown
+    trousers. Her shirt is matte and uniformly ivory. Both stand upright at the same distance
+    from the camera, with relaxed level shoulders, neutral expressions and a clear gap between
+    them. They look at the camera. A frontal waist-up portrait includes both heads, necks and
+    waists. Their hands rest loosely in front of their lower abdomens, fully inside the frame.
+    The background is a plain light blue-gray studio wall. Soft neutral studio lighting shows
+    natural skin texture and realistic fabric, with balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid medium gray short-sleeved round-neck shirt tucked
+    into navy trousers, with the waistband visible. The fabric is matte and uniformly medium
+    gray across the front and sleeves. The woman stands on the right. She is in her thirties,
+    with an oval face, black hair tied in a low bun, smooth skin on her face, neck and hands, a
+    firm jawline, an average adult build and natural adult proportions. She wears an opaque,
+    solid ivory short-sleeved polo shirt and dark brown trousers. Her shirt is matte and
+    uniformly ivory. Both stand upright at the same distance from the camera, with relaxed level
+    shoulders, neutral expressions and a clear gap between them. They look at the camera. A
+    frontal waist-up portrait includes both heads, necks and waists. Their hands rest loosely in
+    front of their lower abdomens, fully inside the frame. The background is a plain light
+    blue-gray studio wall. Soft neutral studio lighting shows natural skin texture and realistic
+    fabric, with balanced colors.
+  negative: *base8
+  neutral: *base8
+
+# 09: waist-up; man right medium gray; woman left ivory
+- target: &base9 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid medium
+    gray short-sleeved round-neck shirt tucked into navy trousers, with the waistband visible.
+    The fabric is matte and uniformly medium gray across the front and sleeves. The woman stands
+    on the left. She is in her thirties, with an oval face, black hair tied in a low bun, smooth
+    skin on her face, neck and hands, a firm jawline, an average adult build and natural adult
+    proportions. She wears an opaque, solid ivory short-sleeved polo shirt and dark brown
+    trousers. Her shirt is matte and uniformly ivory. Both stand upright at the same distance
+    from the camera, with relaxed level shoulders, neutral expressions and a clear gap between
+    them. They look at the camera. A frontal waist-up portrait includes both heads, necks and
+    waists. Their hands rest loosely in front of their lower abdomens, fully inside the frame.
+    The background is a plain light blue-gray studio wall. Soft neutral studio lighting shows
+    natural skin texture and realistic fabric, with balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid medium gray short-sleeved round-neck shirt tucked
+    into navy trousers, with the waistband visible. The fabric is matte and uniformly medium
+    gray across the front and sleeves. The woman stands on the left. She is in her thirties,
+    with an oval face, black hair tied in a low bun, smooth skin on her face, neck and hands, a
+    firm jawline, an average adult build and natural adult proportions. She wears an opaque,
+    solid ivory short-sleeved polo shirt and dark brown trousers. Her shirt is matte and
+    uniformly ivory. Both stand upright at the same distance from the camera, with relaxed level
+    shoulders, neutral expressions and a clear gap between them. They look at the camera. A
+    frontal waist-up portrait includes both heads, necks and waists. Their hands rest loosely in
+    front of their lower abdomens, fully inside the frame. The background is a plain light
+    blue-gray studio wall. Soft neutral studio lighting shows natural skin texture and realistic
+    fabric, with balanced colors.
+  negative: *base9
+  neutral: *base9
+
+# 10: waist-up; man left ivory; woman right medium gray
+- target: &base10 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid ivory
+    short-sleeved round-neck shirt tucked into navy trousers, with the waistband visible. The
+    fabric is matte and uniformly ivory across the front and sleeves. The woman stands on the
+    right. She is in her thirties, with an oval face, black hair tied in a low bun, smooth skin
+    on her face, neck and hands, a firm jawline, an average adult build and natural adult
+    proportions. She wears an opaque, solid medium gray short-sleeved polo shirt and dark brown
+    trousers. Her shirt is matte and uniformly medium gray. Both stand upright at the same
+    distance from the camera, with relaxed level shoulders, neutral expressions and a clear gap
+    between them. They look at the camera. A frontal waist-up portrait includes both heads,
+    necks and waists. Their hands rest loosely in front of their lower abdomens, fully inside
+    the frame. The background is a plain light blue-gray studio wall. Soft neutral studio
+    lighting shows natural skin texture and realistic fabric, with balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the left. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid ivory short-sleeved round-neck shirt tucked into navy
+    trousers, with the waistband visible. The fabric is matte and uniformly ivory across the
+    front and sleeves. The woman stands on the right. She is in her thirties, with an oval face,
+    black hair tied in a low bun, smooth skin on her face, neck and hands, a firm jawline, an
+    average adult build and natural adult proportions. She wears an opaque, solid medium gray
+    short-sleeved polo shirt and dark brown trousers. Her shirt is matte and uniformly medium
+    gray. Both stand upright at the same distance from the camera, with relaxed level shoulders,
+    neutral expressions and a clear gap between them. They look at the camera. A frontal
+    waist-up portrait includes both heads, necks and waists. Their hands rest loosely in front
+    of their lower abdomens, fully inside the frame. The background is a plain light blue-gray
+    studio wall. Soft neutral studio lighting shows natural skin texture and realistic fabric,
+    with balanced colors.
+  negative: *base10
+  neutral: *base10
+
+# 11: waist-up; man right ivory; woman left medium gray
+- target: &base11 >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face, neck and hands is
+    smooth, with fine natural pores and a firm jawline. He has short dark hair, a clean-shaven
+    face, an average adult build and natural adult proportions. He wears an opaque, solid ivory
+    short-sleeved round-neck shirt tucked into navy trousers, with the waistband visible. The
+    fabric is matte and uniformly ivory across the front and sleeves. The woman stands on the
+    left. She is in her thirties, with an oval face, black hair tied in a low bun, smooth skin
+    on her face, neck and hands, a firm jawline, an average adult build and natural adult
+    proportions. She wears an opaque, solid medium gray short-sleeved polo shirt and dark brown
+    trousers. Her shirt is matte and uniformly medium gray. Both stand upright at the same
+    distance from the camera, with relaxed level shoulders, neutral expressions and a clear gap
+    between them. They look at the camera. A frontal waist-up portrait includes both heads,
+    necks and waists. Their hands rest loosely in front of their lower abdomens, fully inside
+    the frame. The background is a plain light blue-gray studio wall. Soft neutral studio
+    lighting shows natural skin texture and realistic fabric, with balanced colors.
+  positive: >-
+    A photorealistic color studio photograph shows exactly two fully clothed adults standing
+    side by side. The man stands on the right. The skin on the man's face has pronounced natural
+    forehead wrinkles, crow's-feet beside his eyes, deep nasolabial folds and mild sagging along
+    his jawline; the skin on his neck and the backs of his hands has fine age-related creases.
+    He has short dark hair, a clean-shaven face, an average adult build and natural adult
+    proportions. He wears an opaque, solid ivory short-sleeved round-neck shirt tucked into navy
+    trousers, with the waistband visible. The fabric is matte and uniformly ivory across the
+    front and sleeves. The woman stands on the left. She is in her thirties, with an oval face,
+    black hair tied in a low bun, smooth skin on her face, neck and hands, a firm jawline, an
+    average adult build and natural adult proportions. She wears an opaque, solid medium gray
+    short-sleeved polo shirt and dark brown trousers. Her shirt is matte and uniformly medium
+    gray. Both stand upright at the same distance from the camera, with relaxed level shoulders,
+    neutral expressions and a clear gap between them. They look at the camera. A frontal
+    waist-up portrait includes both heads, necks and waists. Their hands rest loosely in front
+    of their lower abdomens, fully inside the frame. The background is a plain light blue-gray
+    studio wall. Soft neutral studio lighting shows natural skin texture and realistic fabric,
+    with balanced colors.
+  negative: *base11
+  neutral: *base11

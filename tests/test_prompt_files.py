@@ -24,11 +24,19 @@ class PromptFileTests(unittest.TestCase):
                                  "realistic_female_only_aging_slider_v1.yaml",
                                  "realistic_female_only_aging_slider_v2.yaml",
                                  "realistic_female_only_deaging_slider_v1.yaml",
+                                 "realistic_female_only_deaging_slider_v2.yaml",
                                  "realistic_male_only_aging_slider_v1.yaml",
-                                 "realistic_male_only_deaging_slider_v1.yaml"])
+                                 "realistic_male_only_aging_slider_v2.yaml",
+                                 "realistic_male_only_deaging_slider_v1.yaml",
+                                 "realistic_male_only_deaging_slider_v2.yaml"])
         for name in names:
             records = api.load_prompt_file(root, name)
-            expected_count = 12 if name == "realistic_female_only_aging_slider_v2.yaml" else 6
+            expected_count = 12 if name in (
+                "realistic_female_only_aging_slider_v2.yaml",
+                "realistic_female_only_deaging_slider_v2.yaml",
+                "realistic_male_only_aging_slider_v2.yaml",
+                "realistic_male_only_deaging_slider_v2.yaml",
+            ) else 6
             self.assertEqual(len(records), expected_count)
             self.assertTrue(all(r["positive"] != r["negative"] for r in records))
 
